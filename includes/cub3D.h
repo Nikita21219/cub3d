@@ -1,6 +1,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define NO		1
+# define SO		2
+# define WE		3
+# define EA		4
+
+
 # include <stdio.h>
 # include <math.h>
 # include <unistd.h>
@@ -12,20 +18,30 @@ typedef struct s_data
 {
 	char			**map;
 	struct s_pict	*pict;
+	struct s_pl		*pl;
 	void			*mlx;
 	void			*win;
 }	t_data;
 
 typedef struct s_pict
 {
-	void	*empty;
-	void	*wall;
+	char	*floor;
+	char	*ceiling;
+	void	*no_wall;
+	void	*so_wall;
+	void	*we_wall;
+	void	*ea_wall;
 	void	*pl;
-	void	*coll;
-	void	*exit;
-	void	*opex;
-	void	*obst;
+	void	*door;
+	void	*sprite;
 }	t_pict;
+
+typedef struct s_pl
+{
+	int	x;
+	int	y;
+	int	dir;
+}	t_pl;
 
 /* Parser map */
 
