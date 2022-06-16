@@ -8,5 +8,6 @@ int	main(int argc, char **argv)
 		ft_exit(NULL, 1);
 	data = parser_map(argv[1]);
 	clearmap(data.map);
+	init_window(data);
 	return (0);
 }

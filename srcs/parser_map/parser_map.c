@@ -18,8 +18,7 @@ void	open_read_map(char *name, t_data *data)
 	int		fd;
 
 	fd = open(name, O_RDONLY);
-	if (gnl(fd, data))
-		ft_exit(data, 12);
+	gnl(fd, data);
 	i = 0;
 	while (data->map[i])
 		printf("%s\n", data->map[i++]);

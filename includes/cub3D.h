@@ -5,6 +5,7 @@
 # define SO		2
 # define WE		3
 # define EA		4
+# define SCALE	64
 
 
 # include <stdio.h>
@@ -21,6 +22,8 @@ typedef struct s_data
 	struct s_pl		*pl;
 	void			*mlx;
 	void			*win;
+	int				win_x;
+	int				win_y;
 }	t_data;
 
 typedef struct s_pict
@@ -38,9 +41,11 @@ typedef struct s_pict
 
 typedef struct s_pl
 {
-	int	x;
-	int	y;
-	int	dir;
+	float		x;
+	float		y;
+	float		dir;
+	float		start;
+	float		end;
 }	t_pl;
 
 /* Parser map */
@@ -50,7 +55,7 @@ t_data	parser_map(char *name);
 /* Utils */
 
 void	ft_exit(t_data *data, int i);
-int		gnl(int fd, t_data *data);
+void	gnl(int fd, t_data *data);
 void	clearmap(char **map);
 
 #endif

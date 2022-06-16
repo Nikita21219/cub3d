@@ -34,7 +34,7 @@ void	ft_exit(t_data *data, int i)
 	exit (1);
 }
 
-int	gnl(int fd, t_data *data)
+void	gnl(int fd, t_data *data)
 {
 	char	*line;
 	char	*tmp;
@@ -53,11 +53,12 @@ int	gnl(int fd, t_data *data)
 		if (tmp)
 			free(tmp);
 		if (!line)
-			return (1);
+			ft_exit(data, 12);
 	}
 	data->map = ft_split(line, '\n');
 	free(line);
-	if (!data->map)
-		return (1);
-	return (0);
+	if (!data->map && c[0])
+		ft_exit(data, 12);
+	if (!data->map && !c[0])
+		ft_exit(data, 3);
 }
