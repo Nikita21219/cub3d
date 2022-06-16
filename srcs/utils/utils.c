@@ -19,19 +19,19 @@ void	clearmap(char **map)
  * */
 void	ft_exit(t_data *data, int i)
 {
-	if (i == 0)
-		printf("Wrong map name\n");
 	if (i == 1)
-		printf("Please, take path and map name (template: path/name)\n");
+		printf("Wrong map name\n");
 	if (i == 2)
-		printf("Map can't open\n");
+		printf("Please, take path and map name (template: path/name)\n");
 	if (i == 3)
+		printf("Map can't open\n");
+	if (i == 4)
 		printf("Map is wrong!\n");
 	if (i == 12)
 		printf("Malloc error\n");
 	if (data && data->map)
 		clearmap(data->map);
-	exit (1);
+	exit (i);
 }
 
 int	gnl(int fd, t_data *data)
@@ -60,4 +60,10 @@ int	gnl(int fd, t_data *data)
 	if (!data->map)
 		return (1);
 	return (0);
+}
+
+int	exit_with_print(char *err_str)
+{
+	printf("%s\n", err_str);
+	exit (1);
 }

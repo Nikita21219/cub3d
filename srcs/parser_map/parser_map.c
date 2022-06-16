@@ -14,15 +14,15 @@ void	check_filename(char *name)
 
 void	open_read_map(char *name, t_data *data)
 {
-	int		i;
+	// int		i;
 	int		fd;
 
 	fd = open(name, O_RDONLY);
 	if (gnl(fd, data))
 		ft_exit(data, 12);
-	i = 0;
-	while (data->map[i])
-		printf("%s\n", data->map[i++]);
+	// i = 0;
+	// while (data->map[i])
+	// 	printf("%s\n", data->map[i++]);
 	close(fd);
 }
 

@@ -44,13 +44,19 @@ typedef struct s_pl
 }	t_pl;
 
 /* Parser map */
-
 t_data	parser_map(char *name);
+void	check_mapfile(t_data *data);
 
 /* Utils */
-
 void	ft_exit(t_data *data, int i);
 int		gnl(int fd, t_data *data);
 void	clearmap(char **map);
+int		exit_with_print(char *err_str);
+int		startswith(char *str, char *start);
+int		ft_space(char c);
+int		equal(char *f_str, char *s_str);
+
+/* Free utils */
+void	free_arr(char **arr);
 
 #endif
