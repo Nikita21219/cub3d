@@ -12,7 +12,7 @@
 # include <math.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include "../libft/includes/libft.h"
 
 typedef struct s_data
@@ -20,11 +20,20 @@ typedef struct s_data
 	char			**map;
 	struct s_pict	*pict;
 	struct s_pl		*pl;
-	void			*mlx;
-	void			*win;
+	struct s_mlx	*mlx;
 	int				win_x;
 	int				win_y;
 }	t_data;
+
+typedef struct s_mlx {
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_mlx;
 
 typedef struct s_pict
 {
@@ -51,6 +60,11 @@ typedef struct s_pl
 /* Parser map */
 
 t_data	parser_map(char *name);
+
+/* Game and window */
+
+void	ft_init_window(t_data *data);
+void	draw_map(t_data *data);
 
 /* Utils */
 

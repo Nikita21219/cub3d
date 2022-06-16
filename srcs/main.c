@@ -7,7 +7,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_exit(NULL, 1);
 	data = parser_map(argv[1]);
-	clearmap(data.map);
-	init_window(data);
+	ft_init_window(&data);
 	return (0);
 }
