@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 		ft_exit(NULL, 1);
 	init_data(&data);
 	parser_map(&data, argv[1]);
+	check_mapfile(&data);
 	printf("x = %f\ny = %f\n", data.pl->x, data.pl->y);
 	// ft_init_window(&data);
 	return (0);
