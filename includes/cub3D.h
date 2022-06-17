@@ -5,7 +5,13 @@
 # define SO		2
 # define WE		3
 # define EA		4
-# define SCALE	64
+# define SCALE	64.0
+
+# define WRONG_MAP_NAME	1
+# define PATH_MAP_ERR	2
+# define OPEN_MAP_ERR	3
+# define WRONG_MAP		4
+# define MALLOC_ERR		12
 
 
 # include <stdio.h>
@@ -37,8 +43,8 @@ typedef struct s_mlx {
 
 typedef struct s_pict
 {
-	char	*floor;
-	char	*ceiling;
+	int		floor;
+	int		ceiling;
 	void	*no_wall;
 	void	*so_wall;
 	void	*we_wall;
@@ -74,6 +80,10 @@ int		exit_with_print(char *err_str);
 int		startswith(char *str, char *start);
 int		ft_space(char c);
 int		equal(char *f_str, char *s_str);
+int		get_map_size(char **arr);
+int		convert_grb(char *str, t_data *data);
+int		len_arr(char **arr);
+void	check_map(t_data *data);
 
 /* Free utils */
 void	free_arr(char **arr);

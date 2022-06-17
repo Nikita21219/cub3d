@@ -20,15 +20,15 @@ void	clearmap(char **map)
  * */
 void	ft_exit(t_data *data, int i)
 {
-	if (i == 1)
+	if (i == WRONG_MAP_NAME)
 		printf("Wrong map name\n");
-	if (i == 2)
+	if (i == PATH_MAP_ERR)
 		printf("Please, take path and map name (template: path/name)\n");
-	if (i == 3)
+	if (i == OPEN_MAP_ERR)
 		printf("Map can't open\n");
-	if (i == 4)
+	if (i == WRONG_MAP)
 		printf("Map is wrong!\n");
-	if (i == 12)
+	if (i == MALLOC_ERR)
 		printf("Malloc error\n");
 	if (data && data->map)
 		clearmap(data->map);

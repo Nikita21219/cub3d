@@ -1,14 +1,5 @@
 #include "../includes/cub3D.h"
 
-void	print_arr(char	**arr)
-{
-	int	i;
-
-	i = -1;
-	while (arr[++i])
-		printf("%s\n", arr[i]);
-}
-
 int	is_identifier(char *str)
 {
 	if (startswith(str, "NO") || startswith(str, "SO"))
@@ -20,34 +11,27 @@ int	is_identifier(char *str)
 	return (0);
 }
 
-int	get_map_size(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i - 6);
-}
-
 void	init_pict(char *str, t_data *data)
 {
-	char	**split;
 	int		img_width;
 	int		img_height;
 
-	split = ft_split(str, ' ');
-	if (split == NULL)
-		ft_exit(data, 12);
-	// TODO check, if path texture is not correct
-	if (equal(split[0], "NO"))
-		data->pict->no_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
-	else if (equal(split[0], "SO"))
-		data->pict->so_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
-	else if (equal(split[0], "WE"))
-		data->pict->we_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
-	else if (equal(split[0], "EA"))
-		data->pict->ea_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
+	while (ft_space(*str))
+		str++;
+	if (startswith(str, "NO"))
+		data->pict->no_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+	else if (startswith(str, "SO"))
+		data->pict->so_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+	else if (startswith(str, "WE"))
+		data->pict->we_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+	else if (startswith(str, "EA"))
+		data->pict->ea_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+	else if (startswith(str, "C"))
+		data->pict->ceiling = convert_grb(ft_strtrim(str + 1, " \t"), data);
+	else if (startswith(str, "F"))
+		data->pict->floor = convert_grb(ft_strtrim(str + 1, " \t"), data);
+	else
+		ft_exit(data, WRONG_MAP);
 }
 
 void	check_identifiers(t_data *data)
@@ -63,18 +47,15 @@ void	check_identifiers(t_data *data)
 	data->pict->we_wall = NULL;
 	i = -1;
 	while (data->map[++i] && i < 6)
-	{
 		init_pict(data->map[i], data);
-	}
-	printf("data->pict->ea_wall = %p\n", data->pict->ea_wall);
 	if (data->pict->ea_wall == NULL || \
 	data->pict->no_wall == NULL || \
 	data->pict->so_wall == NULL || \
 	data->pict->we_wall == NULL)
-		ft_exit(data, 4);
+		ft_exit(data, WRONG_MAP);
 }
 
-void	get_only_map(t_data *data)
+void	set_map(t_data *data)
 {
 	char	**res;
 	int		map_size;
@@ -84,11 +65,11 @@ void	get_only_map(t_data *data)
 	i = -1;
 	while (data->map[++i] && i < 6)
 		if (!is_identifier(data->map[i]))
-			ft_exit(data, 4);
+			ft_exit(data, WRONG_MAP);
 	check_identifiers(data);
 	map_size = get_map_size(data->map);
 	if (map_size <= 0)
-		ft_exit(data, 4);
+		ft_exit(data, WRONG_MAP);
 	res = malloc((map_size + 1) * sizeof(char *));
 	if (res == NULL)
 		ft_exit(data, 12);
@@ -101,6 +82,6 @@ void	get_only_map(t_data *data)
 
 void	check_mapfile(t_data *data)
 {
-	get_only_map(data);
-	// print_arr(data->map);
+	set_map(data);
+	check_map(data);
 }
