@@ -5,7 +5,7 @@
 # define SO		2
 # define WE		3
 # define EA		4
-# define SCALE	64
+# define SCALE	30
 
 # include <stdio.h>
 # include <math.h>

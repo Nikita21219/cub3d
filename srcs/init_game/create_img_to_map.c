@@ -14,22 +14,32 @@ void	draw_block(t_mlx *mlx, int x, int y, int color)
 	int	i;
 	int	n;
 
-	n = 30;
-	while (n)
+	n = SCALE + 1;
+	while (--n)
 	{
-		i = 30;
-		while (i)
-		{
+		i = SCALE + 1;
+		while (--i)
 			my_mlx_pixel_put(mlx, x + i, y + n, color);
-			i--;
-		}
-		n--;
 	}
 }
 
 void	draw_player(t_data *data)
 {
-	draw_block(data->mlx, data->pl->x, data->pl->y, 0x0FFFFFF);
+	t_pl *pr;
+
+	pr = data->pl;
+	pr->start = pr->dir - M_PI_4;
+	pr->end = pr->dir + M_PI_4;
+	while (pr->start < pr->end)
+	{
+		while (data->map[(int)(pr->y / SCALE)][(int)(pr->x / SCALE)] != '1')
+		{
+			pr->x += cos(pr->dir);
+			pr->y += sin(pr->dir);
+			my_mlx_pixel_put(data->mlx, data->pl->x, data->pl->y, 0x00FF000);
+		}
+		pr->start += M_PI_2 / 40;
+	}
 }
 
 void	draw_map(t_data *data)
@@ -51,13 +61,13 @@ void	draw_map(t_data *data)
 			if (data->map[y][x] == 9)
 				tab += 3;
 			if (data->map[y][x] == '1')
-				draw_block(data->mlx, (x + tab) * 30, y * 30, 0x00FF0000);
+				draw_block(data->mlx, (x + tab) * SCALE, y * SCALE, 0x00FF0000);
 			x++;
 		}
 		y++;
 	}
 	draw_player(data);
 	mlx_put_image_to_window(data->mlx->mlx, \
-		data->mlx->win, data->mlx->img, 500, 350);
+		data->mlx->win, data->mlx->img, 0, 0);
 	mlx_destroy_image(data->mlx->mlx, data->mlx->img);
 }
