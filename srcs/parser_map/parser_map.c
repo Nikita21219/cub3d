@@ -20,17 +20,12 @@ void	open_read_map(char *name, t_data *data)
 	fd = open(name, O_RDONLY);
 	gnl(fd, data);
 	i = 0;
-	while (data->map[i])
-		printf("%s\n", data->map[i++]);
 	close(fd);
 }
 
-t_data	parser_map(char *name)
+void	parser_map(t_data *data, char *name)
 {
-	t_data	data;
-
-	data.map = NULL;
+	data->map = NULL;
 	check_filename(name);
-	open_read_map(name, &data);
-	return (data);
+	open_read_map(name, data);
 }

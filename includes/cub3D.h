@@ -7,7 +7,6 @@
 # define EA		4
 # define SCALE	64
 
-
 # include <stdio.h>
 # include <math.h>
 # include <unistd.h>
@@ -37,8 +36,8 @@ typedef struct s_mlx {
 
 typedef struct s_pict
 {
-	char	*floor;
-	char	*ceiling;
+	int		floor;
+	int		ceiling;
 	void	*no_wall;
 	void	*so_wall;
 	void	*we_wall;
@@ -59,12 +58,16 @@ typedef struct s_pl
 
 /* Parser map */
 
-t_data	parser_map(char *name);
+void	parser_map(t_data *data, char *name);
 
 /* Game and window */
 
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	move_up(t_data *data);
+void	move_down(t_data *data);
 
 /* Utils */
 
