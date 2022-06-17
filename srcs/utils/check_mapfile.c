@@ -32,26 +32,22 @@ int	get_map_size(char **arr)
 
 void	init_pict(char *str, t_data *data)
 {
-	char *path;
+	char	**split;
+	int		img_width;
+	int		img_height;
 
-	path = NULL;
-	while (ft_space(*str))
-		str++;
-	if ((str[0] == 'N' && str[1] == 'O') ||  \
-	(str[0] == 'S' && str[1] == 'O') || \
-	(str[0] == 'W' && str[1] == 'E') || \
-	(str[0] == 'E' && str[1] == 'A') || \
-	str[0] == 'F' || \
-	str[0] == 'C')
-	{
-		path = ft_strtrim(str, " \f\n\r\t\v");
-		if (path == NULL)
-			ft_exit(data, 4);
-	}
-	else
-		ft_exit(data, 4);
-	if (ft_strnstr(path, " ", ft_strlen(path)) || ft_strnstr(path, "\t", ft_strlen(path)))
-		ft_exit(data, 4);
+	split = ft_split(str, ' ');
+	if (split == NULL)
+		ft_exit(data, 12);
+	printf("split[0] = '%s', split[1] = '%s'\n", split[0], split[1]);
+	if (equal(split[0], "NO"))
+		data->pict->no_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
+	else if (equal(split[0], "SO"))
+		data->pict->so_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
+	else if (equal(split[0], "WE"))
+		data->pict->we_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
+	else if (equal(split[0], "EA"))
+		data->pict->ea_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
 }
 
 void	check_identifiers(t_data *data)
@@ -66,10 +62,11 @@ void	check_identifiers(t_data *data)
 	data->pict->so_wall = NULL;
 	data->pict->we_wall = NULL;
 	i = -1;
-	// while (data->map[++i] && i < 6)
-	// {
-	// 	init_pict(data->map[i], data);
-	// }
+	while (data->map[++i] && i < 6)
+	{
+		init_pict(data->map[i], data);
+	}
+	printf("data->pict->ea_wall = %p\n", data->pict->ea_wall);
 	if (data->pict->ea_wall == NULL || \
 	data->pict->no_wall == NULL || \
 	data->pict->so_wall == NULL || \

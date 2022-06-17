@@ -7,6 +7,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_exit(NULL, 1);
 	data = parser_map(argv[1]);
+	data.mlx = mlx_init();
 	check_mapfile(&data);
 	// clearmap(data.map);
 	return (0);
