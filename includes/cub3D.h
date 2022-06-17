@@ -6,6 +6,7 @@
 # define SO		270.0
 # define EA		0.0
 # define SCALE	30
+# define FOV	60.0
 
 # define WRONG_MAP_NAME	1
 # define PATH_MAP_ERR	2
