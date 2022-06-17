@@ -25,20 +25,22 @@ void	draw_block(t_mlx *mlx, int x, int y, int color)
 
 void	draw_player(t_data *data)
 {
-	t_pl *pr;
+	t_pl	pr;
 
-	pr = data->pl;
-	pr->start = pr->dir - M_PI_4;
-	pr->end = pr->dir + M_PI_4;
-	while (pr->start < pr->end)
+	pr = *data->pl;
+	pr.start = data->pl->dir - M_PI_4;
+	pr.end = data->pl->dir + M_PI_4;
+	while (pr.start < pr.end)
 	{
-		while (data->map[(int)(pr->y / SCALE)][(int)(pr->x / SCALE)] != '1')
+		pr.x = data->pl->x;
+		pr.y = data->pl->y;
+		while (data->map[(int)(pr.y / SCALE)][(int)(pr.x / SCALE)] != '1')
 		{
-			pr->x += cos(pr->dir);
-			pr->y += sin(pr->dir);
-			my_mlx_pixel_put(data->mlx, data->pl->x + SCALE / 2, data->pl->y + SCALE / 2, 0x00FF000);
+			pr.x += cos(pr.start);
+			pr.y += sin(pr.start);
+			my_mlx_pixel_put(data->mlx, pr.x, pr.y, 0x00FF000);
 		}
-		pr->start += M_PI_2 / 40;
+		pr.start += M_PI_2 / 140;
 	}
 }
 

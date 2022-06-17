@@ -1,11 +1,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define NO		90.0
-# define WE		180.0
-# define SO		270.0
+# define NO		M_PI_2
+# define WE		M_PI
+# define SO		M_PI
 # define EA		0.0
 # define SCALE	30
+# define SPEED	10
 
 # define WRONG_MAP_NAME	1
 # define PATH_MAP_ERR	2

@@ -47,13 +47,13 @@ void	check_char(char c, t_data *data, float x, float y)
 		if (c == 'N')
 			data->pl->dir = NO;
 		else if (c == 'S')
-			data->pl->dir = SO;
+			data->pl->dir = 1.5 * SO;
 		else if (c == 'W')
 			data->pl->dir = WE;
 		else if (c == 'E')
 			data->pl->dir = EA;
-		data->pl->x = x * SCALE;
-		data->pl->y = y * SCALE;
+		data->pl->x = (x * SCALE) + SCALE / 2;
+		data->pl->y = (y * SCALE) + SCALE / 2;
 	}
 	if (flag > 1)
 		ft_exit(data, WRONG_MAP);
