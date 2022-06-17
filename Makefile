@@ -5,7 +5,7 @@ CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
 MLXFL =  -L mlx -l mlx -framework OpenGL -framework AppKit
 
 OBJDIR = ./objs
-VPATH = ./srcs ./srcs/parser_map ./srcs/utils
+VPATH = ./srcs ./srcs/parser_map ./srcs/utils ./srcs/init_game
 LIBFT_DIR = libft/
 HEADDIR = ./includes
 

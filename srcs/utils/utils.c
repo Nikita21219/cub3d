@@ -5,16 +5,17 @@ void	clearmap(char **map)
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (map && map[i])
 		free (map[i++]);
-	free (map);
+	if (map)
+		free (map);
 }
 
 /**
- * 0 - Wrong map name
- * 1 - Please, take path and map name (template: path/name)
- * 2 - Map can't open
- * 3 - Map is wrong!
+ * 1 - Wrong map name
+ * 2 - Please, take path and map name (template: path/name)
+ * 3 - Map can't open
+ * 4 - Map is wrong!
  * 12 - Malloc error.
  * */
 void	ft_exit(t_data *data, int i)
@@ -34,7 +35,7 @@ void	ft_exit(t_data *data, int i)
 	exit (i);
 }
 
-int	gnl(int fd, t_data *data)
+void	gnl(int fd, t_data *data)
 {
 	char	*line;
 	char	*tmp;
@@ -53,13 +54,14 @@ int	gnl(int fd, t_data *data)
 		if (tmp)
 			free(tmp);
 		if (!line)
-			return (1);
+			ft_exit(data, 12);
 	}
 	data->map = ft_split(line, '\n');
 	free(line);
-	if (!data->map)
-		return (1);
-	return (0);
+	if (!data->map && c[0])
+		ft_exit(data, 12);
+	if (!data->map && !c[0])
+		ft_exit(data, 4);
 }
 
 int	exit_with_print(char *err_str)
