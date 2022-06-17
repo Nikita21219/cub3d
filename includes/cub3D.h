@@ -13,7 +13,6 @@
 # define WRONG_MAP		4
 # define MALLOC_ERR		12
 
-
 # include <stdio.h>
 # include <math.h>
 # include <unistd.h>
@@ -64,13 +63,17 @@ typedef struct s_pl
 }	t_pl;
 
 /* Parser map */
-t_data	parser_map(char *name);
 void	check_mapfile(t_data *data);
+void	parser_map(t_data *data, char *name);
 
 /* Game and window */
 
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	move_up(t_data *data);
+void	move_down(t_data *data);
 
 /* Utils */
 void	ft_exit(t_data *data, int i);
