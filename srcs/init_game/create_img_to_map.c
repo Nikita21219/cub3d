@@ -36,7 +36,7 @@ void	draw_player(t_data *data)
 		{
 			pr->x += cos(pr->dir);
 			pr->y += sin(pr->dir);
-			my_mlx_pixel_put(data->mlx, data->pl->x, data->pl->y, 0x00FF000);
+			my_mlx_pixel_put(data->mlx, data->pl->x + SCALE / 2, data->pl->y + SCALE / 2, 0x00FF000);
 		}
 		pr->start += M_PI_2 / 40;
 	}

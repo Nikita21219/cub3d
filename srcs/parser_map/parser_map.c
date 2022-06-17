@@ -14,12 +14,10 @@ void	check_filename(char *name)
 
 void	open_read_map(char *name, t_data *data)
 {
-	int		i;
 	int		fd;
 
 	fd = open(name, O_RDONLY);
 	gnl(fd, data);
-	i = 0;
 	close(fd);
 }
 

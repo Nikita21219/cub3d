@@ -9,6 +9,11 @@ void	init_data(t_data *data)
 		ft_exit(data, 12);
 }
 
+void	tmp_print_dir_coords(t_data *data)
+{
+	printf("x = %.1f\ny = %.1f\ndirection = %.1f\n", data->pl->x, data->pl->y, data->pl->dir);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -17,9 +22,8 @@ int	main(int argc, char **argv)
 		ft_exit(NULL, 1);
 	init_data(&data);
 	parser_map(&data, argv[1]);
-	data.pl->dir = -90;
-	data.pl->y = 11 * SCALE;
-	data.pl->x = 26 * SCALE;
+	check_mapfile(&data);
+	tmp_print_dir_coords(&data);
 	ft_init_window(&data);
 	return (0);
 }

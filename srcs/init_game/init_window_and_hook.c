@@ -33,7 +33,7 @@ void	ft_init_window(t_data *data)
 	data->mlx->win = mlx_new_window(data->mlx->mlx, \
 	1920, 1080, "A frenzied massacre");
 	draw_map(data);
-	mlx_hook(data->mlx->win, 2, (1L << 0), ft_hook, data);
+	// mlx_hook(data->mlx->win, 2, (1L << 0), ft_hook, data);
 	mlx_hook(data->mlx->win, 17, 0L, ft_exitbut, data);
 	mlx_loop(data->mlx->mlx);
 }
