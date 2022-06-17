@@ -39,7 +39,7 @@ void	init_pict(char *str, t_data *data)
 	split = ft_split(str, ' ');
 	if (split == NULL)
 		ft_exit(data, 12);
-	printf("split[0] = '%s', split[1] = '%s'\n", split[0], split[1]);
+	// TODO check, if path texture is not correct
 	if (equal(split[0], "NO"))
 		data->pict->no_wall = mlx_xpm_file_to_image(data->mlx, split[1], &img_width, &img_height);
 	else if (equal(split[0], "SO"))
