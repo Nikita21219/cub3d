@@ -17,8 +17,8 @@ int	main(int argc, char **argv)
 		ft_exit(NULL, 1);
 	init_data(&data);
 	parser_map(&data, argv[1]);
-	data.pl->y = 110;
-	data.pl->x = 260;
+	data.pl->y = 11 * 30;
+	data.pl->x = 26 * 30;
 	ft_init_window(&data);
 	return (0);
 }
