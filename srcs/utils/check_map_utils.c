@@ -36,13 +36,12 @@ int	convert_grb(char *str, t_data *data)
 
 void	check_char(char c, t_data *data, float x, float y)
 {
-	static int	flag;
+	static int	flag = 0;
 
-	flag = 0;
 	if (c != '0' && c != '1' && c != 'N' && \
 	c != 'S' && c != 'E' && c != 'W' && c != ' ' && c != '\t')
 		ft_exit(data, WRONG_MAP);
-	if (c == 'N' || c != 'S' || c != 'E' || c != 'W')
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		flag++;
 		if (c == 'N')
@@ -74,5 +73,4 @@ void	check_map(t_data *data)
 			check_char(data->map[i][j], data, (float) j, (float) i);
 		}
 	}
-	printf("x = %f y = %f\n", data->pl->x, data->pl->y);
 }

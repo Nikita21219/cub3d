@@ -1,10 +1,10 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define NO		1
-# define SO		2
-# define WE		3
-# define EA		4
+# define NO		90.0
+# define WE		180.0
+# define SO		270.0
+# define EA		0.0
 # define SCALE	64.0
 
 # define WRONG_MAP_NAME	1
