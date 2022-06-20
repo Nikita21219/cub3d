@@ -88,6 +88,8 @@ int		get_map_size(char **arr);
 int		convert_grb(char *str, t_data *data);
 int		len_arr(char **arr);
 void	check_map(t_data *data);
+int		endswith(char *str, char *end);
+void	check_space(t_data *dt, int i, int j);
 
 /* Free utils */
 void	free_arr(char **arr);

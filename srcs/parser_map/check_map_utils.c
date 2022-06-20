@@ -34,12 +34,13 @@ int	convert_grb(char *str, t_data *data)
 	return (ft_atoi(split[0]) << 16 | ft_atoi(split[1]) << 8 | ft_atoi(split[2]));
 }
 
-void	check_char(char c, t_data *data, float x, float y)
+int	check_char(char c, t_data *data, float x, float y)
 {
-	static int	flag = 0;
+	int	flag;
 
+	flag = 0;
 	if (c != '0' && c != '1' && c != 'N' && \
-	c != 'S' && c != 'E' && c != 'W' && c != ' ' && c != '\t')
+	c != 'S' && c != 'E' && c != 'W' && c != ' ')
 		ft_exit(data, WRONG_MAP);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
@@ -55,8 +56,7 @@ void	check_char(char c, t_data *data, float x, float y)
 		data->pl->x = (x * SCALE) + SCALE / 2;
 		data->pl->y = (y * SCALE) + SCALE / 2;
 	}
-	if (flag > 1)
-		ft_exit(data, WRONG_MAP);
+	return (flag);
 }
 
 void	check_only_walls(t_data *dt, char *str)
@@ -86,15 +86,21 @@ void	check_map(t_data *data)
 {
 	int	i;
 	int	j;
+	int	hero;
 
 	i = -1;
+	hero = 0;
 	while (data->map[++i])
 	{
+		check_line(data, data->map[i], i);
 		j = -1;
 		while (data->map[i][++j])
 		{
-			check_char(data->map[i][j], data, (float) j, (float) i);
-			check_line(data, data->map[i], i);
+			if (ft_space(data->map[i][j]))
+				check_space(data, i, j);
+			hero += check_char(data->map[i][j], data, (float) j, (float) i);
 		}
 	}
+	if (hero != 1)
+		ft_exit(data, WRONG_MAP);
 }

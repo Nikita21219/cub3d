@@ -23,13 +23,17 @@ int	endswith(char *str, char *end)
 	int	i;
 	int	j;
 
+	if (str == NULL || end == NULL)
+		return (1);
 	i = ft_strlen(str) - 1;
 	while (str[i] && ft_space(str[i]))
 		i--;
 	j = ft_strlen(end) - 1;
-	while (str[i] && end[j])
+	while (i >= 0 && j >= 0)
+	{
 		if (str[i--] != end[j--])
 			return (0);
+	}
 	return (1);
 }
 
