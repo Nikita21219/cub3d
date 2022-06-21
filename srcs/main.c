@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	parser_map(&data, argv[1]);
 	check_mapfile(&data);
-	tmp_print_dir_coords(&data);
-	ft_init_window(&data);
+	// tmp_print_dir_coords(&data);
+	// ft_init_window(&data);
 	return (0);
 }
