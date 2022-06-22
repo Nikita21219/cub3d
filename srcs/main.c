@@ -24,6 +24,8 @@ int	main(int argc, char **argv)
 	parser_map(&data, argv[1]);
 	check_mapfile(&data);
 	tmp_print_dir_coords(&data);
+	data.pl->dx = cos(data.pl->dir) * 5;
+	data.pl->dy = sin(data.pl->dir) * 5;
 	ft_init_window(&data);
 	return (0);
 }

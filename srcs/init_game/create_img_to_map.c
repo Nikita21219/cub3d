@@ -44,26 +44,45 @@ void	draw_player(t_data *data)
 	}
 }
 
+// void	draw_player(t_data *data)
+// {
+// 	t_pl	plr;
+// 	float	ry;
+// 	float	rx;
+// 	float	yo;
+// 	float	xo;
+
+// 	plr = *data->pl;
+// 	if (plr.dir > M_PI)
+// 	{
+// 		ry = ((int)ry % 64) * 64;
+// 		rx = ((int)rx % 64) * 64;
+// 		rx = (plr.y - ry) * atan(plr.x);
+// 		yo = -SCALE;
+// 		xo = -1 * yo;
+// 	}
+// 	if (plr.dir < M_PI)
+// 	{
+
+// 	}
+// }
+
 void	draw_map(t_data *data)
 {
 	int	x;
 	int	y;
-	int	tab;
 
-	data->mlx->img = mlx_new_image(data->mlx->mlx, 1920, 1080);
+	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
 	&data->mlx->bits_per_pixel, &data->mlx->line_length, &data->mlx->endian);
 	y = 0;
 	while (data->map[y])
 	{
-		tab = 0;
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == 9)
-				tab += 3;
 			if (data->map[y][x] == '1')
-				draw_block(data->mlx, (x + tab) * SCALE, y * SCALE, 0x00FF0000);
+				draw_block(data->mlx, x * SCALE, y * SCALE, 0x00FF0000);
 			x++;
 		}
 		y++;

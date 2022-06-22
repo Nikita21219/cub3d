@@ -5,8 +5,10 @@
 # define WE		M_PI
 # define SO		M_PI
 # define EA		0.0
-# define SCALE	30
-# define SPEED	10
+# define SCALE	32
+# define SPEED	5
+# define WIN_X	1920
+# define WIN_Y	1080
 
 # define WRONG_MAP_NAME	1
 # define PATH_MAP_ERR	2
@@ -58,6 +60,8 @@ typedef struct s_pl
 {
 	float		x;
 	float		y;
+	float		dx;
+	float		dy;
 	float		dir;
 	float		start;
 	float		end;
