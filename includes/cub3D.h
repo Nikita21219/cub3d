@@ -30,6 +30,7 @@ typedef struct s_data
 	struct s_pict	*pict;
 	struct s_pl		*pl;
 	struct s_mlx	*mlx;
+	struct s_ray	*ray;
 	int				win_x;
 	int				win_y;
 }	t_data;
@@ -59,14 +60,32 @@ typedef struct s_pict
 
 typedef struct s_pl
 {
-	float		x;
-	float		y;
-	float		dx;
-	float		dy;
-	float		dir;
-	float		start;
-	float		end;
+	float			x;
+	float			y;
+	float			dx;
+	float			dy;
+	float			dir;
+	float			start;
+	float			end;
 }	t_pl;
+
+typedef struct s_ray
+{
+
+	float		old_vx;
+	float		old_vy;
+	float		old_hx;
+	float		old_hy;
+	float		vx;
+	float		vy;
+	float		hx;
+	float		hy;
+	float		len_ray_v;
+	float		len_ray_h;
+	float		x_ray;
+	float		y_ray;
+	float		len_ray;
+}	t_ray;
 
 /* Parser map */
 void	check_mapfile(t_data *data);

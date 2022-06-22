@@ -53,8 +53,8 @@ int	check_char(char c, t_data *data, float x, float y)
 			data->pl->dir = WE;
 		else if (c == 'E')
 			data->pl->dir = EA;
-		data->pl->x = (x * SCALE) + SCALE / 2;
-		data->pl->y = (y * SCALE) + SCALE / 2;
+		data->pl->x = (x * SCALE);
+		data->pl->y = (y * SCALE);
 	}
 	return (flag);
 }

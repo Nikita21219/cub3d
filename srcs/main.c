@@ -5,7 +5,8 @@ void	init_data(t_data *data)
 	data->mlx = malloc(sizeof(t_mlx));
 	data->pl = malloc(sizeof(t_pl));
 	data->pict = malloc(sizeof(t_pict));
-	if (!data->mlx || !data->pict || !data->pl)
+	data->ray = malloc(sizeof(t_ray));
+	if (!data->mlx || !data->pict || !data->pl || !data->ray)
 		ft_exit(data, 12);
 }
 
@@ -23,7 +24,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	parser_map(&data, argv[1]);
 	check_mapfile(&data);
-	tmp_print_dir_coords(&data);
+	// tmp_print_dir_coords(&data);
 	data.pl->dx = cos(data.pl->dir) * 5;
 	data.pl->dy = sin(data.pl->dir) * 5;
 	ft_init_window(&data);
