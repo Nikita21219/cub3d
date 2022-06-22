@@ -9,6 +9,7 @@
 # define SPEED	5
 # define WIN_X	1920
 # define WIN_Y	1080
+# define FOV	60.0
 
 # define WRONG_MAP_NAME	1
 # define PATH_MAP_ERR	2
@@ -92,6 +93,8 @@ int		get_map_size(char **arr);
 int		convert_grb(char *str, t_data *data);
 int		len_arr(char **arr);
 void	check_map(t_data *data);
+int		endswith(char *str, char *end);
+void	check_space(t_data *dt, int i, int j);
 
 /* Free utils */
 void	free_arr(char **arr);
