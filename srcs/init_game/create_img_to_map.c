@@ -29,23 +29,33 @@ void	horizontal_check(t_data	*data, int *wall)
 	float	a_x;
 	float	a_y;
 
+	if (data->pl->dir == 0 || data->pl->dir == (float)M_PI)
+	{
+		data->ray->hx = data->pl->x;
+		data->ray->hy = data->pl->y;
+		return ;
+	}
 	if (data->pl->dir < (float)M_PI)
-		data->ray->hy = ((int)data->ray->old_hy / SCALE) * SCALE - 1;
+		data->ray->hy = (data->pl->y / SCALE) * SCALE - 1;
 	else
-		data->ray->hy = ((int)data->ray->old_hy / SCALE) * SCALE + SCALE;
-	data->ray->hx = data->ray->old_hx + \
-	(data->ray->old_hy - data->ray->hy) / tan(data->pl->dir);
+		data->ray->hy = (data->pl->y / SCALE) * SCALE + SCALE;
+	data->ray->hx = data->pl->x + (data->pl->y - data->ray->hy) / tan(data->pl->dir);
 	a_y = SCALE;
 	if (data->pl->dir < (float)M_PI)
 		a_y *= -1;
 	a_x = a_y / tan(data->pl->dir);
-	data->ray->hx += a_x;
-	data->ray->hy += a_y;
+	while ((data->ray->len_ray_h <= data->ray->len_ray_v || data->pl->dir == (float)M_PI_2 || data->pl->dir == ((float)M_PI * 1.5)) && data->map[(int)(data->ray->hy / SCALE)][(int)(data->ray->hx / SCALE)] != '1')
+	{
+		data->ray->hx += a_x;
+		data->ray->hy += a_y;
+	}
+	my_mlx_pixel_put(data->mlx, data->ray->hx, data->ray->hy , 0x00FF000);
 	data->ray->len_ray_h = sqrt(((data->pl->x - data->ray->hx) \
 	* (data->pl->x - data->ray->hx)) \
 	+ ((data->pl->y - data->ray->hy) * (data->pl->y - data->ray->hy)));
 	if (data->map[(int)data->ray->hy / SCALE][(int)data->ray->hx / SCALE] == '1')
 		*wall = 1;
+
 }
 
 void	vertical_check(t_data	*data, int *wall)
@@ -54,9 +64,9 @@ void	vertical_check(t_data	*data, int *wall)
 	float	a_y;
 
 	if (data->pl->dir < (float)M_PI_2 && data->pl->dir > ((float)M_PI * 1.5))
-		data->ray->vx = ((int)data->ray->old_vx / SCALE) * SCALE + SCALE;
+		data->ray->vx = (data->ray->old_vx / SCALE) * SCALE + SCALE;
 	else
-		data->ray->vx = ((int)data->ray->old_vx / SCALE) * SCALE - 1;
+		data->ray->vx = (data->ray->old_vx / SCALE) * SCALE - 1;
 	data->ray->vy = data->ray->old_vy + \
 	(data->ray->old_vx - data->ray->vx) * tan(data->pl->dir);
 	a_x = SCALE;
@@ -105,26 +115,27 @@ void	draw_player(t_data *data)
 
 	pr = *data->pl;
 	wall = 0;
-	init_ray(data);
-	while (!wall)
-	{
-		if (data->ray->len_ray_h < data->ray->len_ray_v || data->pl->dir == (float)M_PI_2 || \
-		data->pl->dir == (float)M_PI * 1.5)
-		{
-			if (data->pl->dir != 0 && data->pl->dir != (float)M_PI)
-				horizontal_check(data, &wall);
-		}
-		else if (data->pl->dir != (float)M_PI_2 && \
-		data->pl->dir != (float)M_PI * 1.5)
-			vertical_check(data, &wall);
-		data->ray->old_hx = data->ray->hx;
-		data->ray->old_hy = data->ray->hy;
-		data->ray->old_vx = data->ray->vx;
-		data->ray->old_vy = data->ray->vy;
-	}
-	check_len_ray(data);
-	my_mlx_pixel_put(data->mlx, pr.x + SCALE / 2, pr.y + SCALE / 2, 0x00FF000);
-	my_mlx_pixel_put(data->mlx, data->ray->x_ray, data->ray->y_ray, 0x00FF000);
+	// init_ray(data);
+	horizontal_check(data, &wall);
+	// while (!wall)
+	// {
+	// 	if (data->ray->len_ray_h < data->ray->len_ray_v || data->pl->dir == (float)M_PI_2 || \
+	// 	data->pl->dir == (float)M_PI * 1.5)
+	// 	{
+	// 		if (data->pl->dir != 0 && data->pl->dir != (float)M_PI)
+	// 			horizontal_check(data, &wall);
+	// 	}
+	// 	else if (data->pl->dir != (float)M_PI_2 && \
+	// 	data->pl->dir != (float)M_PI * 1.5)
+	// 		vertical_check(data, &wall);
+	// 	data->ray->old_hx = data->ray->hx;
+	// 	data->ray->old_hy = data->ray->hy;
+	// 	data->ray->old_vx = data->ray->vx;
+	// 	data->ray->old_vy = data->ray->vy;
+	// }
+	// check_len_ray(data);
+	// my_mlx_pixel_put(data->mlx, data->ray->x_ray, data->ray->y_ray, 0x00FF000);
+	my_mlx_pixel_put(data->mlx, pr.x, pr.y, 0x00FF000);
 }
 
 void	draw_map(t_data *data)
