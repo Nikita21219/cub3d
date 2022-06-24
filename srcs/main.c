@@ -24,11 +24,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	parser_map(&data, argv[1]);
 	check_mapfile(&data);
-	// tmp_print_dir_coords(&data);
-	// data.mlx->line_length = SCALE;
-	// data.mlx->bits_per_pixel = SCALE;
-	// data.pl->dx = cos(data.pl->dir) * 5;
-	// data.pl->dy = sin(data.pl->dir) * 5;
+	tmp_print_dir_coords(&data);
 	ft_init_window(&data);
 	return (0);
 }

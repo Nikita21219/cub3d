@@ -25,83 +25,71 @@ void	draw_block(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
-int	check_x_y_win(int x, int y)
+int	check_x_y_win(float *x, float *y)
 {
-	if (x < 0 || y < 0 || x > WIN_X || y > WIN_Y)
+	if (*x < 0 || *y < 0 || *x > (float)WIN_X || *y > (float)WIN_Y)
 	{
-		if (x < 0)
-			x = SCALE - 1;
-		if (y < 0)
-			y = SCALE - 1;
-		if (x > WIN_X)
-			x = WIN_X - SCALE + 1;
-		if (y > WIN_Y)
-			y = WIN_Y - SCALE + 1;
+		if (*x < 0)
+			*x = 0;
+		if (*y < 0)
+			*y = 0;
+		if (*x > WIN_X)
+			*x = WIN_X;
+		if (*y > WIN_Y)
+			*y = WIN_Y;
 		return (1);
 	}
 	return (0);
 }
 
-void	horizontal_check(t_data	*data)
+void	horizontal_check(t_data	*data, int *wall)
 {
 	float	a_x;
 	float	a_y;
 	t_ray	*ray;
 
 	ray = data->ray;
-	if (data->pl->dir == (float)M_PI || data->pl->dir == 0)
-	{
-		ray->hx = data->pl->x;
-		ray->hy = data->pl->y;
-		return ;
-	}
-	ray->hy = data->pl->y / SCALE * SCALE;
-	ray->hx = (data->pl->x / SCALE * SCALE) + ((fabsf(data->pl->y - ray->hy)) / tan(data->pl->dir));
+	ray->hy = (int)(data->pl->y / SCALE) * SCALE;
+	ray->hx = (int)(data->pl->x / SCALE) * SCALE + ((fabsf(data->pl->y - ray->hy)) / tan(data->pl->dir));
 	a_y = SCALE;
-	if (data->pl->dir < M_PI)
+	if (data->pl->dir < (float)M_PI)
 		a_y *= -1;
 	a_x = fabsf(a_y) / tan(data->pl->dir);
-	while (data->map[(int)(ray->hy / SCALE)][(int)(ray->hx / SCALE)] != '1' && ray->len_ray_h < ray->len_ray_v)
+	while (data->map[(int)ray->hy / SCALE][(int)ray->hx / SCALE] != '1')
 	{
-		my_mlx_pixel_put(data->mlx, ray->hx, ray->hy, 0x00FF000);
+		printf("%c\n", data->map[(int)ray->hy / SCALE][(int)ray->hx / SCALE]);
+		printf("y = %d\nx = %d\n\n", (int)ray->hy / SCALE, (int)ray->hx / SCALE);
 		ray->hx += a_x;
 		ray->hy += a_y;
-		if (check_x_y_win(ray->hx, ray->hy))
+		if (check_x_y_win(&ray->hx, &ray->hy))
 			break ;
-		ray->len_ray_h = fabsf(data->pl->x - ray->hx) / cos(data->pl->dir);
 	}
-	my_mlx_pixel_put(data->mlx, ray->hx, ray->hy, 0x00FF000);
+	ray->len_ray_h = fabs((data->pl->x - ray->hx) / cos(data->pl->dir));
+	*wall = 1;
 }
 
-void	vertical_check(t_data	*data)
+void	vertical_check(t_data	*data, int *wall)
 {
 	float	a_x;
 	float	a_y;
 	t_ray	*ray;
 
 	ray = data->ray;
-	if (data->pl->dir == (float)M_PI_2 || data->pl->dir == (float)(M_PI * 1.5))
-	{
-		ray->vx = data->pl->x;
-		ray->vy = data->pl->y;
-		return ;
-	}
-	ray->vx = data->pl->x / SCALE * SCALE;
-	ray->vy	= data->pl->y + (tan(data->pl->dir) * fabsf(ray->vx - data->pl->x));
+	ray->vx = (int)data->pl->x / SCALE * SCALE;
+	ray->vy = (int)data->pl->y + (tan(data->pl->dir) * fabsf(ray->vx - data->pl->x));
 	a_x = SCALE;
-	if (data->pl->dir > M_PI_2 && data->pl->dir < (M_PI * 1.5))
+	if (data->pl->dir > (float)M_PI_2 && data->pl->dir < (float)(M_PI * 1.5))
 		a_x *= -1;
-	a_y = tan(data->pl->dir) * fabsf(a_x);
-	while (data->map[(int)(ray->vy / SCALE)][(int)(ray->vx / SCALE)] != '1' && ray->len_ray_h >= ray->len_ray_v)
+	a_y = tan(data->pl->dir) * fabsf(a_x - data->pl->x);
+	while (data->map[(int)ray->vy / SCALE][(int)ray->vx / SCALE] != '1')
 	{
-		my_mlx_pixel_put(data->mlx, ray->vx, ray->vy, 0x00FF000);
 		ray->vx += a_x;
 		ray->vy += a_y;
-		if (check_x_y_win(ray->vx, ray->vy))
+		if (check_x_y_win(&ray->vx, &ray->vy))
 			break ;
-		ray->len_ray_v = fabsf(data->pl->x - ray->vx) / cos(data->pl->dir);
 	}
-	my_mlx_pixel_put(data->mlx, ray->vx, ray->vy, 0x00FF000);
+	ray->len_ray_v = fabs((data->pl->x - ray->vx) / cos(data->pl->dir));
+	*wall = 1;
 }
 
 void	check_len_ray(t_data *data)
@@ -118,20 +106,33 @@ void	check_len_ray(t_data *data)
 		data->ray->y_ray = data->ray->vy;
 		data->ray->len_ray = data->ray->len_ray_v;
 	}
+	my_mlx_pixel_put(data->mlx, data->ray->x_ray, data->ray->y_ray, 0x00FF000);
 }
 
 void	draw_player(t_data *data)
 {
 	t_pl	pr;
-	int		wall;
+	int		wall_h;
+	int		wall_v;
 
 	pr = *data->pl;
-	wall = 0;
+	wall_h = 0;
+	wall_v = 0;
 	data->ray->len_ray_h = 0;
 	data->ray->len_ray_v = 0;
 	my_mlx_pixel_put(data->mlx, pr.x, pr.y, 0x00FF000);
-	horizontal_check(data);
-	vertical_check(data);
+	while (!wall_h && !wall_v)
+	{
+		if ((data->pl->dir != (float)M_PI_2 && data->pl->dir != (float)(M_PI * 1.5)) && !wall_v)
+			vertical_check(data, &wall_v);
+		if ((data->pl->dir != (float)M_PI && data->pl->dir != 0) && !wall_h)
+			horizontal_check(data, &wall_h);
+		if ((data->pl->dir != (float)M_PI && data->pl->dir != 0) && wall_v)
+			wall_h = 1;
+		if (data->pl->dir != (float)M_PI_2 && data->pl->dir != (float)(M_PI * 1.5))
+			wall_v = 1;
+	}
+	check_len_ray(data);
 }
 
 void	draw_map(t_data *data)
