@@ -83,6 +83,7 @@ typedef struct s_ray
 }	t_ray;
 
 /* Parser map */
+
 void	check_mapfile(t_data *data);
 void	parser_map(t_data *data, char *name);
 
@@ -96,6 +97,7 @@ void	move_up(t_data *data);
 void	move_down(t_data *data);
 
 /* Utils */
+
 void	ft_exit(t_data *data, int i);
 void	gnl(int fd, t_data *data);
 void	clearmap(char **map);
@@ -112,5 +114,9 @@ void	check_space(t_data *dt, int i, int j);
 
 /* Free utils */
 void	free_arr(char **arr);
+
+/*TMP*/
+
+void	print_arr(char	**arr);
 
 #endif
