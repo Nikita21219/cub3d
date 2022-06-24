@@ -71,14 +71,10 @@ typedef struct s_pl
 
 typedef struct s_ray
 {
-	float		vx;
-	float		vy;
-	float		hx;
-	float		hy;
-	float		len_ray_v;
-	float		len_ray_h;
-	float		x_ray;
-	float		y_ray;
+	float		x;
+	float		y;
+	float		s_x;
+	float		s_y;
 	float		len_ray;
 }	t_ray;
 
