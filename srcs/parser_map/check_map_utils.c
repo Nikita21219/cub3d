@@ -46,15 +46,17 @@ int	check_char(char c, t_data *data, float x, float y)
 	{
 		flag++;
 		if (c == 'N')
-			data->pl->dir = NO;
+			data->pl->dir = (float)NO;
 		else if (c == 'S')
-			data->pl->dir = 1.5 * SO;
+			data->pl->dir = 1.5 * (float)SO;
 		else if (c == 'W')
-			data->pl->dir = WE;
+			data->pl->dir = (float)WE;
 		else if (c == 'E')
-			data->pl->dir = EA;
-		data->pl->x = (x * SCALE);
-		data->pl->y = (y * SCALE);
+			data->pl->dir = (float)EA;
+		data->pl->x = (x * SCALE) + SCALE / 2;
+		data->pl->y = (y * SCALE) + SCALE / 2;
+		data->pl->dx = cos(data->pl->dir);
+		data->pl->dy = sin(data->pl->dir);
 	}
 	return (flag);
 }
