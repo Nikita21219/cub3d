@@ -28,8 +28,10 @@ void	draw_block(t_mlx *mlx, int x, int y, int color)
 void	check_len_ray(t_ray hor, t_ray ver, t_data *data)
 {
 	if (hor.len_ray < ver.len_ray)
+		// draw_square(data, &ver);
 		my_mlx_pixel_put(data->mlx, hor.x, hor.y, 0x00FF000);
 	else
+		// draw_square(data, &ver);
 		my_mlx_pixel_put(data->mlx, ver.x, ver.y, 0x00FF000);
 }
 
@@ -130,8 +132,11 @@ void	draw_player(t_data *data)
 			wall_v = 1;
 		printf("ver y=%d, x=%d, len=%f\n", (int)ver.y / SCALE, (int)ver.x / SCALE, ver.len_ray);
 		printf("hor y=%d, x=%d, len=%f\n\n\n", (int)hor.y / SCALE, (int)hor.x / SCALE, hor.len_ray);
-		my_mlx_pixel_put(data->mlx, ver.x, ver.y, 0x00FF000);
-		my_mlx_pixel_put(data->mlx, hor.x, hor.y, 0x00FF000);
+		draw_square(data, ver.x, ver.y);
+		draw_square(data, hor.x, hor.y);
+
+		// my_mlx_pixel_put(data->mlx, ver.x, ver.y, 0x00FF000);
+		// my_mlx_pixel_put(data->mlx, hor.x, hor.y, 0x00FF000);
 	}
 	// check_len_ray(hor, ver, data);
 }
