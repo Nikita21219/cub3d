@@ -107,6 +107,8 @@ int		len_arr(char **arr);
 void	check_map(t_data *data);
 int		endswith(char *str, char *end);
 void	check_space(t_data *dt, int i, int j);
+void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void	draw_square(t_data *data, float x, float y);
 
 /* Free utils */
 void	free_arr(char **arr);

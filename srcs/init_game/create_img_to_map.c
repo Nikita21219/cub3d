@@ -44,8 +44,6 @@ void	init_ver(t_ray *ver, t_pl pl)
 	ver->s_y = tanf(pl.dir) * fabsf(ver->s_x);
 	if (pl.dir > (float)M_PI_2 && pl.dir < (float)(M_PI * 1.5))
 		ver->s_x *= -1;
-	if (pl.dir < (float)M_PI)
-		ver->s_y *= -1;
 	ver->len_ray = fabs(sqrt(powf(pl.x - fabsf(ver->x), 2.0) + powf(pl.y - fabsf(ver->y), 2.0)));
 }
 
@@ -60,8 +58,6 @@ void	init_hor(t_ray *hor, t_pl pl)
 	if (pl.dir < (float)M_PI)
 		hor->s_y *= -1;
 	hor->s_x = fabsf(hor->s_y) / tanf(pl.dir);
-	if (pl.dir > (float)M_PI_2 && pl.dir < (float)(M_PI * 1.5))
-		hor->s_x *= -1;
 	hor->len_ray = fabs(sqrt(powf(pl.x - fabsf(hor->x), 2.0) + powf(pl.y - fabsf(hor->y), 2.0)));
 }
 
@@ -137,8 +133,8 @@ void	draw_player(t_data *data)
 			wall_v = 1;
 		printf("ver y=%d, x=%d, len=%f\n", (int)ver.y / SCALE, (int)ver.x / SCALE, ver.len_ray);
 		printf("hor y=%d, x=%d, len=%f\n\n\n", (int)hor.y / SCALE, (int)hor.x / SCALE, hor.len_ray);
-		my_mlx_pixel_put(data->mlx, ver.x, ver.y, 0x00FF000);
-		my_mlx_pixel_put(data->mlx, hor.x, hor.y, 0x00FF000);
+		draw_square(data, ver.x, ver.y);
+		draw_square(data, hor.x, hor.y);
 	}
 	// check_len_ray(hor, ver, data);
 }
