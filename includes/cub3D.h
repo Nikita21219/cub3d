@@ -5,11 +5,11 @@
 # define WE		M_PI
 # define SO		M_PI
 # define EA		0.0
-# define SCALE	64
+# define SCALE	32
 # define SPEED	5
 # define WIN_X	1920
 # define WIN_Y	1080
-# define FOV	60.0
+# define FOV	66.0
 
 # define WRONG_MAP_NAME	1
 # define PATH_MAP_ERR	2
@@ -109,8 +109,16 @@ int		endswith(char *str, char *end);
 void	check_space(t_data *dt, int i, int j);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	draw_square(t_data *data, float x, float y);
+void	draw_block(t_mlx *mlx, int x, int y, int color);
+
+/* Raycast */
+
+void	check_len_ray(t_ray hor, t_ray ver, t_data *data);
+int		check_wall(t_ray *hv, char **map, int *wall);
+void	rays(t_data *data, float angle);
 
 /* Free utils */
+
 void	free_arr(char **arr);
 
 /*TMP*/

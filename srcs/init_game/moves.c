@@ -20,20 +20,28 @@ void	move_right(t_data *data)
 
 void	move_up(t_data *data)
 {
-	if (data->map[(int)(data->pl->y - data->pl->dy) / SCALE] \
-	[(int)(data->pl->x + data->pl->dx) / SCALE] != '1')
+	if (data->map[(int)(data->pl->y - data->pl->dy * SPEED) / SCALE] \
+	[(int)data->pl->x / SCALE] != '1')
 	{
-		data->pl->x += data->pl->dx;
-		data->pl->y -= data->pl->dy;
+		data->pl->y -= data->pl->dy * SPEED;
+	}
+	if (data->map[(int)data->pl->y / SCALE] \
+	[(int)(data->pl->x + data->pl->dx * SPEED) / SCALE] != '1')
+	{
+		data->pl->x += data->pl->dx * SPEED;
 	}
 }
 
 void	move_down(t_data *data)
 {
-	if (data->map[(int)(data->pl->y + data->pl->dy) / SCALE] \
-	[(int)(data->pl->x - data->pl->dx) / SCALE] != '1')
+	if (data->map[(int)(data->pl->y + data->pl->dy * SPEED) / SCALE] \
+	[(int)data->pl->x / SCALE] != '1')
 	{
-		data->pl->x -= data->pl->dx;
-		data->pl->y += data->pl->dy;
+		data->pl->y += data->pl->dy * SPEED;
+	}
+	if (data->map[(int)data->pl->y / SCALE] \
+	[(int)(data->pl->x - data->pl->dx * SPEED) / SCALE] != '1')
+	{
+		data->pl->x -= data->pl->dx * SPEED;
 	}
 }

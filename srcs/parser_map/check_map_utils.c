@@ -31,7 +31,8 @@ int	convert_grb(char *str, t_data *data)
 		ft_exit(data, MALLOC_ERR);
 	if (len_arr(split) != 3)
 		ft_exit(data, WRONG_MAP);
-	return (ft_atoi(split[0]) << 16 | ft_atoi(split[1]) << 8 | ft_atoi(split[2]));
+	return (ft_atoi(split[0]) << 16 | \
+		ft_atoi(split[1]) << 8 | ft_atoi(split[2]));
 }
 
 int	check_char(char c, t_data *data, float x, float y)
