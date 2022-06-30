@@ -19,13 +19,17 @@ void	init_pict(char *str, t_data *data)
 	while (ft_space(*str))
 		str++;
 	if (startswith(str, "NO"))
-		data->pict->no_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+		data->pict->no_wall = mlx_xpm_file_to_image(data->mlx, \
+		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "SO"))
-		data->pict->so_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+		data->pict->so_wall = mlx_xpm_file_to_image(data->mlx, \
+		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "WE"))
-		data->pict->we_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+		data->pict->we_wall = mlx_xpm_file_to_image(data->mlx, \
+		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "EA"))
-		data->pict->ea_wall = mlx_xpm_file_to_image(data->mlx, ft_strtrim(str + 2, " \t"), &img_width, &img_height);
+		data->pict->ea_wall = mlx_xpm_file_to_image(data->mlx, \
+		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "C"))
 		data->pict->ceiling = convert_grb(ft_strtrim(str + 1, " \t"), data);
 	else if (startswith(str, "F"))
