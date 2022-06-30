@@ -5,7 +5,7 @@
 # define WE		M_PI
 # define SO		M_PI
 # define EA		0.0
-# define SCALE	32
+# define SCALE	64
 # define SPEED	5
 # define WIN_X	1920
 # define WIN_Y	1080
@@ -110,6 +110,7 @@ void	check_space(t_data *dt, int i, int j);
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void	draw_square(t_data *data, float x, float y);
 void	draw_block(t_mlx *mlx, int x, int y, int color);
+void	map3d_draw(t_data data, int pix);
 
 /* Raycast */
 

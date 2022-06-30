@@ -11,14 +11,12 @@ void	check_len_ray(t_ray hor, t_ray ver, t_data *data)
 		data->ray->len_ray = hor.len_ray;
 		data->ray->x = hor.x;
 		data->ray->y = hor.y;
-		my_mlx_pixel_put(data->mlx, hor.x / SCALE * SCALE, hor.y / SCALE * SCALE, 0x00FF000);
 	}
 	else
 	{
 		data->ray->len_ray = ver.len_ray;
 		data->ray->x = ver.x;
 		data->ray->y = ver.y;
-		my_mlx_pixel_put(data->mlx, ver.x / SCALE * SCALE, ver.y / SCALE * SCALE, 0x00FF000);
 	}	
 }
 
