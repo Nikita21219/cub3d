@@ -55,6 +55,17 @@ void	check_identifiers(t_data *data)
 		ft_exit(data, WRONG_MAP);
 }
 
+int	is_only_space(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str && str[++i])
+		if (!ft_space(str[i]))
+			return (0);
+	return (1);
+}
+
 void	set_map(t_data *data)
 {
 	char	**res;
@@ -66,6 +77,8 @@ void	set_map(t_data *data)
 	while (data->map[++i] && i < 6)
 		if (!is_identifier(data->map[i]))
 			ft_exit(data, WRONG_MAP);
+	while (is_only_space(data->map[i]))
+		i++;
 	check_identifiers(data);
 	map_size = get_map_size(data->map);
 	if (map_size <= 0)
