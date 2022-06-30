@@ -88,7 +88,7 @@ void	right_top_space_handle(t_data *dt, int i, int j);
 void	left_bot_space_handle(t_data *dt, int i, int j);
 void	right_bot_space_handle(t_data *dt, int i, int j);
 void	bottom_space_handle(t_data *dt, int i, int j);
-
+void	check_zero(t_data *dt, int i, int j);
 
 /* Game and window */
 
