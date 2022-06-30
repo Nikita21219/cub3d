@@ -77,7 +77,7 @@ void	set_map(t_data *data)
 	while (data->map[++i] && i < 6)
 		if (!is_identifier(data->map[i]))
 			ft_exit(data, WRONG_MAP);
-	while (is_only_space(data->map[i]))
+	while (data->map[i] && is_only_space(data->map[i]))
 		i++;
 	check_identifiers(data);
 	map_size = get_map_size(data->map);

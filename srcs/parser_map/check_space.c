@@ -81,14 +81,22 @@ void	top_space_handle(t_data *dt, int i, int j)
 
 void	other_space_handle(t_data *dt, int i, int j)
 {
-	if (!allow_ch(dt->map[i - 1][j - 1]) || \
-	!allow_ch(dt->map[i - 1][j]) || \
-	!allow_ch(dt->map[i - 1][j + 1]) || \
-	!allow_ch(dt->map[i][j + 1]) || \
-	!allow_ch(dt->map[i + 1][j + 1]) || \
-	!allow_ch(dt->map[i + 1][j]) || \
-	!allow_ch(dt->map[i + 1][j - 1]) || \
-	!allow_ch(dt->map[i][j - 1]))
+
+	// if (j - 1 <= (int)ft_strlen(dt->map[i - 1]))
+	// printf("j - 1 = %d, (int)ft_strlen(dt->map[i - 1]) = %d\n\n", j - 1, (int)ft_strlen(dt->map[i - 1]));
+
+	// printf("test1 i=%d, j=%d\n", i, j);
+	// printf("%c\n", dt->map[i - 1][j - 1]);
+	// printf("test2\n\n");
+
+	if ((j - 1 <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j - 1])) || \
+	(j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j])) || \
+	(j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j + 1])) || \
+	(j + 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j + 1])) || \
+	(j + 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j + 1])) || \
+	(j <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j - 1])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j - 1])))
 		ft_exit(dt, WRONG_MAP);
 }
 
