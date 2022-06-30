@@ -22,19 +22,22 @@ void	draw_2dmap(t_data data)
 
 void	draw_map(t_data *data)
 {
-	int	deviation;
+	int	pix;
 
+	pix = 0;
 	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
 	&data->mlx->bits_per_pixel, &data->mlx->line_length, &data->mlx->endian);
 	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
 	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
-	deviation = FOV / 2;
-	draw_2dmap(*data);
+	// draw_2dmap(*data);
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
+		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
+		map3d_draw(*data, pix);
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
+		pix++;
 	}
 	mlx_put_image_to_window(data->mlx->mlx, \
 		data->mlx->win, data->mlx->img, 0, 0);
