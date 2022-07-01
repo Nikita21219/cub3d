@@ -9,7 +9,7 @@ t_ray	init_ver(t_pl plr, float angle)
 		ver.x = (int)(plr.x) / SCALE * SCALE + SCALE;
 	else
 	{
-		ver.x = (int)(plr.x) / SCALE * SCALE - 0.01;
+		ver.x = (int)(plr.x) / SCALE * SCALE - 0.001;
 		ver.s_x *= -1;
 	}
 	ver.s_y = SCALE * fabs(tan(angle));
@@ -29,7 +29,7 @@ t_ray	init_hor(t_pl plr, float angle)
 	hor.s_y = SCALE;
 	if (sin(angle) > 0)
 	{
-		hor.y = (int)(plr.y) / SCALE * SCALE - 0.01;
+		hor.y = (int)(plr.y) / SCALE * SCALE - 0.001;
 		hor.s_y *= -1;
 	}
 	else

@@ -23,6 +23,10 @@ int	ft_hook(int keycode, t_data *data)
 		mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 		ft_exit(data, 5);
 	}
+	if (keycode == 123)
+		around_left(data);
+	if (keycode == 124)
+		around_right(data);
 	draw_map(data);
 	return (0);
 }
