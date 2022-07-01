@@ -3,7 +3,7 @@
 void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 {
 	if (hor.len_ray != INFINITY)
-		hor.len_ray = fabs((data->pl->x - hor.x) / cos(angle));
+		hor.len_ray = fabs((data->pl->y - hor.y) / sin(angle));
 	if (ver.len_ray != INFINITY)
 		ver.len_ray = fabs((data->pl->x - ver.x) / cos(angle));
 	if (hor.len_ray < ver.len_ray)
@@ -17,7 +17,7 @@ void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 		data->ray->len_ray = ver.len_ray;
 		data->ray->x = ver.x;
 		data->ray->y = ver.y;
-	}	
+	}
 }
 
 int	check_wall(t_ray *hv, char **map, int *wall)

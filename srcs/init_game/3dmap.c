@@ -9,6 +9,9 @@ void	map3d_draw(t_data data, int pix)
 
 	proj_plane_dist = (WIN_X / 2) / tan((FOV / 2) * M_PI / 180);
 	psh = SCALE / data.ray->len_ray * proj_plane_dist; //высота столбца
+	// printf("proj_plane_dist=%d, len_ray=%f\n", proj_plane_dist, data.ray->len_ray);
+	// if (psh == 290)
+	// 	printf("\n\n<<<<<<proj_plane_dist=%d, len_ray=%f>>>>>>\n\n", proj_plane_dist, data.ray->len_ray);
 	line = psh / 2;
 	y = 0;
 	while (y < WIN_Y)
