@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
 MLXFL =  -L mlx -l mlx -framework OpenGL -framework AppKit
 
 OBJDIR = ./objs
