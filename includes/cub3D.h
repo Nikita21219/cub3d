@@ -6,7 +6,7 @@
 # define SO		M_PI
 # define EA		0.0
 # define SCALE	64
-# define SPEED	5
+# define SPEED	15
 # define WIN_X	1920
 # define WIN_Y	1080
 # define FOV	60.0
@@ -76,6 +76,7 @@ typedef struct s_ray
 	float		s_x;
 	float		s_y;
 	float		len_ray;
+	char		s;
 }	t_ray;
 
 /* Parser map */
