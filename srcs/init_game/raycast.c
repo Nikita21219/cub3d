@@ -53,8 +53,14 @@ void	rays(t_data *data, float angle)
 
 	wall_h = 0;
 	wall_v = 0;
-	ver = init_ver(*data->pl, angle);
-	hor = init_hor(*data->pl, angle);
+	if (angle != (float)M_PI_2 && angle != M_PI * 1.5)
+		ver = init_ver(*data->pl, angle);
+	else
+		wall_v = 1;
+	if (angle != (float)M_PI && angle != 0)
+		hor = init_hor(*data->pl, angle);
+	else
+		wall_h = 1;
 	while (!wall_h || !wall_v)
 	{
 		if (!wall_h && !check_wall(&hor, data->map, &wall_h))

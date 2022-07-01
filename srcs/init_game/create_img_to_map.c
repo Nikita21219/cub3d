@@ -12,12 +12,15 @@ void	draw_2dmap(t_data data)
 		while (data.map[y][x])
 		{
 			if (data.map[y][x] == '1')
-				draw_block(data.mlx, x * SCALE, y * SCALE, 0x00FF0000);
+				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0x000000);
+			if (data.map[y][x] == '0' || data.map[y][x] == 'N' || \
+			data.map[y][x] == 'S' || data.map[y][x] == 'E' || data.map[y][x] == 'W')
+				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0xFFFFFF);
 			x++;
 		}
 		y++;
 	}
-	draw_square(&data, data.pl->x, data.pl->y);
+	draw_square(&data, (int)data.pl->x / 6, (int)data.pl->y / 6);
 }
 
 void	draw_map(t_data *data)
@@ -30,7 +33,6 @@ void	draw_map(t_data *data)
 	&data->mlx->bits_per_pixel, &data->mlx->line_length, &data->mlx->endian);
 	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
 	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
-	draw_2dmap(*data);
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
@@ -39,6 +41,7 @@ void	draw_map(t_data *data)
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
+	draw_2dmap(*data);
 	mlx_put_image_to_window(data->mlx->mlx, \
 		data->mlx->win, data->mlx->img, 0, 0);
 	mlx_destroy_image(data->mlx->mlx, data->mlx->img);

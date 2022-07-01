@@ -34,10 +34,10 @@ void	draw_block(t_mlx *mlx, int x, int y, int color)
 	int	i;
 	int	n;
 
-	n = SCALE + 1;
+	n = SCALE / 6 + 6;
 	while (--n)
 	{
-		i = SCALE + 1;
+		i = SCALE / 6 + 6;
 		while (--i)
 			my_mlx_pixel_put(mlx, x + i, y + n, color);
 	}

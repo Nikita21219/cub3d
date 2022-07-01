@@ -9,7 +9,7 @@
 # define SPEED	5
 # define WIN_X	1920
 # define WIN_Y	1080
-# define FOV	66.0
+# define FOV	60.0
 
 # define WRONG_MAP_NAME	1
 # define PATH_MAP_ERR	2
