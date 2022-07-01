@@ -76,6 +76,7 @@ typedef struct s_ray
 	float		s_x;
 	float		s_y;
 	float		len_ray;
+	char		s;
 }	t_ray;
 
 /* Parser map */

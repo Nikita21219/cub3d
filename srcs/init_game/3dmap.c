@@ -20,9 +20,20 @@ void	map3d_draw(t_data data, int pix)
 		else
 		{
 			if (data.ray->s_x == 1)
-				my_mlx_pixel_put(data.mlx, pix, y, 0x808000);
+			{
+				if (data.ray->s == 'n')
+					my_mlx_pixel_put(data.mlx, pix, y, 0x808000);
+				else
+					my_mlx_pixel_put(data.mlx, pix, y, 0x38c98f);
+
+			}
 			else
-				my_mlx_pixel_put(data.mlx, pix, y, 0x0000FF);
+			{
+				if (data.ray->s == 'w')
+					my_mlx_pixel_put(data.mlx, pix, y, 0x0000FF);
+				else
+					my_mlx_pixel_put(data.mlx, pix, y, 0xd48422);
+			}
 		}
 		y++;
 	}
