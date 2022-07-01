@@ -79,7 +79,6 @@ typedef struct s_ray
 }	t_ray;
 
 /* Parser map */
-
 void	check_mapfile(t_data *data);
 void	parser_map(t_data *data, char *name);
 int		allow_ch(char c);
@@ -91,7 +90,6 @@ void	bottom_space_handle(t_data *dt, int i, int j);
 void	check_zero(t_data *dt, int i, int j);
 
 /* Game and window */
-
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
 void	move_left(t_data *data);
@@ -100,7 +98,6 @@ void	move_up(t_data *data);
 void	move_down(t_data *data);
 
 /* Utils */
-
 void	ft_exit(t_data *data, int i);
 void	gnl(int fd, t_data *data);
 void	clearmap(char **map);
@@ -126,11 +123,9 @@ int		check_wall(t_ray *hv, char **map, int *wall);
 void	rays(t_data *data, float angle);
 
 /* Free utils */
-
 void	free_arr(char **arr);
 
 /*TMP*/
-
 void	print_arr(char	**arr);
 
 #endif
