@@ -68,5 +68,5 @@ void	rays(t_data *data, float angle)
 			ver.y += ver.s_y;
 		}
 	}
-	check_len_ray(hor, ver, data);
+	check_len_ray(hor, ver, data, angle);
 }

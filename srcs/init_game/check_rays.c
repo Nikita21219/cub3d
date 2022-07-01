@@ -1,11 +1,14 @@
 #include "../../includes/cub3D.h"
 
-void	check_len_ray(t_ray hor, t_ray ver, t_data *data)
+void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 {
+	(void)angle;
 	hor.len_ray = sqrt(powf((int)data->pl->x - fabsf(hor.x), 2.0) \
 	+ powf((int)data->pl->y - fabsf(hor.y), 2.0));
 	ver.len_ray = sqrt(powf((int)data->pl->x - fabsf(ver.x), 2.0) + \
 	powf((int)data->pl->y - fabsf(ver.y), 2.0));
+	// hor.len_ray = fabs((data->pl->x - hor.x) / cos(angle));
+	// ver.len_ray = fabs((data->pl->x - ver.x) / cos(angle));
 	if (hor.len_ray < ver.len_ray)
 	{
 		data->ray->len_ray = hor.len_ray;

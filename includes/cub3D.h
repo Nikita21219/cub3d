@@ -114,7 +114,7 @@ void	map3d_draw(t_data data, int pix);
 
 /* Raycast */
 
-void	check_len_ray(t_ray hor, t_ray ver, t_data *data);
+void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle);
 int		check_wall(t_ray *hv, char **map, int *wall);
 void	rays(t_data *data, float angle);
 
