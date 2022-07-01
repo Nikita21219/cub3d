@@ -1,25 +1,5 @@
 #include "../includes/cub3D.h"
 
-int	get_map_size(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i - 6);
-}
-
-int	len_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr && arr[i])
-		i++;
-	return (i);
-}
-
 int	convert_grb(char *str, t_data *data)
 {
 	char	**split;
@@ -101,6 +81,8 @@ void	check_map(t_data *data)
 		{
 			if (ft_space(data->map[i][j]))
 				check_space(data, i, j);
+			if (data->map[i][j] == '0')
+				check_zero(data, i, j);
 			hero += check_char(data->map[i][j], data, (float) j, (float) i);
 		}
 	}

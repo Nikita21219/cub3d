@@ -30,7 +30,7 @@ void	draw_map(t_data *data)
 	&data->mlx->bits_per_pixel, &data->mlx->line_length, &data->mlx->endian);
 	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
 	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
-	// draw_2dmap(*data);
+	draw_2dmap(*data);
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);

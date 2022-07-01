@@ -1,5 +1,12 @@
 #include "../../includes/cub3D.h"
 
+int	allow_ch(char c)
+{
+	if (c == '1' || c == ' ')
+		return (1);
+	return (0);
+}
+
 void	check_filename(char *name)
 {
 	int	i;

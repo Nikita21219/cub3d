@@ -1,44 +1,5 @@
 #include "../../includes/cub3D.h"
 
-int	allow_ch(char c)
-{
-	if (c == '1' || c == ' ')
-		return (1);
-	return (0);
-}
-
-void	left_top_space_handle(t_data *dt, int i, int j)
-{
-	if (!allow_ch(dt->map[i][j + 1]) || \
-	!allow_ch(dt->map[i + 1][j]) || \
-	!allow_ch(dt->map[i + 1][j + 1]))
-		ft_exit(dt, WRONG_MAP);
-}
-
-void	right_top_space_handle(t_data *dt, int i, int j)
-{
-	if (!allow_ch(dt->map[i][j - 1]) || \
-	!allow_ch(dt->map[i + 1][j]) || \
-	!allow_ch(dt->map[i + 1][j - 1]))
-		ft_exit(dt, WRONG_MAP);
-}
-
-void	left_bot_space_handle(t_data *dt, int i, int j)
-{
-	if (!allow_ch(dt->map[i][j + 1]) || \
-	!allow_ch(dt->map[i - 1][j + 1]) || \
-	!allow_ch(dt->map[i - 1][j]))
-		ft_exit(dt, WRONG_MAP);
-}
-
-void	right_bot_space_handle(t_data *dt, int i, int j)
-{
-	if (!allow_ch(dt->map[i][j - 1]) || \
-	!allow_ch(dt->map[i - 1][j - 1]) || \
-	!allow_ch(dt->map[i - 1][j]))
-		ft_exit(dt, WRONG_MAP);
-}
-
 void	left_space_handle(t_data *dt, int i, int j)
 {
 	if (!allow_ch(dt->map[i - 1][j]) || \
@@ -51,21 +12,11 @@ void	left_space_handle(t_data *dt, int i, int j)
 
 void	right_space_handle(t_data *dt, int i, int j)
 {
-	if (!allow_ch(dt->map[i - 1][j]) || \
-	!allow_ch(dt->map[i - 1][j - 1]) || \
-	!allow_ch(dt->map[i][j - 1]) || \
-	!allow_ch(dt->map[i + 1][j - 1]) || \
-	!allow_ch(dt->map[i + 1][j]))
-		ft_exit(dt, WRONG_MAP);
-}
-
-void	bottom_space_handle(t_data *dt, int i, int j)
-{
-	if (!allow_ch(dt->map[i][j - 1]) || \
-	!allow_ch(dt->map[i - 1][j - 1]) || \
-	!allow_ch(dt->map[i - 1][j]) || \
-	!allow_ch(dt->map[i - 1][j + 1]) || \
-	!allow_ch(dt->map[i][j + 1]))
+	if ((j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j - 1])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j - 1])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j - 1])) || \
+	(j <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j])))
 		ft_exit(dt, WRONG_MAP);
 }
 
@@ -81,14 +32,14 @@ void	top_space_handle(t_data *dt, int i, int j)
 
 void	other_space_handle(t_data *dt, int i, int j)
 {
-	if (!allow_ch(dt->map[i - 1][j - 1]) || \
-	!allow_ch(dt->map[i - 1][j]) || \
-	!allow_ch(dt->map[i - 1][j + 1]) || \
-	!allow_ch(dt->map[i][j + 1]) || \
-	!allow_ch(dt->map[i + 1][j + 1]) || \
-	!allow_ch(dt->map[i + 1][j]) || \
-	!allow_ch(dt->map[i + 1][j - 1]) || \
-	!allow_ch(dt->map[i][j - 1]))
+	if ((j - 1 <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j - 1])) || \
+	(j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j])) || \
+	(j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j + 1])) || \
+	(j + 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j + 1])) || \
+	(j + 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j + 1])) || \
+	(j <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j - 1])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j - 1])))
 		ft_exit(dt, WRONG_MAP);
 }
 

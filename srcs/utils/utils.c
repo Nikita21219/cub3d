@@ -20,6 +20,7 @@ void	clearmap(char **map)
  * */
 void	ft_exit(t_data *data, int i)
 {
+	printf("Error\n");
 	if (i == WRONG_MAP_NAME)
 		printf("Wrong map name\n");
 	if (i == PATH_MAP_ERR)

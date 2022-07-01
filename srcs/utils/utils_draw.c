@@ -20,6 +20,7 @@ void	draw_square(t_data *data, float x, float y)
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
+	(void)	color;
 
 	if (x < 0 || y < 0)
 		return ;

@@ -82,6 +82,13 @@ typedef struct s_ray
 
 void	check_mapfile(t_data *data);
 void	parser_map(t_data *data, char *name);
+int		allow_ch(char c);
+void	left_top_space_handle(t_data *dt, int i, int j);
+void	right_top_space_handle(t_data *dt, int i, int j);
+void	left_bot_space_handle(t_data *dt, int i, int j);
+void	right_bot_space_handle(t_data *dt, int i, int j);
+void	bottom_space_handle(t_data *dt, int i, int j);
+void	check_zero(t_data *dt, int i, int j);
 
 /* Game and window */
 

@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	parser_map(&data, argv[1]);
 	check_mapfile(&data);
+	exit(0);
 	ft_init_window(&data);
 	return (0);
 }
