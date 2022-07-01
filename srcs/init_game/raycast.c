@@ -6,10 +6,10 @@ t_ray	init_ver(t_pl plr, float angle)
 
 	ver.s_x = SCALE;
 	if (cos(angle) > 0)
-		ver.x = (int)plr.x / SCALE * SCALE + SCALE;
+		ver.x = (floor)(plr.x / SCALE) * SCALE + SCALE;
 	else
 	{
-		ver.x = (int)plr.x / SCALE * SCALE - 0.1;
+		ver.x = (floor)(plr.x / SCALE) * SCALE - 0.0001;
 		ver.s_x *= -1;
 	}
 	ver.s_y = SCALE * fabs(tan(angle));
@@ -29,11 +29,11 @@ t_ray	init_hor(t_pl plr, float angle)
 	hor.s_y = SCALE;
 	if (sin(angle) > 0)
 	{
-		hor.y = (int)plr.y / SCALE * SCALE - 0.1;
+		hor.y = (floor)(plr.y / SCALE) * SCALE - 0.0001;
 		hor.s_y *= -1;
 	}
 	else
-		hor.y = (int)plr.y / SCALE * SCALE + SCALE;
+		hor.y = (floor)(plr.y / SCALE) * SCALE + SCALE;
 	hor.s_x = SCALE / fabs(tan(angle));
 	if (cos(angle) < 0)
 		hor.s_x *= -1;
@@ -53,14 +53,8 @@ void	rays(t_data *data, float angle)
 
 	wall_h = 0;
 	wall_v = 0;
-	if (angle != (float)M_PI_2 && angle != M_PI * 1.5)
-		ver = init_ver(*data->pl, angle);
-	else
-		wall_v = 1;
-	if (angle != (float)M_PI && angle != 0)
-		hor = init_hor(*data->pl, angle);
-	else
-		wall_h = 1;
+	ver = init_ver(*data->pl, angle);
+	hor = init_hor(*data->pl, angle);
 	while (!wall_h || !wall_v)
 	{
 		if (!wall_h && !check_wall(&hor, data->map, &wall_h))
