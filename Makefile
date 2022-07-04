@@ -21,7 +21,7 @@ $(OBJDIR)/%.o :	%.c $^ $(HEADDIR)/$(HEADER)
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME):	Makefile $(OBJDIR) $(OBJ)
-	@$(CC) $(CFLAGS) $(MLXFL) -o $(NAME) $(LIBFT_DIR)libft.a -I$(HEADER) $(OBJ) 
+	@$(CC) $(CFLAGS) $(MLXFL) -o $(NAME) $(LIBFT_DIR)libft.a libmlx.a -I$(HEADER) -Imlx/mlx.h $(OBJ) 
 	@echo "$(NAME) compile"
 
 $(OBJDIR):

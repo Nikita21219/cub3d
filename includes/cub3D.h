@@ -24,6 +24,12 @@
 # include "../mlx/mlx.h"
 # include "../libft/includes/libft.h"
 
+typedef struct s_mouse
+{
+	int				x;
+	int				y;
+}	t_mouse;
+
 typedef struct s_data
 {
 	char			**map;
@@ -31,6 +37,7 @@ typedef struct s_data
 	struct s_pl		*pl;
 	struct s_mlx	*mlx;
 	struct s_ray	*ray;
+	struct s_mouse	*mouse;
 	int				win_x;
 	int				win_y;
 }	t_data;

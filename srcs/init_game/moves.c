@@ -2,7 +2,7 @@
 
 void	around_left(t_data *data)
 {
-	data->pl->dir += 0.1;
+	data->pl->dir += 0.08;
 	if (data->pl->dir >= 2 * (float)M_PI)
 		data->pl->dir -= (float)M_PI * 2;
 	data->pl->dx = cos(data->pl->dir);
@@ -11,7 +11,7 @@ void	around_left(t_data *data)
 
 void	around_right(t_data *data)
 {
-	data->pl->dir -= 0.1;
+	data->pl->dir -= 0.08;
 	if (data->pl->dir < 0)
 		data->pl->dir += (float)M_PI * 2;
 	data->pl->dx = cos(data->pl->dir);
@@ -50,18 +50,18 @@ void	move_left(t_data *data)
 {
 	if (data->map[(int)data->pl->y / SCALE][(int)(data->pl->x \
 		- cos(data->pl->dir - M_PI_2) * SPEED) / SCALE] != '1')
-		data->pl->x -= cos(data->pl->dir - M_PI_2) * SPEED;
+		data->pl->x -= cos(fabs(data->pl->dir - M_PI_2)) * SPEED;
 	if (data->map[(int)(data->pl->y + sin(data->pl->dir - M_PI_2) \
 		* SPEED) / SCALE][(int)data->pl->x / SCALE] != '1')
-		data->pl->y += sin(data->pl->dir - M_PI_2) * SPEED;
+		data->pl->y += sin(fabs(data->pl->dir - M_PI_2)) * SPEED;
 }
 
 void	move_right(t_data *data)
 {
 	if (data->map[(int)data->pl->y / SCALE][(int)(data->pl->x \
 		- cos(data->pl->dir + M_PI_2) * SPEED) / SCALE] != '1')
-		data->pl->x -= cos(data->pl->dir + M_PI_2) * SPEED;
+		data->pl->x -= cos(fabs(data->pl->dir + M_PI_2)) * SPEED;
 	if (data->map[(int)(data->pl->y + sin(data->pl->dir + M_PI_2) \
 		* SPEED) / SCALE][(int)data->pl->x / SCALE] != '1')
-		data->pl->y += sin(data->pl->dir + M_PI_2) * SPEED;
+		data->pl->y += sin(fabs(data->pl->dir + M_PI_2)) * SPEED;
 }
