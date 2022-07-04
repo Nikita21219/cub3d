@@ -69,8 +69,6 @@ typedef struct s_pl
 {
 	float			x;
 	float			y;
-	float			dx;
-	float			dy;
 	float			dir;
 	float			start;
 	float			end;

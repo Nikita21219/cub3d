@@ -44,8 +44,6 @@ int	check_char(char c, t_data *data, float x, float y)
 			data->pl->dir = (float)EA;
 		data->pl->x = (x * SCALE) + SCALE / 2;
 		data->pl->y = (y * SCALE) + SCALE / 2;
-		data->pl->dx = cos(data->pl->dir);
-		data->pl->dy = sin(data->pl->dir);
 	}
 	return (flag);
 }
