@@ -58,7 +58,6 @@ void	ft_init_window(t_data *data)
 	data->mlx->mlx = mlx_init();
 	data->mlx->win = mlx_new_window(data->mlx->mlx, \
 	WIN_X, WIN_Y, "A frenzied massacre");
-	mlx_mouse_hide();
 	mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
 	draw_map(data);
 	mlx_hook(data->mlx->win, 2, (1L << 0), ft_hook, data);

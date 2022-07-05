@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g  -Wall -Wextra -Werror
 MLXFL =  -L mlx -l mlx -framework OpenGL -framework AppKit
 
 OBJDIR = ./objs
@@ -21,7 +21,7 @@ $(OBJDIR)/%.o :	%.c $^ $(HEADDIR)/$(HEADER)
 	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME):	Makefile $(OBJDIR) $(OBJ)
-	@$(CC) $(CFLAGS) $(MLXFL) -o $(NAME) $(LIBFT_DIR)libft.a libmlx.a -I$(HEADER) -Imlx/mlx.h $(OBJ) 
+	@$(CC) $(CFLAGS) $(MLXFL) -o $(NAME) $(LIBFT_DIR)libft.a -I$(HEADER) -Imlx/mlx.h $(OBJ) 
 	@echo "$(NAME) compile"
 
 $(OBJDIR):

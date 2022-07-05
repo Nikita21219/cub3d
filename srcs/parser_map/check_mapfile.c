@@ -19,16 +19,16 @@ void	init_pict(char *str, t_data *data)
 	while (ft_space(*str))
 		str++;
 	if (startswith(str, "NO"))
-		data->pict->no_wall = mlx_xpm_file_to_image(data->mlx, \
+		data->pict->no_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "SO"))
-		data->pict->so_wall = mlx_xpm_file_to_image(data->mlx, \
+		data->pict->so_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "WE"))
-		data->pict->we_wall = mlx_xpm_file_to_image(data->mlx, \
+		data->pict->we_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "EA"))
-		data->pict->ea_wall = mlx_xpm_file_to_image(data->mlx, \
+		data->pict->ea_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		ft_strtrim(str + 2, " \t"), &img_width, &img_height);
 	else if (startswith(str, "C"))
 		data->pict->ceiling = convert_grb(ft_strtrim(str + 1, " \t"), data);
@@ -38,17 +38,30 @@ void	init_pict(char *str, t_data *data)
 		ft_exit(data, WRONG_MAP);
 }
 
+void	init_pict_pointers(t_data *data)
+{
+	data->pict = malloc(sizeof(t_pict));
+	if (data->pict == NULL)
+		ft_exit(data, 12);
+	data->pict->ea_wall = malloc(sizeof(t_pict_dt));
+	if (data->pict->ea_wall == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->no_wall = malloc(sizeof(t_pict_dt));
+	if (data->pict->no_wall == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->so_wall = malloc(sizeof(t_pict_dt));
+	if (data->pict->so_wall == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->we_wall = malloc(sizeof(t_pict_dt));
+	if (data->pict->we_wall == NULL)
+		ft_exit(data, MALLOC_ERR);
+}
+
 void	check_identifiers(t_data *data)
 {
 	int		i;
 
-	data->pict = malloc(sizeof(t_pict));
-	if (data->pict == NULL)
-		ft_exit(data, 12);
-	data->pict->ea_wall = NULL;
-	data->pict->no_wall = NULL;
-	data->pict->so_wall = NULL;
-	data->pict->we_wall = NULL;
+	init_pict_pointers(data);
 	i = -1;
 	while (data->map[++i] && i < 6)
 		init_pict(data->map[i], data);
@@ -57,6 +70,7 @@ void	check_identifiers(t_data *data)
 	data->pict->so_wall == NULL || \
 	data->pict->we_wall == NULL)
 		ft_exit(data, WRONG_MAP);
+	data->pict->no_wall->addr = mlx_get_data_addr(data->pict->no_wall->img, &data->pict->no_wall->bits_per_pixel, &data->pict->no_wall->line_length, &data->pict->no_wall->endian);
 }
 
 int	is_only_space(char *str)

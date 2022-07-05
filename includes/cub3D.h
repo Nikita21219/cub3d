@@ -52,17 +52,25 @@ typedef struct s_mlx {
 	int		endian;
 }	t_mlx;
 
+typedef struct	s_pict_dt {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_pict_dt;
+
 typedef struct s_pict
 {
-	int		floor;
-	int		ceiling;
-	void	*no_wall;
-	void	*so_wall;
-	void	*we_wall;
-	void	*ea_wall;
-	void	*pl;
-	void	*door;
-	void	*sprite;
+	int			floor;
+	int			ceiling;
+	void		*pl;
+	void		*door;
+	void		*sprite;
+	t_pict_dt	*no_wall;
+	t_pict_dt	*so_wall;
+	t_pict_dt	*we_wall;
+	t_pict_dt	*ea_wall;
 }	t_pict;
 
 typedef struct s_pl
