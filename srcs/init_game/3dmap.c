@@ -33,7 +33,7 @@ void	map3d_draw(t_data data, int pix)
 			if (data.ray->s_x == 1)
 			{
 				if (data.ray->s == 'n')
-					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, pix * SCALE / psh % SCALE, y * SCALE / psh % SCALE));
+					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, pix % SCALE, y % SCALE));
 				else
 					my_mlx_pixel_put(data.mlx, pix, y, 0x38c98f);
 			}
