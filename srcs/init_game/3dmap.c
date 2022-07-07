@@ -31,14 +31,14 @@ void	map3d_draw(t_data data, int pix)
 					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, SCALE * (data.ray->x / SCALE - (float)(int)(data.ray->x / SCALE)), SCALE * (y - (WIN_Y / 2 - line)) / psh));
 				}
 				else
-					my_mlx_pixel_put(data.mlx, pix, y, 0x38c98f);
+					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, SCALE * (data.ray->x / SCALE - (float)(int)(data.ray->x / SCALE)), SCALE * (y - (WIN_Y / 2 - line)) / psh));
 			}
 			else
 			{
 				if (data.ray->s == 'w')
-					my_mlx_pixel_put(data.mlx, pix, y, 0x0000FF);
+					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, SCALE * (data.ray->y / SCALE - (float)(int)(data.ray->y / SCALE)), SCALE * (y - (WIN_Y / 2 - line)) / psh));
 				else
-					my_mlx_pixel_put(data.mlx, pix, y, 0xd48422);
+					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, SCALE * (data.ray->y / SCALE - (float)(int)(data.ray->y / SCALE)), SCALE * (y - (WIN_Y / 2 - line)) / psh));
 			}
 		}
 		y++;
