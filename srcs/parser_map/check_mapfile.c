@@ -50,15 +50,9 @@ void	init_pict(char *str, t_data *data)
 		tmp, &img_width, &img_height);
 	}
 	else if (startswith(str, "C"))
-	{
-		tmp = ft_strtrim(str + 1, " \t");
-		data->pict->ceiling = convert_grb(tmp, data);
-	}
+		data->pict->ceiling = convert_grb(ft_strtrim(str + 1, " \t"), data);
 	else if (startswith(str, "F"))
-	{
-		tmp = ft_strtrim(str + 1, " \t");
-		data->pict->floor = convert_grb(tmp, data);
-	}
+		data->pict->floor = convert_grb(ft_strtrim(str + 1, " \t"), data);
 	else
 		ft_exit(data, WRONG_MAP);
 	free(tmp);
@@ -140,9 +134,11 @@ void	set_map(t_data *data)
 	while (data->map[i])
 		res[j++] = data->map[i++];
 	res[j] = NULL;
-	// free_arr(data->map);
+	j = -1;
+	while (data->map[++j] && j < 6)
+		free(data->map[j]);
+	free(data->map);
 	data->map = res;
-	// sleep(10);
 }
 
 void	check_mapfile(t_data *data)

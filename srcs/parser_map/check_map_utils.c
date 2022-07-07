@@ -15,6 +15,7 @@ int	convert_grb(char *str, t_data *data)
 	if (str == NULL)
 		ft_exit(data, MALLOC_ERR);
 	split = ft_split(str, ',');
+	free(str);
 	if (split == NULL)
 		ft_exit(data, MALLOC_ERR);
 	if (len_arr(split) != 3)
