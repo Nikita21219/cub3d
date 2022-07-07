@@ -102,6 +102,7 @@ void	left_bot_space_handle(t_data *dt, int i, int j);
 void	right_bot_space_handle(t_data *dt, int i, int j);
 void	bottom_space_handle(t_data *dt, int i, int j);
 void	check_zero(t_data *dt, int i, int j);
+int		is_not_path(char *str);
 
 /* Game and window */
 void	ft_init_window(t_data *data);
