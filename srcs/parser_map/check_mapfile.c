@@ -70,7 +70,14 @@ void	check_identifiers(t_data *data)
 	data->pict->so_wall == NULL || \
 	data->pict->we_wall == NULL)
 		ft_exit(data, WRONG_MAP);
-	data->pict->no_wall->addr = mlx_get_data_addr(data->pict->no_wall->img, &data->pict->no_wall->bits_per_pixel, &data->pict->no_wall->line_length, &data->pict->no_wall->endian);
+	data->pict->no_wall->addr = mlx_get_data_addr(data->pict->no_wall->img, \
+	&data->pict->no_wall->bpp, &data->pict->no_wall->line_l, &data->pict->no_wall->endian);
+	data->pict->ea_wall->addr = mlx_get_data_addr(data->pict->ea_wall->img, \
+	&data->pict->ea_wall->bpp, &data->pict->ea_wall->line_l, &data->pict->ea_wall->endian);
+	data->pict->so_wall->addr = mlx_get_data_addr(data->pict->so_wall->img, \
+	&data->pict->so_wall->bpp, &data->pict->so_wall->line_l, &data->pict->so_wall->endian);
+	data->pict->we_wall->addr = mlx_get_data_addr(data->pict->we_wall->img, \
+	&data->pict->we_wall->bpp, &data->pict->we_wall->line_l, &data->pict->we_wall->endian);
 }
 
 int	is_only_space(char *str)

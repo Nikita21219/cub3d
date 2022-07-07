@@ -30,7 +30,7 @@ void	draw_map(t_data *data)
 	pix = 0;
 	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
-	&data->mlx->bits_per_pixel, &data->mlx->line_length, &data->mlx->endian);
+	&data->mlx->bpp, &data->mlx->line_l, &data->mlx->endian);
 	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
 	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
 	while (data->pl->start >= data->pl->end)

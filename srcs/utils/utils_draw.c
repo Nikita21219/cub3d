@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 	if (x < 0 || y < 0 || x >= WIN_X || y >= WIN_Y)
 		return ;
 	dst = mlx->addr + \
-	(y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	(y * mlx->line_l + x * (mlx->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
