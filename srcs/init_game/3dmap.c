@@ -1,14 +1,8 @@
 #include "../../includes/cub3D.h"
 
-unsigned int    get_pixel(t_pict_dt *img, unsigned x, unsigned y)
+unsigned int	get_pixel(t_pict_dt *img, unsigned x, unsigned y)
 {
-    unsigned int ret;
-
-    // printf("img->addr = %p\n", img->addr);
-    ret =   *(unsigned *)(img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8)));
-    // printf("ret = %d\n", ret);
-    // printf("img->line_length = %d, img->bits_per_pixel = %d\n", img->line_length, img->bits_per_pixel);
-    return ret;
+	return (*(unsigned *)(img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8))));
 }
 
 void	map3d_draw(t_data data, int pix)
@@ -33,7 +27,9 @@ void	map3d_draw(t_data data, int pix)
 			if (data.ray->s_x == 1)
 			{
 				if (data.ray->s == 'n')
-					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, (SCALE * (pix % psh)) / psh, SCALE * (y - (WIN_Y / 2 - line)) / psh));
+				{
+					my_mlx_pixel_put(data.mlx, pix, y, get_pixel(data.pict->no_wall, SCALE * (data.ray->x / SCALE - (float)(int)(data.ray->x / SCALE)), SCALE * (y - (WIN_Y / 2 - line)) / psh));
+				}
 				else
 					my_mlx_pixel_put(data.mlx, pix, y, 0x38c98f);
 			}
