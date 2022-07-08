@@ -42,6 +42,7 @@ void	draw_map(t_data *data)
 		pix++;
 	}
 	draw_2dmap(*data);
+	draw_sprites(data);
 	mlx_put_image_to_window(data->mlx->mlx, \
 		data->mlx->win, data->mlx->img, 0, 0);
 	mlx_destroy_image(data->mlx->mlx, data->mlx->img);

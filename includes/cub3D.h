@@ -119,6 +119,7 @@ void	init_sprites(t_data *data);
 /* Game and window */
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
+void	draw_sprites(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	move_up(t_data *data);
