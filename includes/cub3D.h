@@ -30,18 +30,6 @@ typedef struct s_mouse
 	int				y;
 }	t_mouse;
 
-typedef struct s_data
-{
-	char			**map;
-	struct s_pict	*pict;
-	struct s_pl		*pl;
-	struct s_mlx	*mlx;
-	struct s_ray	*ray;
-	struct s_mouse	*mouse;
-	int				win_x;
-	int				win_y;
-}	t_data;
-
 typedef struct s_mlx {
 	void	*mlx;
 	void	*win;
@@ -92,6 +80,29 @@ typedef struct s_ray
 	char		s;
 }	t_ray;
 
+typedef struct s_sprite
+{
+	float				x;
+	float				y;
+	int					size;
+	void				*img;
+	struct s_sprite		*next;
+}	t_sprite;
+
+typedef struct s_data
+{
+	char		**map;
+	t_pict		*pict;
+	t_pl		*pl;
+	t_mlx		*mlx;
+	t_ray		*ray;
+	t_mouse		*mouse;
+	t_sprite	*sprite;
+	char		*sprite_img_path;
+	int			win_x;
+	int			win_y;
+}	t_data;
+
 /* Parser map */
 void	check_mapfile(t_data *data);
 void	parser_map(t_data *data, char *name);
@@ -103,6 +114,7 @@ void	right_bot_space_handle(t_data *dt, int i, int j);
 void	bottom_space_handle(t_data *dt, int i, int j);
 void	check_zero(t_data *dt, int i, int j);
 int		is_not_path(char *str);
+void	init_sprites(t_data *data);
 
 /* Game and window */
 void	ft_init_window(t_data *data);

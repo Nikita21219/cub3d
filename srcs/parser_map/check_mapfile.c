@@ -145,4 +145,11 @@ void	check_mapfile(t_data *data)
 {
 	set_map(data);
 	check_map(data);
+	init_sprites(data);
+
+	while (data->sprite)
+	{
+		printf("sprite = %p\n", data->sprite);
+		data->sprite = data->sprite->next;
+	}
 }
