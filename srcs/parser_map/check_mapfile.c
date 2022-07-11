@@ -58,6 +58,22 @@ void	init_pict(char *str, t_data *data)
 	free(tmp);
 }
 
+
+/* 
+	int			img_width;
+	int			img_height;
+	data->pict->sprite = malloc(sizeof(t_pict_dt));
+	if (data->pict->sprite == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->sprite->img = mlx_xpm_file_to_image(data->mlx, "./texture/barrel.xpm", &img_width, &img_height);
+	if (data->pict->sprite->img == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->sprite->addr = mlx_get_data_addr(data->pict->sprite->img, \
+	&data->pict->sprite->bpp, &data->pict->sprite->line_l, &data->pict->sprite->endian);
+	if (data->pict->sprite->addr == NULL)
+		ft_exit(data, MALLOC_ERR);
+ */
+
 void	init_pict_pointers(t_data *data)
 {
 	if (data->pict == NULL)
@@ -74,11 +90,16 @@ void	init_pict_pointers(t_data *data)
 	data->pict->we_wall = malloc(sizeof(t_pict_dt));
 	if (data->pict->we_wall == NULL)
 		ft_exit(data, MALLOC_ERR);
+	data->pict->sprite = malloc(sizeof(t_pict_dt));
+	if (data->pict->sprite == NULL)
+		ft_exit(data, MALLOC_ERR);
 }
 
 void	check_identifiers(t_data *data)
 {
-	int		i;
+	int	i;
+	int	img_width;
+	int	img_height;
 
 	init_pict_pointers(data);
 	i = -1;
@@ -97,6 +118,11 @@ void	check_identifiers(t_data *data)
 	&data->pict->so_wall->bpp, &data->pict->so_wall->line_l, &data->pict->so_wall->endian);
 	data->pict->we_wall->addr = mlx_get_data_addr(data->pict->we_wall->img, \
 	&data->pict->we_wall->bpp, &data->pict->we_wall->line_l, &data->pict->we_wall->endian);
+	data->pict->sprite->img = mlx_xpm_file_to_image(data->mlx, "./texture/barrel.xpm", &img_width, &img_height);
+	if (data->pict->sprite->img == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->sprite->addr = mlx_get_data_addr(data->pict->sprite->img, \
+	&data->pict->sprite->bpp, &data->pict->sprite->line_l, &data->pict->sprite->endian);
 }
 
 int	is_only_space(char *str)

@@ -54,11 +54,11 @@ typedef struct s_pict
 	int			ceiling;
 	void		*pl;
 	void		*door;
-	void		*sprite;
 	t_pict_dt	*no_wall;
 	t_pict_dt	*so_wall;
 	t_pict_dt	*we_wall;
 	t_pict_dt	*ea_wall;
+	t_pict_dt	*sprite;
 }	t_pict;
 
 typedef struct s_pl
@@ -98,7 +98,6 @@ typedef struct s_data
 	t_ray		*ray;
 	t_mouse		*mouse;
 	t_sprite	*sprite;
-	char		*sprite_img_path;
 	int			proj_plane_dist;
 }	t_data;
 
