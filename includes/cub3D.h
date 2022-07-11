@@ -38,8 +38,7 @@ typedef struct s_data
 	struct s_mlx	*mlx;
 	struct s_ray	*ray;
 	struct s_mouse	*mouse;
-	int				win_x;
-	int				win_y;
+	int				proj_plane_dist;
 }	t_data;
 
 typedef struct s_mlx {
@@ -52,7 +51,7 @@ typedef struct s_mlx {
 	int		endian;
 }	t_mlx;
 
-typedef struct	s_pict_dt {
+typedef struct s_pict_dt {
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -93,6 +92,7 @@ typedef struct s_ray
 }	t_ray;
 
 /* Parser map */
+
 void	check_mapfile(t_data *data);
 void	parser_map(t_data *data, char *name);
 int		allow_ch(char c);
@@ -104,6 +104,7 @@ void	bottom_space_handle(t_data *dt, int i, int j);
 void	check_zero(t_data *dt, int i, int j);
 
 /* Game and window */
+
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
 void	move_left(t_data *data);
@@ -114,6 +115,7 @@ void	around_left(t_data *data);
 void	around_right(t_data *data);
 
 /* Utils */
+
 void	ft_exit(t_data *data, int i);
 void	gnl(int fd, t_data *data);
 void	clearmap(char **map);
@@ -139,9 +141,11 @@ int		check_wall(t_ray *hv, char **map, int *wall);
 void	rays(t_data *data, float angle);
 
 /* Free utils */
+
 void	free_arr(char **arr);
 
 /*TMP*/
+
 void	print_arr(char	**arr);
 
 #endif
