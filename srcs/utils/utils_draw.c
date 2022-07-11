@@ -9,10 +9,10 @@ void	draw_square(t_data *data, float x, float y)
 	tmp3 = y + 7;
 	while (y < tmp3)
 	{
-		tmp = x;
+		tmp = x - 3;
 		tmp2 = tmp + 7;
 		while (tmp < tmp2)
-			my_mlx_pixel_put(data->mlx, tmp++, y, 0x00FF000);
+			my_mlx_pixel_put(data->mlx, tmp++, y - 3, 0x00FF000);
 		y++;
 	}
 }

@@ -11,6 +11,7 @@ void	draw_sprites(t_data *data)
 	int 	v_offset;
 
 	sprite_dir = atan2(data->sprite->y - data->pl->y / SCALE, data->sprite->x - data->pl->x / SCALE);
+	// printf("sprite_dir = %f\ndata->pl->dir = %f\n", sprite_dir, data->pl->dir);
     while (sprite_dir - data->pl->dir > M_PI)
 		sprite_dir -= 2 * M_PI;
     while (sprite_dir - data->pl->dir < -M_PI)
