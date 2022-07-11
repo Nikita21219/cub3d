@@ -61,7 +61,7 @@ void	ft_init_window(t_data *data)
 	mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
 	draw_map(data);
 	mlx_hook(data->mlx->win, 2, (1L << 0), ft_hook, data);
-	mlx_loop_hook(data->mlx->mlx, &mouse, data);
+	// mlx_loop_hook(data->mlx->mlx, &mouse, data);
 	mlx_hook(data->mlx->win, 17, 0L, ft_exitbut, data);
 	mlx_loop(data->mlx->mlx);
 }

@@ -1,11 +1,11 @@
 NAME = cub3D
 CC = cc
 
-CFLAGS = -g  -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 MLXFL =  -L mlx -l mlx -framework OpenGL -framework AppKit
 
 OBJDIR = ./objs
-VPATH = ./srcs ./srcs/parser_map ./srcs/utils ./srcs/init_game
+VPATH = ./srcs ./srcs/parser_map ./srcs/utils ./srcs/init_game ./srcs/free_utils
 LIBFT_DIR = libft/
 HEADDIR = ./includes
 
