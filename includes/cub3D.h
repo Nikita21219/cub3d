@@ -113,13 +113,11 @@ void	right_bot_space_handle(t_data *dt, int i, int j);
 void	bottom_space_handle(t_data *dt, int i, int j);
 void	check_zero(t_data *dt, int i, int j);
 int		is_not_path(char *str);
-void	init_sprites(t_data *data);
 
 /* Game and window */
 
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
-void	draw_sprites(t_data *data, int pix);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	move_up(t_data *data);
@@ -149,11 +147,17 @@ void	map3d_draw(t_data data, int pix);
 
 /* Raycast */
 
-void		check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle);
-int			check_wall(t_ray *hv, char **map, int *wall);
-void		rays(t_data *data, float angle);
+void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle);
+int		check_wall(t_ray *hv, char **map, int *wall);
+void	rays(t_data *data, float angle);
+
+/*Sprites*/
+
+void		init_sprites(t_data *data);
 t_sprite	*alloc_new_sprite(t_data *data, float x, float y);
 void		add_new_sprite(t_sprite **sprite, t_sprite *new);
+void		draw_sprites(t_data *data);
+int			check_sprite(t_sprite *sprite, int x, int y);
 
 /* Free utils */
 

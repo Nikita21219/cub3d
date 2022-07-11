@@ -59,14 +59,16 @@ void	rays(t_data *data, float angle)
 	{
 		if (!wall_h && !check_wall(&hor, data->map, &wall_h))
 		{
-			if (data->map[(int)(hor.y / SCALE)][(int)(hor.x / SCALE)] == 'e')
+			if (data->map[(int)(hor.y / SCALE)][(int)(hor.x / SCALE)] == 'e' \
+			&& !check_sprite(data->sprite, hor.x / SCALE, hor.y / SCALE))
 				add_new_sprite(&data->sprite, alloc_new_sprite(data, hor.x, hor.y));
 			hor.x += hor.s_x;
 			hor.y += hor.s_y;
 		}
 		if (!wall_v && !check_wall(&ver, data->map, &wall_v))
 		{
-			if (data->map[(int)(ver.y / SCALE)][(int)(ver.x / SCALE)] == 'e')
+			if (data->map[(int)(ver.y / SCALE)][(int)(ver.x / SCALE)] == 'e' \
+			&& !check_sprite(data->sprite, ver.x / SCALE, ver.y / SCALE))
 				add_new_sprite(&data->sprite, alloc_new_sprite(data, ver.x, ver.y));
 			ver.x += ver.s_x;
 			ver.y += ver.s_y;

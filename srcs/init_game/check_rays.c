@@ -57,3 +57,14 @@ int	check_wall(t_ray *hv, char **map, int *wall)
 	}
 	return (0);
 }
+
+int	check_sprite(t_sprite *sprite, int x, int y)
+{
+	while (sprite)
+	{
+		if (x == sprite->x && y == sprite->y)
+			return (1);
+		sprite = sprite->next;
+	}
+	return (0);
+}
