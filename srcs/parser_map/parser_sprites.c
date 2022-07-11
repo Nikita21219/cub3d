@@ -1,6 +1,6 @@
 #include "../../includes/cub3D.h"
 
-t_sprite	*alloc_new_sprite(t_data *data, int x, int y)
+t_sprite	*alloc_new_sprite(t_data *data, float x, float y)
 {
 	t_sprite	*new;
 
@@ -9,14 +9,15 @@ t_sprite	*alloc_new_sprite(t_data *data, int x, int y)
 		ft_exit(data, MALLOC_ERR);
 	new->x = x;
 	new->y = y;
-	new->size = 200;
+	new->len = sqrt(powf(data->pl->x - fabsf(x), 2.0) \
+				+ powf(data->pl->y - fabsf(y), 2.0));
 	return (new);
 }
 
 void	add_new_sprite(t_sprite **sprite, t_sprite *new)
 {
 	t_sprite	*tmp;
-	
+
 	new->next = NULL;
 	if (*sprite == NULL)
 		*sprite = new;

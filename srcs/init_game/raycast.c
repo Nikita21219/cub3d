@@ -46,10 +46,10 @@ t_ray	init_hor(t_pl plr, float angle)
 
 void	rays(t_data *data, float angle)
 {
-	t_ray	ver;
-	t_ray	hor;
-	int		wall_h;
-	int		wall_v;
+	t_ray		ver;
+	t_ray		hor;
+	int			wall_h;
+	int			wall_v;
 
 	wall_h = 0;
 	wall_v = 0;
@@ -59,11 +59,15 @@ void	rays(t_data *data, float angle)
 	{
 		if (!wall_h && !check_wall(&hor, data->map, &wall_h))
 		{
+			if (data->map[(int)(hor.y / SCALE)][(int)(hor.x / SCALE)] == 'e')
+				add_new_sprite(&data->sprite, alloc_new_sprite(data, hor.x, hor.y));
 			hor.x += hor.s_x;
 			hor.y += hor.s_y;
 		}
 		if (!wall_v && !check_wall(&ver, data->map, &wall_v))
 		{
+			if (data->map[(int)(ver.y / SCALE)][(int)(ver.x / SCALE)] == 'e')
+				add_new_sprite(&data->sprite, alloc_new_sprite(data, ver.x, ver.y));
 			ver.x += ver.s_x;
 			ver.y += ver.s_y;
 		}

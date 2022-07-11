@@ -84,7 +84,7 @@ typedef struct s_sprite
 {
 	float				x;
 	float				y;
-	int					size;
+	float				len;
 	void				*img;
 	struct s_sprite		*next;
 }	t_sprite;
@@ -120,7 +120,7 @@ void	init_sprites(t_data *data);
 
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
-void	draw_sprites(t_data *data);
+void	draw_sprites(t_data *data, int pix);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	move_up(t_data *data);
@@ -150,9 +150,11 @@ void	map3d_draw(t_data data, int pix);
 
 /* Raycast */
 
-void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle);
-int		check_wall(t_ray *hv, char **map, int *wall);
-void	rays(t_data *data, float angle);
+void		check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle);
+int			check_wall(t_ray *hv, char **map, int *wall);
+void		rays(t_data *data, float angle);
+t_sprite	*alloc_new_sprite(t_data *data, float x, float y);
+void		add_new_sprite(t_sprite **sprite, t_sprite *new);
 
 /* Free utils */
 

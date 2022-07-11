@@ -145,5 +145,5 @@ void	check_mapfile(t_data *data)
 {
 	set_map(data);
 	check_map(data);
-	init_sprites(data);
+	// init_sprites(data);
 }

@@ -9,6 +9,7 @@ void	init_data(t_data *data)
 	data->mouse = malloc(sizeof(t_mouse));
 	if (!data->mlx || !data->pict || !data->pl || !data->ray || !data->mouse)
 		ft_exit(data, 12);
+	data->sprite = NULL;
 }
 
 void	tmp_print_dir_coords(t_data *data)

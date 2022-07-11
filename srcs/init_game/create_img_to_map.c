@@ -38,11 +38,11 @@ void	draw_map(t_data *data)
 		rays(data, data->pl->start);
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
+		draw_sprites(data, pix);
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
 	draw_2dmap(*data);
-	draw_sprites(data);
 	mlx_put_image_to_window(data->mlx->mlx, \
 		data->mlx->win, data->mlx->img, 0, 0);
 	mlx_destroy_image(data->mlx->mlx, data->mlx->img);
