@@ -85,6 +85,7 @@ typedef struct s_sprite
 	float				x;
 	float				y;
 	float				len;
+	float				angle;
 	void				*img;
 	struct s_sprite		*next;
 }	t_sprite;
@@ -149,12 +150,12 @@ void	map3d_draw(t_data data, int pix);
 
 void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle);
 int		check_wall(t_ray *hv, char **map, int *wall);
-void	rays(t_data *data, float angle);
+void	rays(t_data *data, float angle, int pix);
 
 /*Sprites*/
 
 void		init_sprites(t_data *data);
-t_sprite	*alloc_new_sprite(t_data *data, float x, float y);
+t_sprite	*alloc_new_sprite(t_data *data, float x, float y, float angle);
 void		add_new_sprite(t_sprite **sprite, t_sprite *new);
 void		draw_sprites(t_data *data);
 int			check_sprite(t_sprite *sprite, int x, int y);

@@ -1,6 +1,6 @@
 #include "../../includes/cub3D.h"
 
-t_sprite	*alloc_new_sprite(t_data *data, float x, float y)
+t_sprite	*alloc_new_sprite(t_data *data, float x, float y, float angle)
 {
 	t_sprite	*new;
 
@@ -9,8 +9,7 @@ t_sprite	*alloc_new_sprite(t_data *data, float x, float y)
 		ft_exit(data, MALLOC_ERR);
 	new->x = x;
 	new->y = y;
-	new->len = sqrt(powf(data->pl->x - fabsf(x), 2.0) \
-				+ powf(data->pl->y - fabsf(y), 2.0));
+	new->angle = angle;
 	return (new);
 }
 
@@ -30,17 +29,17 @@ void	add_new_sprite(t_sprite **sprite, t_sprite *new)
 	}
 }
 
-void	init_sprites(t_data *data)
-{
-	int	i;
-	int	j;
+// void	init_sprites(t_data *data)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = -1;
-	while (data->map && data->map[++i])
-	{
-		j = -1;
-		while (data->map && data->map[i][++j])
-			if (data->map[i][j] == 'e')
-				add_new_sprite(&data->sprite, alloc_new_sprite(data, j, i));
-	}
-}
+// 	i = -1;
+// 	while (data->map && data->map[++i])
+// 	{
+// 		j = -1;
+// 		while (data->map && data->map[i][++j])
+// 			if (data->map[i][j] == 'e')
+// 				add_new_sprite(&data->sprite, alloc_new_sprite(data, j, i));
+// 	}
+// }

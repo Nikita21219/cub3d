@@ -36,13 +36,14 @@ void	draw_map(t_data *data)
 	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
 	while (data->pl->start >= data->pl->end)
 	{
-		rays(data, data->pl->start);
+		rays(data, data->pl->start, pix);
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
-	draw_sprites(data);
+	if (data->sprite)
+		draw_sprites(data);
 	draw_2dmap(*data);
 	mlx_put_image_to_window(data->mlx->mlx, \
 		data->mlx->win, data->mlx->img, 0, 0);

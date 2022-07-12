@@ -2,31 +2,29 @@
 
 void	draw_sprites(t_data *data)
 {
-	t_sprite	*spr;
-	int			psh;
-	int			x;
-	int			y;
+	t_sprite	*sprite;
+	int			sprite_screen_size;
+	int			i;
+	int			j;
 
-	if (!data->sprite)
-		return ;
-	spr = data->sprite;
-	psh = fabsf(SCALE / spr->len * data->proj_plane_dist) / 4;
-	while (spr)
+	sprite = data->sprite;
+	sprite->len = sqrt(powf((int)data->pl->x - fabsf(sprite->x), 2.0) \
+		+ powf((int)data->pl->y - fabsf(sprite->y), 2.0));
+	sprite_screen_size = fabsf(SCALE / sprite->len * data->proj_plane_dist);
+	if (sprite_screen_size > 1000)
+		sprite_screen_size = 1000;
+	i = -1;
+	while (++i < sprite_screen_size)
 	{
-		x = psh;
-		while (x)
+		if (sprite->x + i < 0 || sprite->x + i >= WIN_X)
+			continue ;
+		j = -1;
+		while (++j < sprite_screen_size)
 		{
-			y = psh;
-			while (y)
-			{
-				my_mlx_pixel_put(data->mlx, spr->x, spr->y, 0X000000);
-				y--;
-			}
-			x--;
+		    if (sprite->y + j < 0 || sprite->y + j >= WIN_Y)
+				continue;
+			my_mlx_pixel_put(data->mlx, sprite->x + i, sprite->y + j + WIN_Y / 2, 000000);
 		}
-		data->sprite = data->sprite->next;
-		free(spr);
-		spr = data->sprite;
 	}
 	data->sprite = NULL;
 }
