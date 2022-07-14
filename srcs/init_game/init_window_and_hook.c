@@ -9,6 +9,7 @@ int	loop_draw(t_data *data)
 	move_right(data);
 	around_left(data);
 	around_right(data);
+	animate(data);
 	draw_map(data);
 	return (0);
 }

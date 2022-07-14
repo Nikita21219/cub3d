@@ -90,13 +90,14 @@ typedef struct s_ray
 
 typedef struct s_sprite
 {
-	int					dx;
-	float				x;
-	float				y;
-	float				len;
-	float				dir;
-	void				*img;
-	struct s_sprite		*next;
+	int				dx;
+	float			x;
+	float			y;
+	float			len;
+	float			dir;
+	void			*img;
+	int				pict_num;
+	struct s_sprite	*next;
 }	t_sprite;
 
 typedef struct s_moves
@@ -168,8 +169,10 @@ void	rays(t_data *data, float angle);
 
 /*Sprites*/
 
+unsigned int	get_pixel(t_pict_dt *img, float x, float y, int psh);
 void	init_sprites(t_data *data);
 void	draw_sprites(t_data *data);
+void	animate(t_data *data);
 
 /* Free utils */
 

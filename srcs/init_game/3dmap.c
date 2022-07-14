@@ -40,7 +40,6 @@ void	draw3d_wall(t_data data, int pix, int y, int psh)
 	}
 }
 
-
 void	map3d_draw(t_data data, int pix)
 {
 	int	psh;

@@ -9,6 +9,7 @@ t_sprite	*alloc_new_sprite(t_data *data, float x, float y)
 		ft_exit(data, MALLOC_ERR);
 	new->x = x;
 	new->y = y;
+	new->pict_num = 1;
 	return (new);
 }
 

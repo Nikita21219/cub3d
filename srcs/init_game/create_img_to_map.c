@@ -42,7 +42,6 @@ void	draw_map(t_data *data)
 			data->sprite->dir += 2 * M_PI;
 		data->sprite->len = sqrt(pow((data->pl->x / SCALE) - (data->sprite->x), 2) + pow(data->pl->y / SCALE - (data->sprite->y), 2));
 	}
-	// printf("dr = %f\n", data->sprite->dir);
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);

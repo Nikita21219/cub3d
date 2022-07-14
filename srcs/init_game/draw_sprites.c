@@ -36,17 +36,25 @@ void	draw_sprites(t_data *data)
 	size_t	sprite_screen_size;
 	int 	h_offset;
 	int 	v_offset;
+	void	*color;
+	int		psh;
 
 	sprite_screen_size = WIN_Y / data->sprite->len;
 	h_offset = data->sprite->dx - sprite_screen_size / 2;
-	v_offset = WIN_Y / 2 - sprite_screen_size;
+	v_offset = WIN_Y / 2;
 	i = -1;
+	psh = fabsf(SCALE / data->ray->len_ray * data->proj_plane_dist);
 	while (++i < sprite_screen_size)
 	{
 		j = -1;
 		while (++j < sprite_screen_size)
 		{
-			my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, 0x000000);
+			if (data->sprite->pict_num == 1)
+				color = data->pict->sprite;
+			else
+				color = data->pict->sprite;
+			my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, get_pixel(color, (h_offset + i) / 4, v_offset + j / 2, sprite_screen_size));
+			// my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, color);
 		}
 	}
 }
