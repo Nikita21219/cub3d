@@ -6,7 +6,7 @@
 # define SO		M_PI
 # define EA		0.0
 # define SCALE	64
-# define SPEED	15
+# define SPEED	10
 # define WIN_X	1920
 # define WIN_Y	1080
 # define FOV	60.0
@@ -16,6 +16,14 @@
 # define OPEN_MAP_ERR	3
 # define WRONG_MAP		4
 # define MALLOC_ERR		12
+
+# define LEFT		0
+# define RIGHT		2
+# define UP			13
+# define DOWN		1
+# define ESC		53
+# define TURN_LEFT	123
+# define TURN_RIGHT	124
 
 # include <stdio.h>
 # include <math.h>
@@ -91,6 +99,16 @@ typedef struct s_sprite
 	struct s_sprite		*next;
 }	t_sprite;
 
+typedef struct s_moves
+{
+	int		up;
+	int		down;
+	int		left;
+	int		right;
+	int		turn_left;
+	int		turn_right;
+}	t_moves;
+
 typedef struct s_data
 {
 	char		**map;
@@ -100,6 +118,7 @@ typedef struct s_data
 	t_ray		*ray;
 	t_mouse		*mouse;
 	t_sprite	*sprite;
+	t_moves		*moves;
 	int			proj_plane_dist;
 }	t_data;
 
@@ -161,6 +180,13 @@ void	draw_sprites(t_data *data);
 /* Free utils */
 
 void	free_arr(char **arr);
+
+/*Moves*/
+
+int		ft_exitbut(t_data *data);
+int		mouse(t_data *data);
+int		ft_press(int key, t_data *data);
+int		ft_release(int key, t_data *data);
 
 /*TMP*/
 

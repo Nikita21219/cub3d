@@ -7,6 +7,7 @@ void	init_data(t_data *data)
 	data->pict = malloc(sizeof(t_pict));
 	data->ray = malloc(sizeof(t_ray));
 	data->mouse = malloc(sizeof(t_mouse));
+	data->moves = malloc(sizeof(t_moves));
 	if (!data->mlx || !data->pict || !data->pl || !data->ray || !data->mouse)
 		ft_exit(data, 12);
 	data->sprite = NULL;
