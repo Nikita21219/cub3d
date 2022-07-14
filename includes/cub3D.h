@@ -34,8 +34,8 @@
 
 typedef struct s_mouse
 {
-	int				x;
-	int				y;
+	int			x;
+	int			y;
 }	t_mouse;
 
 typedef struct s_mlx {
@@ -139,12 +139,6 @@ int		is_not_path(char *str);
 
 void	ft_init_window(t_data *data);
 void	draw_map(t_data *data);
-void	move_left(t_data *data);
-void	move_right(t_data *data);
-void	move_up(t_data *data);
-void	move_down(t_data *data);
-void	around_left(t_data *data);
-void	around_right(t_data *data);
 
 /* Utils */
 
@@ -187,6 +181,12 @@ int		ft_exitbut(t_data *data);
 int		mouse(t_data *data);
 int		ft_press(int key, t_data *data);
 int		ft_release(int key, t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	move_up(t_data *data);
+void	move_down(t_data *data);
+void	around_left(t_data *data);
+void	around_right(t_data *data);
 
 /*TMP*/
 
