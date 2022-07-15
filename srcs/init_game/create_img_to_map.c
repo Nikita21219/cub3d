@@ -47,14 +47,15 @@ void	draw_map(t_data *data)
 		rays(data, data->pl->start);
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
-		if (data->sprite->dir > data->pl->start - ((FOV * M_PI / 180) / WIN_X) && data->sprite->dir < data->pl->start)
+		if (data->sprite && data->sprite->dir > data->pl->start - ((FOV * M_PI / 180) / WIN_X) && data->sprite->dir < data->pl->start)
 			data->sprite->dx = pix;
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
 	if (data->sprite && data->sprite->dx != 0)
 		draw_sprites(data);
-	data->sprite->dx = 0;
+	if (data->sprite)
+		data->sprite->dx = 0;
 	draw_2dmap(*data);
 	mlx_put_image_to_window(data->mlx->mlx, \
 		data->mlx->win, data->mlx->img, 0, 0);
