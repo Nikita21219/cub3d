@@ -16,6 +16,12 @@ int	is_identifier(t_data *data, char *str)
 	return (0);
 }
 
+void	check_null_img(t_data *data, void *ptr)
+{
+	if (ptr == NULL)
+		ft_exit(data, MALLOC_ERR);
+}
+
 void	init_pict(char *str, t_data *data)
 {
 	int		img_width;
@@ -30,24 +36,28 @@ void	init_pict(char *str, t_data *data)
 		tmp = ft_strtrim(str + 2, " \t");
 		data->pict->no_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		tmp, &img_width, &img_height);
+		check_null_img(data, data->pict->no_wall->img);
 	}
 	else if (startswith(str, "SO"))
 	{
 		tmp = ft_strtrim(str + 2, " \t");
 		data->pict->so_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		tmp, &img_width, &img_height);
+		check_null_img(data, data->pict->no_wall->img);
 	}
 	else if (startswith(str, "WE"))
 	{
 		tmp = ft_strtrim(str + 2, " \t");
 		data->pict->we_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		tmp, &img_width, &img_height);
+		check_null_img(data, data->pict->no_wall->img);
 	}
 	else if (startswith(str, "EA"))
 	{
 		tmp = ft_strtrim(str + 2, " \t");
 		data->pict->ea_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		tmp, &img_width, &img_height);
+		check_null_img(data, data->pict->no_wall->img);
 	}
 	else if (startswith(str, "C"))
 		data->pict->ceiling = convert_grb(ft_strtrim(str + 1, " \t"), data);
