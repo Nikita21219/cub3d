@@ -53,8 +53,8 @@ void	draw_sprites(t_data *data)
 				color = data->pict->sprite;
 			else
 				color = data->pict->sprite;
-			my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, get_pixel(color, (h_offset + i) / 4, v_offset + j / 2, sprite_screen_size));
-			// my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, color);
+			// printf("sprite->x = %f\n", data->sprite->x);
+			my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, get_pixel(color, (data->sprite->x - (int)(data->pl->x / SCALE) + i) / 4, v_offset + j / 2, sprite_screen_size));
 		}
 	}
 }

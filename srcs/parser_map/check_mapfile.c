@@ -19,7 +19,7 @@ int	is_identifier(t_data *data, char *str)
 void	check_null_img(t_data *data, void *ptr)
 {
 	if (ptr == NULL)
-		ft_exit(data, MALLOC_ERR);
+		ft_exit(data, WRONG_MAP);
 }
 
 void	init_pict(char *str, t_data *data)
@@ -43,21 +43,21 @@ void	init_pict(char *str, t_data *data)
 		tmp = ft_strtrim(str + 2, " \t");
 		data->pict->so_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		tmp, &img_width, &img_height);
-		check_null_img(data, data->pict->no_wall->img);
+		check_null_img(data, data->pict->so_wall->img);
 	}
 	else if (startswith(str, "WE"))
 	{
 		tmp = ft_strtrim(str + 2, " \t");
 		data->pict->we_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		tmp, &img_width, &img_height);
-		check_null_img(data, data->pict->no_wall->img);
+		check_null_img(data, data->pict->we_wall->img);
 	}
 	else if (startswith(str, "EA"))
 	{
 		tmp = ft_strtrim(str + 2, " \t");
 		data->pict->ea_wall->img = mlx_xpm_file_to_image(data->mlx, \
 		tmp, &img_width, &img_height);
-		check_null_img(data, data->pict->no_wall->img);
+		check_null_img(data, data->pict->ea_wall->img);
 	}
 	else if (startswith(str, "C"))
 		data->pict->ceiling = convert_grb(ft_strtrim(str + 1, " \t"), data);
@@ -105,6 +105,17 @@ void	init_pict_pointers(t_data *data)
 		ft_exit(data, MALLOC_ERR);
 }
 
+void	check_null_img2(t_data *data)
+{
+	if (data->pict->no_wall->addr == NULL \
+	|| data->pict->ea_wall->addr == NULL \
+	|| data->pict->so_wall->addr == NULL \
+	|| data->pict->we_wall->addr == NULL \
+	|| data->pict->sprite->img == NULL \
+	|| data->pict->sprite->addr == NULL)
+		ft_exit(data, WRONG_MAP);
+}
+
 void	check_identifiers(t_data *data)
 {
 	int	i;
@@ -129,10 +140,11 @@ void	check_identifiers(t_data *data)
 	data->pict->we_wall->addr = mlx_get_data_addr(data->pict->we_wall->img, \
 	&data->pict->we_wall->bpp, &data->pict->we_wall->line_l, &data->pict->we_wall->endian);
 	data->pict->sprite->img = mlx_xpm_file_to_image(data->mlx, "./texture/barrel.xpm", &img_width, &img_height);
-	if (data->pict->sprite->img == NULL)
-		ft_exit(data, MALLOC_ERR);
+	// if (data->pict->sprite->img == NULL)
+	// 	ft_exit(data, MALLOC_ERR);
 	data->pict->sprite->addr = mlx_get_data_addr(data->pict->sprite->img, \
 	&data->pict->sprite->bpp, &data->pict->sprite->line_l, &data->pict->sprite->endian);
+	check_null_img2(data);
 }
 
 int	is_only_space(char *str)
