@@ -19,3 +19,51 @@ int	get_map_size(char **arr)
 		i++;
 	return (i - 6);
 }
+
+int	not_sorted(t_sprite *sprite)
+{
+	// printf("test1\n");
+	// printf("sprite->len = %f\n", sprite->next->len);
+	// printf("test2\n");
+	while (sprite && sprite->next)
+	{
+		if (sprite->len < sprite->next->len)
+			return (1);
+		sprite = sprite->next;
+	}
+	return (0);
+}
+
+void	sort_sprites(t_sprite *sprite)
+{
+	t_sprite	*sp;
+	float		tmp_x;
+	float		tmp_y;
+	float		tmp_dir;
+	float		tmp_len;
+
+	sp = sprite;
+	while (sp && not_sorted(sprite))
+	{
+		while (sp && sp->next)
+		{
+			if (sp->len < sp->next->len)
+			{
+				tmp_x = sp->x;
+				tmp_y = sp->y;
+				tmp_dir = sp->dir;
+				tmp_len = sp->len;
+				sp->x = sp->next->x;
+				sp->y = sp->next->y;
+				sp->dir = sp->next->dir;
+				sp->len = sp->next->len;
+				sp->next->x = tmp_x;
+				sp->next->y = tmp_y;
+				sp->next->dir = tmp_dir;
+				sp->next->len = tmp_len;
+			}
+			sp = sp->next;
+		}
+		sp = sprite;
+	}
+}

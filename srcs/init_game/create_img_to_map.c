@@ -61,6 +61,7 @@ void	draw_map(t_data *data)
 		pix++;
 	}
 	sprite = data->sprite;
+	sort_sprites(sprite);
 	while (sprite)
 	{
 		if (sprite->dx != 0)
