@@ -29,7 +29,12 @@
 // 	data->sprite = NULL;
 // }
 
-void	draw_sprites(t_data *data)
+unsigned int	get_color(t_pict_dt *img, float x, float y)
+{
+	return (*(unsigned *)(img->addr + ((int)y * img->line_l + (int)x * (img->bpp / 8))));
+}
+
+void	draw_sprite(t_data *data, t_sprite *sprite)
 {
 	size_t	i;
 	size_t	j;
@@ -37,24 +42,27 @@ void	draw_sprites(t_data *data)
 	int 	h_offset;
 	int 	v_offset;
 	void	*color;
-	int		psh;
+	float	prop;
+	unsigned int	pix_color;
 
-	sprite_screen_size = WIN_Y / data->sprite->len;
-	h_offset = data->sprite->dx - sprite_screen_size / 2;
+	sprite_screen_size = WIN_Y / sprite->len;
+	h_offset = sprite->dx - sprite_screen_size / 2;
 	v_offset = WIN_Y / 2;
 	i = -1;
-	psh = fabsf(SCALE / data->ray->len_ray * data->proj_plane_dist);
+	prop = (float)SCALE / (float)sprite_screen_size;
 	while (++i < sprite_screen_size)
 	{
 		j = -1;
 		while (++j < sprite_screen_size)
 		{
-			if (data->sprite->pict_num == 1)
+			if (sprite->pict_num == 1)
 				color = data->pict->sprite;
 			else
 				color = data->pict->sprite;
-			// printf("sprite->x = %f\n", data->sprite->x);
-			my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, get_pixel(color, (data->sprite->x - (int)(data->pl->x / SCALE) + i) / 4, v_offset + j / 2, sprite_screen_size));
+			pix_color = get_color(color, i * prop, j * prop);
+			if (pix_color == 4278190080)
+				continue ;
+			my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, pix_color);
 		}
 	}
 }

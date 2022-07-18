@@ -26,36 +26,53 @@ void	draw_2dmap(t_data data)
 void	draw_map(t_data *data)
 {
 	int	pix;
+	t_sprite	*sprite;
+	t_sprite	*start_sprite;
 
+	start_sprite = data->sprite;
+	sprite = start_sprite;
 	pix = 0;
 	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
 	&data->mlx->bpp, &data->mlx->line_l, &data->mlx->endian);
 	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
 	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
-	if (data->sprite)
+	while (sprite)
 	{
-		data->sprite->dir = atan2((data->pl->y) - (data->sprite->y * SCALE + SCALE / 2), (data->sprite->x * SCALE + SCALE / 2) - (data->pl->x));
-		while (data->sprite->dir - data->pl->dir > M_PI)
-			data->sprite->dir -= 2 * M_PI;
-		while (data->sprite->dir - data->pl->dir < -M_PI)
-			data->sprite->dir += 2 * M_PI;
-		data->sprite->len = sqrt(pow((data->pl->x / SCALE) - (data->sprite->x), 2) + pow(data->pl->y / SCALE - (data->sprite->y), 2));
+		sprite->dir = atan2((data->pl->y) - (sprite->y * SCALE + SCALE / 2), (sprite->x * SCALE + SCALE / 2) - (data->pl->x));
+		while (sprite->dir - data->pl->dir > M_PI)
+			sprite->dir -= 2 * M_PI;
+		while (sprite->dir - data->pl->dir < -M_PI)
+			sprite->dir += 2 * M_PI;
+		sprite->len = sqrt(pow((data->pl->x / SCALE) - (sprite->x), 2) + pow(data->pl->y / SCALE - (sprite->y), 2));
+		sprite = sprite->next;
 	}
+	sprite = start_sprite;
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
-		if (data->sprite && data->sprite->dir > data->pl->start - ((FOV * M_PI / 180) / WIN_X) && data->sprite->dir < data->pl->start)
-			data->sprite->dx = pix;
+		while (sprite && sprite->dir > data->pl->start - ((FOV * M_PI / 180) / WIN_X) && sprite->dir < data->pl->start)
+		{
+			sprite->dx = pix;
+			sprite = sprite->next;
+		}
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
-	if (data->sprite && data->sprite->dx != 0)
-		draw_sprites(data);
-	if (data->sprite)
-		data->sprite->dx = 0;
+	sprite = start_sprite;
+	while (sprite && sprite->dx != 0)
+	{
+		draw_sprite(data, sprite);
+		sprite = sprite->next;
+	}
+	sprite = start_sprite;
+	while (sprite)
+	{
+		sprite->dx = 0;
+		sprite = sprite->next;
+	}
 	draw_2dmap(*data);
 	mlx_put_image_to_window(data->mlx->mlx, \
 		data->mlx->win, data->mlx->img, 0, 0);

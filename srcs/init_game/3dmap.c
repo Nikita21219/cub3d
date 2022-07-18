@@ -7,8 +7,7 @@ unsigned int	get_pixel(t_pict_dt *img, float x, float y, int psh)
 
 	ay = SCALE * (y - (WIN_Y / 2 - psh / 2)) / psh;
 	ax = SCALE * (x / SCALE - (float)(int)(x / SCALE));
-	return (*(unsigned *)(img->addr + \
-	(ay * img->line_l + ax * (img->bpp / 8))));
+	return (*(unsigned *)(img->addr + (ay * img->line_l + ax * (img->bpp / 8))));
 }
 
 void	draw3d_wall(t_data data, int pix, int y, int psh)
