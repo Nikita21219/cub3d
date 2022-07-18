@@ -100,8 +100,11 @@ void	init_pict_pointers(t_data *data)
 	data->pict->we_wall = malloc(sizeof(t_pict_dt));
 	if (data->pict->we_wall == NULL)
 		ft_exit(data, MALLOC_ERR);
-	data->pict->sprite = malloc(sizeof(t_pict_dt));
-	if (data->pict->sprite == NULL)
+	data->pict->sprite1 = malloc(sizeof(t_pict_dt));
+	if (data->pict->sprite1 == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->sprite2 = malloc(sizeof(t_pict_dt));
+	if (data->pict->sprite2 == NULL)
 		ft_exit(data, MALLOC_ERR);
 }
 
@@ -111,8 +114,10 @@ void	check_null_img2(t_data *data)
 	|| data->pict->ea_wall->addr == NULL \
 	|| data->pict->so_wall->addr == NULL \
 	|| data->pict->we_wall->addr == NULL \
-	|| data->pict->sprite->img == NULL \
-	|| data->pict->sprite->addr == NULL)
+	|| data->pict->sprite1->img == NULL \
+	|| data->pict->sprite1->addr == NULL \
+	|| data->pict->sprite2->img == NULL \
+	|| data->pict->sprite2->addr == NULL)
 		ft_exit(data, WRONG_MAP);
 }
 
@@ -139,11 +144,16 @@ void	check_identifiers(t_data *data)
 	&data->pict->so_wall->bpp, &data->pict->so_wall->line_l, &data->pict->so_wall->endian);
 	data->pict->we_wall->addr = mlx_get_data_addr(data->pict->we_wall->img, \
 	&data->pict->we_wall->bpp, &data->pict->we_wall->line_l, &data->pict->we_wall->endian);
-	data->pict->sprite->img = mlx_xpm_file_to_image(data->mlx, "./texture/barrel.xpm", &img_width, &img_height);
-	// if (data->pict->sprite->img == NULL)
-	// 	ft_exit(data, MALLOC_ERR);
-	data->pict->sprite->addr = mlx_get_data_addr(data->pict->sprite->img, \
-	&data->pict->sprite->bpp, &data->pict->sprite->line_l, &data->pict->sprite->endian);
+	data->pict->sprite1->img = mlx_xpm_file_to_image(data->mlx, "./texture/sprite1.xpm", &img_width, &img_height);
+	if (data->pict->sprite1->img == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->sprite1->addr = mlx_get_data_addr(data->pict->sprite1->img, \
+	&data->pict->sprite1->bpp, &data->pict->sprite1->line_l, &data->pict->sprite1->endian);
+	data->pict->sprite2->img = mlx_xpm_file_to_image(data->mlx, "./texture/sprite2.xpm", &img_width, &img_height);
+	if (data->pict->sprite2->img == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->sprite2->addr = mlx_get_data_addr(data->pict->sprite2->img, \
+	&data->pict->sprite2->bpp, &data->pict->sprite2->line_l, &data->pict->sprite2->endian);
 	check_null_img2(data);
 }
 

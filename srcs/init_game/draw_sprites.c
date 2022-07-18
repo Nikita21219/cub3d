@@ -41,7 +41,7 @@ void	draw_sprite(t_data *data, t_sprite *sprite)
 	size_t	sprite_screen_size;
 	int 	h_offset;
 	int 	v_offset;
-	void	*color;
+	void	*img;
 	float	prop;
 	unsigned int	pix_color;
 
@@ -56,10 +56,10 @@ void	draw_sprite(t_data *data, t_sprite *sprite)
 		while (++j < sprite_screen_size)
 		{
 			if (sprite->pict_num == 1)
-				color = data->pict->sprite;
+				img = data->pict->sprite1;
 			else
-				color = data->pict->sprite;
-			pix_color = get_color(color, i * prop, j * prop);
+				img = data->pict->sprite2;
+			pix_color = get_color(img, i * prop, j * prop);
 			if (pix_color == 4278190080)
 				continue ;
 			my_mlx_pixel_put(data->mlx, h_offset + i, v_offset + j, pix_color);

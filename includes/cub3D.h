@@ -66,7 +66,8 @@ typedef struct s_pict
 	t_pict_dt	*so_wall;
 	t_pict_dt	*we_wall;
 	t_pict_dt	*ea_wall;
-	t_pict_dt	*sprite;
+	t_pict_dt	*sprite1;
+	t_pict_dt	*sprite2;
 }	t_pict;
 
 typedef struct s_pl
