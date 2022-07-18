@@ -36,13 +36,13 @@ unsigned int	get_color(t_pict_dt *img, float x, float y)
 
 void	draw_sprite(t_data *data, t_sprite *sprite)
 {
-	size_t	i;
-	size_t	j;
-	size_t	sprite_screen_size;
-	int 	h_offset;
-	int 	v_offset;
-	void	*img;
-	float	prop;
+	size_t			i;
+	size_t			j;
+	size_t			sprite_screen_size;
+	int 			h_offset;
+	int 			v_offset;
+	void			*img;
+	float			prop;
 	unsigned int	pix_color;
 
 	sprite_screen_size = WIN_Y / sprite->len;
@@ -55,7 +55,7 @@ void	draw_sprite(t_data *data, t_sprite *sprite)
 		j = -1;
 		while (++j < sprite_screen_size)
 		{
-			if (sprite->pict_num == 1)
+			if (data->sprite->pict_num == 1)
 				img = data->pict->sprite1;
 			else
 				img = data->pict->sprite2;
