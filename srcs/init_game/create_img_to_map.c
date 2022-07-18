@@ -27,10 +27,8 @@ void	draw_map(t_data *data)
 {
 	int	pix;
 	t_sprite	*sprite;
-	t_sprite	*start_sprite;
 
-	start_sprite = data->sprite;
-	sprite = start_sprite;
+	sprite = data->sprite;
 	pix = 0;
 	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
@@ -47,7 +45,7 @@ void	draw_map(t_data *data)
 		sprite->len = sqrt(pow((data->pl->x / SCALE) - (sprite->x), 2) + pow(data->pl->y / SCALE - (sprite->y), 2));
 		sprite = sprite->next;
 	}
-	sprite = start_sprite;
+	sprite = data->sprite;
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
@@ -61,13 +59,13 @@ void	draw_map(t_data *data)
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
-	sprite = start_sprite;
+	sprite = data->sprite;
 	while (sprite && sprite->dx != 0)
 	{
 		draw_sprite(data, sprite);
 		sprite = sprite->next;
 	}
-	sprite = start_sprite;
+	sprite = data->sprite;
 	while (sprite)
 	{
 		sprite->dx = 0;
