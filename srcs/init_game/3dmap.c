@@ -21,6 +21,9 @@ void	draw3d_wall(t_data data, int pix, int y, int psh)
 		if (data.ray->door == 1)
 			my_mlx_pixel_put(data.mlx, pix, y, \
 			get_pixel(data.pict->door, data.ray->y, y, psh));
+		else if (data.ray->door == 2)
+			my_mlx_pixel_put(data.mlx, pix, y, \
+			get_pixel(data.pict->door, data.ray->x, y, psh));
 		else
 		{
 			if (data.ray->s_x == 1)

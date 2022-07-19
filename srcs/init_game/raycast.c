@@ -59,18 +59,14 @@ void	rays(t_data *data, float angle)
 	{
 		if (!wall_h && !check_wall(&hor, data->map, &wall_h))
 		{
-			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == '4')
+			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == '4' \
+				&& sqrt(powf(data->pl->x - (hor.x), 2.0) \
+				+ powf(data->pl->y - (hor.y), 2.0)) > 128)
 			{
-				if (sin(angle) > 0)
-					hor.y -= SCALE / 2;
-				else
-					hor.y += SCALE / 2;
-				hor.door = 1;
+				hor.door = 2;
 				wall_h = 1;
 			}
-			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == '3')
-				wall_h = 1;
-			if (!wall_h)
+			else
 			{
 				hor.x += hor.s_x;
 				hor.y += hor.s_y;
@@ -78,18 +74,14 @@ void	rays(t_data *data, float angle)
 		}
 		if (!wall_v && !check_wall(&ver, data->map, &wall_v))
 		{
-			if (data->map[(int)ver.y / SCALE][(int)(ver.x) / SCALE] == '3')
+			if (data->map[(int)ver.y / SCALE][(int)(ver.x) / SCALE] == '3' \
+				&& sqrt(powf(data->pl->x - (ver.x), 2.0) + \
+				powf(data->pl->y - (ver.y), 2.0)) > 128)
 			{
-				if (cos(angle) > 0)
-					ver.x += SCALE / 2;
-				else
-					ver.x -= SCALE / 2;
 				ver.door = 1;
 				wall_v = 1;
 			}
-			if (data->map[(int)ver.y / SCALE][(int)ver.x / SCALE] == '4')
-				wall_v = 1;
-			if (!wall_v)
+			else
 			{
 				ver.x += ver.s_x;
 				ver.y += ver.s_y;
