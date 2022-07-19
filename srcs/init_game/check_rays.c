@@ -3,11 +3,11 @@
 void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 {
 	if (hor.len_ray != INFINITY)
-		hor.len_ray = sqrt(powf(data->pl->x - fabsf(hor.x), 2.0) \
-		+ powf(data->pl->y - fabsf(hor.y), 2.0));
+		hor.len_ray = sqrt(powf(data->pl->x - (hor.x), 2.0) \
+		+ powf(data->pl->y - (hor.y), 2.0));
 	if (ver.len_ray != INFINITY)
-		ver.len_ray = sqrt(powf(data->pl->x - fabsf(ver.x), 2.0) + \
-		powf(data->pl->y - fabsf(ver.y), 2.0));
+		ver.len_ray = sqrt(powf(data->pl->x - (ver.x), 2.0) + \
+		powf(data->pl->y - (ver.y), 2.0));
 	if (hor.len_ray <= ver.len_ray)
 	{
 		data->ray->len_ray = hor.len_ray;

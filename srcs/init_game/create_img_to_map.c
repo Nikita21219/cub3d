@@ -14,7 +14,8 @@ void	draw_2dmap(t_data data)
 			if (data.map[y][x] == '1')
 				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0x000000);
 			if (data.map[y][x] == '0' || data.map[y][x] == 'N' || \
-			data.map[y][x] == 'S' || data.map[y][x] == 'E' || data.map[y][x] == 'W')
+			data.map[y][x] == 'S' || data.map[y][x] == 'E' \
+			|| data.map[y][x] == 'W' || data.map[y][x] == 'e')
 				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0xFFFFFF);
 			x++;
 		}
@@ -25,8 +26,9 @@ void	draw_2dmap(t_data data)
 
 void	draw_map(t_data *data)
 {
-	int	pix;
+	int			pix;
 	t_sprite	*sprite;
+	float		len_wall[WIN_X];
 
 	pix = 0;
 	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
@@ -37,23 +39,27 @@ void	draw_map(t_data *data)
 	sprite = data->sprite;
 	while (sprite)
 	{
-		sprite->dir = atan2((data->pl->y) - (sprite->y * SCALE + SCALE / 2), (sprite->x * SCALE + SCALE / 2) - (data->pl->x));
+		sprite->dir = atan2((data->pl->y) - (sprite->y * SCALE \
+		+ SCALE / 2), (sprite->x * SCALE + SCALE / 2) - (data->pl->x));
 		while (sprite->dir - data->pl->dir > M_PI)
 			sprite->dir -= 2 * M_PI;
 		while (sprite->dir - data->pl->dir < -M_PI)
 			sprite->dir += 2 * M_PI;
-		sprite->len = sqrt(pow((data->pl->x / SCALE) - (sprite->x), 2) + pow(data->pl->y / SCALE - (sprite->y), 2));
+		sprite->len = sqrt(pow((data->pl->x) - (sprite->x * \
+		SCALE), 2) + pow(data->pl->y - (sprite->y * SCALE), 2));
 		sprite = sprite->next;
 	}
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
+		len_wall[pix] = data->ray->len_ray;
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
 		sprite = data->sprite;
 		while (sprite)
 		{
-			if (sprite->dir > data->pl->start - ((FOV * M_PI / 180) / WIN_X) && sprite->dir < data->pl->start)
+			if (sprite->dir > data->pl->start - ((FOV \
+			* M_PI / 180) / WIN_X) && sprite->dir < data->pl->start)
 				sprite->dx = pix;
 			sprite = sprite->next;
 		}
@@ -65,12 +71,7 @@ void	draw_map(t_data *data)
 	while (sprite)
 	{
 		if (sprite->dx != 0)
-			draw_sprite(data, sprite);
-		sprite = sprite->next;
-	}
-	sprite = data->sprite;
-	while (sprite)
-	{
+			draw_sprite(data, sprite, len_wall);
 		sprite->dx = 0;
 		sprite = sprite->next;
 	}

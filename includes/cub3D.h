@@ -172,7 +172,7 @@ void	rays(t_data *data, float angle);
 
 unsigned int	get_pixel(t_pict_dt *img, float x, float y, int psh);
 void	init_sprites(t_data *data);
-void	draw_sprite(t_data *data, t_sprite *sprite);
+void	draw_sprite(t_data *data, t_sprite *sprite, float *len_wall);
 void	sort_sprites(t_sprite *sprite);
 void	animate(t_data *data);
 
