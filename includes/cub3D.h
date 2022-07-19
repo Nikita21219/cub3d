@@ -61,13 +61,13 @@ typedef struct s_pict
 	int			floor;
 	int			ceiling;
 	void		*pl;
-	void		*door;
 	t_pict_dt	*no_wall;
 	t_pict_dt	*so_wall;
 	t_pict_dt	*we_wall;
 	t_pict_dt	*ea_wall;
 	t_pict_dt	*sprite1;
 	t_pict_dt	*sprite2;
+	t_pict_dt	*door;
 }	t_pict;
 
 typedef struct s_pl
@@ -121,6 +121,7 @@ typedef struct s_data
 	t_ray		*ray;
 	t_mouse		*mouse;
 	t_sprite	*sprite;
+	t_sprite	*door;
 	t_moves		*moves;
 	int			proj_plane_dist;
 }	t_data;
@@ -176,6 +177,7 @@ void	init_sprites(t_data *data);
 void	draw_sprite(t_data *data, t_sprite *sprite, float *len_wall);
 void	sort_sprites(t_sprite *sprite);
 void	animate(t_data *data);
+unsigned int	get_color(t_pict_dt *img, float x, float y);
 
 /* Free utils */
 

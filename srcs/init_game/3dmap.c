@@ -19,24 +19,28 @@ void	draw3d_wall(t_data data, int pix, int y, int psh)
 	else
 	{
 		if (data.ray->door == 1)
-			my_mlx_pixel_put(data.mlx, pix, y, 00000);
-		else if (data.ray->s_x == 1)
-		{
-			if (data.ray->s == 'n')
-				my_mlx_pixel_put(data.mlx, pix, y, \
-				get_pixel(data.pict->no_wall, data.ray->x, y, psh));
-			else
-				my_mlx_pixel_put(data.mlx, pix, y, \
-				get_pixel(data.pict->so_wall, data.ray->x, y, psh));
-		}
+			my_mlx_pixel_put(data.mlx, pix, y, \
+			get_pixel(data.pict->door, data.ray->y, y, psh));
 		else
 		{
-			if (data.ray->s == 'w')
-				my_mlx_pixel_put(data.mlx, pix, y, \
-				get_pixel(data.pict->we_wall, data.ray->y, y, psh));
+			if (data.ray->s_x == 1)
+			{
+				if (data.ray->s == 'n')
+					my_mlx_pixel_put(data.mlx, pix, y, \
+					get_pixel(data.pict->no_wall, data.ray->x, y, psh));
+				else
+					my_mlx_pixel_put(data.mlx, pix, y, \
+					get_pixel(data.pict->so_wall, data.ray->x, y, psh));
+			}
 			else
-				my_mlx_pixel_put(data.mlx, pix, y, \
-				get_pixel(data.pict->ea_wall, data.ray->y, y, psh));
+			{
+				if (data.ray->s == 'w')
+					my_mlx_pixel_put(data.mlx, pix, y, \
+					get_pixel(data.pict->we_wall, data.ray->y, y, psh));
+				else
+					my_mlx_pixel_put(data.mlx, pix, y, \
+					get_pixel(data.pict->ea_wall, data.ray->y, y, psh));
+			}
 		}
 	}
 }

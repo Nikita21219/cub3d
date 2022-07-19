@@ -106,6 +106,9 @@ void	init_pict_pointers(t_data *data)
 	data->pict->sprite2 = malloc(sizeof(t_pict_dt));
 	if (data->pict->sprite2 == NULL)
 		ft_exit(data, MALLOC_ERR);
+	data->pict->door = malloc(sizeof(t_pict_dt));
+	if (data->pict->door == NULL)
+		ft_exit(data, MALLOC_ERR);
 }
 
 void	check_null_img2(t_data *data)
@@ -117,7 +120,9 @@ void	check_null_img2(t_data *data)
 	|| data->pict->sprite1->img == NULL \
 	|| data->pict->sprite1->addr == NULL \
 	|| data->pict->sprite2->img == NULL \
-	|| data->pict->sprite2->addr == NULL)
+	|| data->pict->sprite2->addr == NULL \
+	|| data->pict->door->img == NULL \
+	|| data->pict->door->addr == NULL)
 		ft_exit(data, WRONG_MAP);
 }
 
@@ -156,6 +161,11 @@ void	check_identifiers(t_data *data)
 		ft_exit(data, MALLOC_ERR);
 	data->pict->sprite2->addr = mlx_get_data_addr(data->pict->sprite2->img, \
 	&data->pict->sprite2->bpp, &data->pict->sprite2->line_l, &data->pict->sprite2->endian);
+	data->pict->door->img = mlx_xpm_file_to_image(data->mlx, "./texture/door.xpm", &img_width, &img_height);
+	if (data->pict->door->img == NULL)
+		ft_exit(data, MALLOC_ERR);
+	data->pict->door->addr = mlx_get_data_addr(data->pict->door->img, \
+	&data->pict->door->bpp, &data->pict->door->line_l, &data->pict->door->endian);
 	check_null_img2(data);
 }
 
