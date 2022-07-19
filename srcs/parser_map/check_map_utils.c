@@ -46,6 +46,7 @@ int	check_char(char c, t_data *data, float x, float y)
 			data->pl->dir = (float)WE;
 		else if (c == 'E')
 			data->pl->dir = (float)EA;
+		data->map[(int)y][(int)x] = '0';
 		data->pl->x = (x * SCALE) + SCALE / 2;
 		data->pl->y = (y * SCALE) + SCALE / 2;
 		data->proj_plane_dist = (WIN_X / 2) / tan((FOV / 2) * M_PI / 180);
