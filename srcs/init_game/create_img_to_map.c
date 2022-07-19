@@ -45,8 +45,8 @@ void	draw_map(t_data *data)
 			sprite->dir -= 2 * M_PI;
 		while (sprite->dir - data->pl->dir < -M_PI)
 			sprite->dir += 2 * M_PI;
-		sprite->len = sqrt(pow((data->pl->x) - (sprite->x * \
-		SCALE), 2) + pow(data->pl->y - (sprite->y * SCALE), 2));
+		sprite->len = sqrt(pow((data->pl->x) - (sprite->x * SCALE + SCALE \
+		/ 2), 2) + pow(data->pl->y - (sprite->y * SCALE + SCALE / 2), 2));
 		sprite = sprite->next;
 	}
 	while (data->pl->start >= data->pl->end)
