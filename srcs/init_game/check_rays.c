@@ -13,6 +13,7 @@ void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 		data->ray->len_ray = hor.len_ray;
 		data->ray->x = hor.x;
 		data->ray->y = hor.y;
+		data->ray->door = hor.door;
 		data->ray->s_x = 1;
 		data->ray->s_y = 0;
 		if (sin(angle) > 0)
@@ -25,6 +26,7 @@ void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 		data->ray->len_ray = ver.len_ray;
 		data->ray->x = ver.x;
 		data->ray->y = ver.y;
+		data->ray->door = ver.door;
 		data->ray->s_x = 0;
 		data->ray->s_y = 1;
 		if (cos(angle) > 0)
@@ -54,17 +56,6 @@ int	check_wall(t_ray *hv, char **map, int *wall)
 	{
 		*wall = 1;
 		return (1);
-	}
-	return (0);
-}
-
-int	check_sprite(t_sprite *sprite, int x, int y)
-{
-	while (sprite)
-	{
-		if (x == sprite->x && y == sprite->y)
-			return (1);
-		sprite = sprite->next;
 	}
 	return (0);
 }

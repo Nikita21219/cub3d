@@ -18,7 +18,9 @@ void	draw3d_wall(t_data data, int pix, int y, int psh)
 		my_mlx_pixel_put(data.mlx, pix, y, data.pict->floor);
 	else
 	{
-		if (data.ray->s_x == 1)
+		if (data.ray->door == 1)
+			my_mlx_pixel_put(data.mlx, pix, y, 00000);
+		else if (data.ray->s_x == 1)
 		{
 			if (data.ray->s == 'n')
 				my_mlx_pixel_put(data.mlx, pix, y, \

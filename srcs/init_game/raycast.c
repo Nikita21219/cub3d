@@ -59,13 +59,41 @@ void	rays(t_data *data, float angle)
 	{
 		if (!wall_h && !check_wall(&hor, data->map, &wall_h))
 		{
-			hor.x += hor.s_x;
-			hor.y += hor.s_y;
+			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == '4')
+			{
+				if (sin(angle) > 0)
+					hor.y -= SCALE / 2;
+				else
+					hor.y += SCALE / 2;
+				hor.door = 1;
+				wall_h = 1;
+			}
+			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == '3')
+				wall_h = 1;
+			if (!wall_h)
+			{
+				hor.x += hor.s_x;
+				hor.y += hor.s_y;
+			}
 		}
 		if (!wall_v && !check_wall(&ver, data->map, &wall_v))
 		{
-			ver.x += ver.s_x;
-			ver.y += ver.s_y;
+			if (data->map[(int)ver.y / SCALE][(int)(ver.x) / SCALE] == '3')
+			{
+				if (cos(angle) > 0)
+					ver.x += SCALE / 2;
+				else
+					ver.x -= SCALE / 2;
+				ver.door = 1;
+				wall_v = 1;
+			}
+			if (data->map[(int)ver.y / SCALE][(int)ver.x / SCALE] == '4')
+				wall_v = 1;
+			if (!wall_v)
+			{
+				ver.x += ver.s_x;
+				ver.y += ver.s_y;
+			}
 		}
 	}
 	check_len_ray(hor, ver, data, angle);

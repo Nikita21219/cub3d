@@ -53,9 +53,9 @@ void	draw_map(t_data *data)
 	{
 		rays(data, data->pl->start);
 		len_wall[pix] = data->ray->len_ray;
-		sprite = data->sprite;
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
+		sprite = data->sprite;
 		while (sprite)
 		{
 			if (sprite->dir > data->pl->start - ((FOV \

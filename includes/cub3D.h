@@ -86,6 +86,7 @@ typedef struct s_ray
 	float		s_x;
 	float		s_y;
 	float		len_ray;
+	int			door;
 	char		s;
 }	t_ray;
 

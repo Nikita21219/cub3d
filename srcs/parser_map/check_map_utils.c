@@ -33,7 +33,8 @@ int	check_char(char c, t_data *data, float x, float y)
 
 	flag = 0;
 	if (c != '0' && c != '1' && c != 'N' && \
-	c != 'S' && c != 'E' && c != 'W' && c != ' ' && c != 'e')
+	c != 'S' && c != 'E' && c != 'W' && c != ' ' && c != 'e'\
+	&& c != '3' && c != '4')
 		ft_exit(data, WRONG_MAP);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
