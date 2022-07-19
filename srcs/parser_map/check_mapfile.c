@@ -1,12 +1,12 @@
 #include "../includes/cub3D.h"
 
-int	is_identifier(t_data *data, char *str)
+int	is_identifier(char *str)
 {
 	if ((startswith(str, "NO") || startswith(str, "SO") || \
 	startswith(str, "EA") || startswith(str, "WE") || \
 	startswith(str, "F") || startswith(str, "C")) && \
 	is_not_path(str + 2))
-		ft_exit(data, WRONG_MAP);
+		return (1);
 	if (startswith(str, "NO") || startswith(str, "SO"))
 		return (1);
 	if (startswith(str, "EA") || startswith(str, "WE"))
@@ -129,6 +129,8 @@ void	check_identifiers(t_data *data)
 
 	init_pict_pointers(data);
 	i = -1;
+	if (data->map[0] == NULL)
+		ft_exit(data, WRONG_MAP);
 	while (data->map[++i] && i < 6)
 		init_pict(data->map[i], data);
 	if (data->pict->ea_wall == NULL || \
@@ -177,7 +179,7 @@ void	set_map(t_data *data)
 
 	i = -1;
 	while (data->map[++i] && i < 6)
-		if (!is_identifier(data, data->map[i]))
+		if (!is_identifier(data->map[i]))
 			ft_exit(data, WRONG_MAP);
 	while (data->map[i] && is_only_space(data->map[i]))
 		i++;
