@@ -24,18 +24,10 @@ void	draw_2dmap(t_data data)
 	draw_square(&data, (int)data.pl->x / 6, (int)data.pl->y / 6);
 }
 
-void	draw_map(t_data *data)
+void	sprite_data(t_data *data)
 {
-	int			pix;
 	t_sprite	*sprite;
-	float		len_wall[WIN_X];
 
-	pix = 0;
-	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
-	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
-	&data->mlx->bpp, &data->mlx->line_l, &data->mlx->endian);
-	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
-	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
 	sprite = data->sprite;
 	while (sprite)
 	{
@@ -49,6 +41,15 @@ void	draw_map(t_data *data)
 		/ 2), 2) + pow(data->pl->y - (sprite->y * SCALE + SCALE / 2), 2));
 		sprite = sprite->next;
 	}
+}
+
+float	*write_rays(t_data *data)
+{
+	int			pix;
+	t_sprite	*sprite;
+	float		len_wall[WIN_X];
+
+	pix = 0;
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
@@ -66,6 +67,23 @@ void	draw_map(t_data *data)
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
+	return (len_wall);
+}
+
+void	draw_map(t_data *data)
+{
+	int			pix;
+	t_sprite	*sprite;
+	float		*len_wall;
+
+	pix = 0;
+	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
+	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
+	&data->mlx->bpp, &data->mlx->line_l, &data->mlx->endian);
+	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
+	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
+	sprite_data(data);
+	len_wall = write_rays(data);
 	sprite = data->sprite;
 	sort_sprites(sprite);
 	while (sprite)

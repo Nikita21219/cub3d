@@ -13,16 +13,25 @@ int	mouse(t_data *data)
 	int	y;
 
 	mlx_mouse_get_pos(data->mlx->win, &x, &y);
-	// mlx_clear_window(data->mlx->mlx, data->mlx->win);
 	if (data->mouse->x - 50 > x)
 	{
-		around_left(data);
-		mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
+		data->moves->turn_left = 1;
+		data->mouse->x = x;
+		data->moves->turn_left = 0;
+		// if (data->mouse->x < 51)
+		// 	data->mouse->x = 51;
+		// if (x < 0)
+		// 	mlx_mouse_move(data->mlx->win, 0, y);
 	}
 	else if (data->mouse->x + 50 < x)
 	{
-		around_right(data);
-		mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
+		data->moves->turn_right = 1;
+		data->mouse->x = x;
+		data->moves->turn_right = 0;
+		// if (data->mouse->x >= WIN_X)
+		// 	data->mouse->x = WIN_X - 51;
+		// if (x > WIN_X)
+		// 	mlx_mouse_move(data->mlx->win, WIN_X, y);
 	}
 	return (0);
 }
@@ -63,5 +72,17 @@ int	ft_release(int key, t_data *data)
 		data->moves->turn_left = 0;
 	if (key == TURN_RIGHT)
 		data->moves->turn_right = 0;
+	return (0);
+}
+
+int	mouse_visible(int button, int x, int y, t_data *data)
+{
+	(void)x;
+	(void)y;
+	(void)data;
+	if (button == 1)
+		mlx_mouse_hide();
+	if (button == 2)
+		mlx_mouse_show();
 	return (0);
 }

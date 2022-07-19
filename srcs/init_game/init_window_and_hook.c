@@ -9,6 +9,7 @@ int	loop_draw(t_data *data)
 	move_right(data);
 	around_left(data);
 	around_right(data);
+	mouse(data);
 	animate(data);
 	draw_map(data);
 	return (0);
@@ -21,7 +22,9 @@ void	ft_init_window(t_data *data)
 	data->mlx->win = mlx_new_window(data->mlx->mlx, \
 	WIN_X, WIN_Y, "A frenzied massacre");
 	mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
+	data->mouse->x = WIN_X / 2;
 	draw_map(data);
+	mlx_mouse_hook(data->mlx->win, mouse_visible, data);
 	mlx_hook(data->mlx->win, 2, 0, ft_press, data);
 	mlx_hook(data->mlx->win, 3, 0, ft_release, data);
 	mlx_loop_hook(data->mlx->mlx, &loop_draw, data);

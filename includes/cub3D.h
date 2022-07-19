@@ -195,6 +195,7 @@ void	move_up(t_data *data);
 void	move_down(t_data *data);
 void	around_left(t_data *data);
 void	around_right(t_data *data);
+int		mouse_visible(int button, int x, int y, t_data *data);
 
 /*TMP*/
 

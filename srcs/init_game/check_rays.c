@@ -1,5 +1,15 @@
 #include "../../includes/cub3D.h"
 
+void	write_ray(t_data *data, t_ray right_ray, float s_x, float s_y)
+{
+	data->ray->len_ray = right_ray.len_ray;
+	data->ray->x = right_ray.x;
+	data->ray->y = right_ray.y;
+	data->ray->door = right_ray.door;
+	data->ray->s_x = s_x;
+	data->ray->s_y = s_y;
+}
+
 void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 {
 	if (hor.len_ray != INFINITY)
@@ -10,12 +20,7 @@ void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 		powf(data->pl->y - (ver.y), 2.0));
 	if (hor.len_ray <= ver.len_ray)
 	{
-		data->ray->len_ray = hor.len_ray;
-		data->ray->x = hor.x;
-		data->ray->y = hor.y;
-		data->ray->door = hor.door;
-		data->ray->s_x = 1;
-		data->ray->s_y = 0;
+		write_ray(data, hor, 1, 0);
 		if (sin(angle) > 0)
 			data->ray->s = 'n';
 		else
@@ -23,12 +28,7 @@ void	check_len_ray(t_ray hor, t_ray ver, t_data *data, float angle)
 	}
 	else
 	{
-		data->ray->len_ray = ver.len_ray;
-		data->ray->x = ver.x;
-		data->ray->y = ver.y;
-		data->ray->door = ver.door;
-		data->ray->s_x = 0;
-		data->ray->s_y = 1;
+		write_ray(data, ver, 0, 1);
 		if (cos(angle) > 0)
 			data->ray->s = 'e';
 		else
