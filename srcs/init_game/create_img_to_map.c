@@ -45,17 +45,17 @@ void	draw_map(t_data *data)
 			sprite->dir -= 2 * M_PI;
 		while (sprite->dir - data->pl->dir < -M_PI)
 			sprite->dir += 2 * M_PI;
-		sprite->len = sqrt(pow((data->pl->x) - (sprite->x * \
-		SCALE), 2) + pow(data->pl->y - (sprite->y * SCALE), 2));
+		sprite->len = sqrt(pow((data->pl->x) - (sprite->x * SCALE + SCALE \
+		/ 2), 2) + pow(data->pl->y - (sprite->y * SCALE + SCALE / 2), 2));
 		sprite = sprite->next;
 	}
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
 		len_wall[pix] = data->ray->len_ray;
+		sprite = data->sprite;
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
-		sprite = data->sprite;
 		while (sprite)
 		{
 			if (sprite->dir > data->pl->start - ((FOV \
