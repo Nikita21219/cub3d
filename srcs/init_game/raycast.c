@@ -44,6 +44,46 @@ t_ray	init_hor(t_pl plr, float angle)
 	return (hor);
 }
 
+void	step_hor(t_data *data, t_ray *hor, int *wall_h)
+{
+	if (!*wall_h && !check_wall(hor, data->map, wall_h))
+	{
+		if (data->map[(int)hor->y / SCALE][(int)hor->x / SCALE] == 'd' \
+		&& data->map[(int)hor->y / SCALE][(int)hor->x / SCALE + 1] == '1' \
+		&& data->map[(int)hor->y / SCALE][(int)hor->x / SCALE - 1] == '1'\
+		&& len_vector(*data, hor->x, hor->y) > 128)
+		{
+			hor->door = 2;
+			*wall_h = 1;
+		}
+		else
+		{
+			hor->x += hor->s_x;
+			hor->y += hor->s_y;
+		}
+	}
+}
+
+void	step_ver(t_data *data, t_ray *ver, int *wall_v)
+{
+	if (!*wall_v && !check_wall(ver, data->map, wall_v))
+	{
+		if (data->map[(int)ver->y / SCALE][(int)(ver->x) / SCALE] == 'd' && \
+		data->map[(int)ver->y / SCALE + 1][(int)(ver->x) / SCALE] == '1' && \
+		data->map[(int)ver->y / SCALE - 1][(int)(ver->x) / SCALE] == '1'\
+		&& len_vector(*data, ver->x, ver->y) > 128)
+		{
+			ver->door = 1;
+			*wall_v = 1;
+		}
+		else
+		{
+			ver->x += ver->s_x;
+			ver->y += ver->s_y;
+		}
+	}
+}
+
 void	rays(t_data *data, float angle)
 {
 	t_ray		ver;
@@ -57,36 +97,8 @@ void	rays(t_data *data, float angle)
 	hor = init_hor(*data->pl, angle);
 	while (!wall_h || !wall_v)
 	{
-		if (!wall_h && !check_wall(&hor, data->map, &wall_h))
-		{
-			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == 'd' && data->map[(int)hor.y / SCALE][(int)hor.x / SCALE + 1] == '1' && data->map[(int)hor.y / SCALE][(int)hor.x / SCALE - 1] == '1'\
-				&& sqrt(powf(data->pl->x - (hor.x), 2.0) \
-				+ powf(data->pl->y - (hor.y), 2.0)) > 128)
-			{
-				hor.door = 2;
-				wall_h = 1;
-			}
-			else
-			{
-				hor.x += hor.s_x;
-				hor.y += hor.s_y;
-			}
-		}
-		if (!wall_v && !check_wall(&ver, data->map, &wall_v))
-		{
-			if (data->map[(int)ver.y / SCALE][(int)(ver.x) / SCALE] == 'd' && data->map[(int)ver.y / SCALE + 1][(int)(ver.x) / SCALE] == '1' && data->map[(int)ver.y / SCALE - 1][(int)(ver.x) / SCALE] == '1'\
-				&& sqrt(powf(data->pl->x - (ver.x), 2.0) + \
-				powf(data->pl->y - (ver.y), 2.0)) > 128)
-			{
-				ver.door = 1;
-				wall_v = 1;
-			}
-			else
-			{
-				ver.x += ver.s_x;
-				ver.y += ver.s_y;
-			}
-		}
+		step_hor(data, &hor, &wall_h);
+		step_ver(data, &ver, &wall_v);
 	}
 	check_len_ray(hor, ver, data, angle);
 }

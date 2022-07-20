@@ -17,6 +17,8 @@ void	draw_2dmap(t_data data)
 			data.map[y][x] == 'S' || data.map[y][x] == 'E' \
 			|| data.map[y][x] == 'W' || data.map[y][x] == 'e')
 				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0xFFFFFF);
+			if (data.map[y][x] == 'd')
+				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0xff8c21);
 			x++;
 		}
 		y++;
