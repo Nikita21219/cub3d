@@ -43,17 +43,16 @@ void	sprite_data(t_data *data)
 	}
 }
 
-float	*write_rays(t_data *data)
+void	write_rays(t_data *data)
 {
 	int			pix;
 	t_sprite	*sprite;
-	float		len_wall[WIN_X];
 
 	pix = 0;
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
-		len_wall[pix] = data->ray->len_ray;
+		data->n_ray[pix] = data->ray->len_ray;
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
 		sprite = data->sprite;
@@ -67,14 +66,12 @@ float	*write_rays(t_data *data)
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
-	return (len_wall);
 }
 
 void	draw_map(t_data *data)
 {
 	int			pix;
 	t_sprite	*sprite;
-	float		*len_wall;
 
 	pix = 0;
 	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
@@ -83,13 +80,13 @@ void	draw_map(t_data *data)
 	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
 	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
 	sprite_data(data);
-	len_wall = write_rays(data);
+	write_rays(data);
 	sprite = data->sprite;
 	sort_sprites(sprite);
 	while (sprite)
 	{
 		if (sprite->dx != 0)
-			draw_sprite(data, sprite, len_wall);
+			draw_sprite(data, sprite, data->n_ray);
 		sprite->dx = 0;
 		sprite = sprite->next;
 	}

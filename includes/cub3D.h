@@ -123,6 +123,7 @@ typedef struct s_data
 	t_sprite	*sprite;
 	t_sprite	*door;
 	t_moves		*moves;
+	float		*n_ray;
 	int			proj_plane_dist;
 }	t_data;
 
