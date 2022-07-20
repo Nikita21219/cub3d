@@ -59,7 +59,7 @@ void	rays(t_data *data, float angle)
 	{
 		if (!wall_h && !check_wall(&hor, data->map, &wall_h))
 		{
-			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == '4' \
+			if (data->map[(int)hor.y / SCALE][(int)hor.x / SCALE] == 'd' && data->map[(int)hor.y / SCALE][(int)hor.x / SCALE + 1] == '1' && data->map[(int)hor.y / SCALE][(int)hor.x / SCALE - 1] == '1'\
 				&& sqrt(powf(data->pl->x - (hor.x), 2.0) \
 				+ powf(data->pl->y - (hor.y), 2.0)) > 128)
 			{
@@ -74,7 +74,7 @@ void	rays(t_data *data, float angle)
 		}
 		if (!wall_v && !check_wall(&ver, data->map, &wall_v))
 		{
-			if (data->map[(int)ver.y / SCALE][(int)(ver.x) / SCALE] == '3' \
+			if (data->map[(int)ver.y / SCALE][(int)(ver.x) / SCALE] == 'd' && data->map[(int)ver.y / SCALE + 1][(int)(ver.x) / SCALE] == '1' && data->map[(int)ver.y / SCALE - 1][(int)(ver.x) / SCALE] == '1'\
 				&& sqrt(powf(data->pl->x - (ver.x), 2.0) + \
 				powf(data->pl->y - (ver.y), 2.0)) > 128)
 			{
