@@ -59,36 +59,28 @@ void	init_pict(char *str, t_data *data, int *roof, int *floor)
 
 void	init_pict_pointers(t_data *data)
 {
-	if (data->pict == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict);
 	data->pict->ea_wall = malloc(sizeof(t_pict_dt));
-	if (data->pict->ea_wall == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict->ea_wall);
 	data->pict->ea_wall->is_init = 0;
 	data->pict->no_wall = malloc(sizeof(t_pict_dt));
-	if (data->pict->no_wall == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict->no_wall);
 	data->pict->no_wall->is_init = 0;
 	data->pict->so_wall = malloc(sizeof(t_pict_dt));
-	if (data->pict->so_wall == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict->so_wall);
 	data->pict->so_wall->is_init = 0;
 	data->pict->we_wall = malloc(sizeof(t_pict_dt));
-	if (data->pict->we_wall == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict->we_wall);
 	data->pict->we_wall->is_init = 0;
 	data->pict->sprite1 = malloc(sizeof(t_pict_dt));
-	if (data->pict->sprite1 == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict->sprite1);
 	data->pict->sprite2 = malloc(sizeof(t_pict_dt));
-	if (data->pict->sprite2 == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict->sprite2);
 	data->pict->door = malloc(sizeof(t_pict_dt));
-	if (data->pict->door == NULL)
-		ft_exit(data, MALLOC_ERR);
+	check_null(data, data->pict->door);
 }
 
-void	check_null_img2(t_data *data)
+void	check_null_img(t_data *data)
 {
 	if (data->pict->no_wall->addr == NULL \
 	|| data->pict->ea_wall->addr == NULL \

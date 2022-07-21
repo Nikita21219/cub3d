@@ -22,7 +22,7 @@ void	check_identifiers(t_data *data)
 	data->pict->we_wall == NULL)
 		ft_exit(data, WRONG_MAP);
 	init_data_addr(data);
-	check_null_img2(data);
+	check_null_img(data);
 }
 
 int	is_only_space(char *str)

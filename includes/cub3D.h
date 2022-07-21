@@ -143,11 +143,10 @@ int				is_not_path(char *str);
 void			check_door(t_data *dt, int i, int j);
 void			init_data_addr(t_data *data);
 int				is_identifier(char *str);
-void			check_null_img(t_data *data, void *ptr);
 void			init_pict(char *str, t_data *data, int *roof, int *floor);
 void			init_pict_pointers(t_data *data);
-void			check_null_img2(t_data *data);
-
+void			check_null_img(t_data *data);
+void			check_is_digit(t_data *data, char **split);
 
 /* Game and window */
 
@@ -174,6 +173,7 @@ void			draw_square(t_data *data, float x, float y);
 void			draw_block(t_mlx *mlx, int x, int y, int color);
 void			map3d_draw(t_data data, int pix);
 float			len_vector(t_data data, float x, float y);
+void			check_null(t_data *data, void *ptr);
 
 /* Raycast */
 

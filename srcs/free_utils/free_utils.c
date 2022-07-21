@@ -44,3 +44,24 @@ void	free_pict(t_data *data)
 		}
 	}
 }
+
+void	check_null(t_data *data, void *ptr)
+{
+	if (ptr == NULL)
+		ft_exit(data, MALLOC_ERR);
+}
+
+void	check_is_digit(t_data *data, char **split)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (split[++i])
+	{
+		j = -1;
+		while (split[i][++j])
+			if (ft_isdigit(split[i][j]) == 0)
+				ft_exit(data, WRONG_MAP);
+	}
+}

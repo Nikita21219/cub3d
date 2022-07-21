@@ -41,21 +41,6 @@ int	check_rgb_range(t_data *data, int number)
 	return (number);
 }
 
-void	check_is_digit(t_data *data, char **split)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (split[++i])
-	{
-		j = -1;
-		while (split[i][++j])
-			if (ft_isdigit(split[i][j]) == 0)
-				ft_exit(data, WRONG_MAP);
-	}
-}
-
 int	convert_grb(char *str, t_data *data)
 {
 	char	**split;
