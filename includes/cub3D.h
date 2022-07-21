@@ -6,7 +6,7 @@
 # define SO		M_PI
 # define EA		0.0
 # define SCALE	64
-# define SPEED	12
+# define SPEED	15
 # define WIN_X	1920
 # define WIN_Y	1080
 # define FOV	60.0
@@ -100,8 +100,8 @@ typedef struct s_sprite
 	void			*img;
 	int				pict_num;
 	size_t			sprite_screen_size;
-	int 			h_offset;
-	int 			v_offset;
+	int				h_offset;
+	int				v_offset;
 	struct s_sprite	*next;
 }	t_sprite;
 
@@ -142,6 +142,8 @@ void			right_bot_space_handle(t_data *dt, int i, int j);
 void			bottom_space_handle(t_data *dt, int i, int j);
 void			check_zero(t_data *dt, int i, int j);
 int				is_not_path(char *str);
+void			check_door(t_data *dt, int i, int j);
+void			init_data_addr(t_data *data);
 
 /* Game and window */
 
