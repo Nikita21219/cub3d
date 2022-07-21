@@ -41,6 +41,21 @@ int	check_rgb_range(t_data *data, int number)
 	return (number);
 }
 
+void	check_is_digit(t_data *data, char **split)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (split[++i])
+	{
+		j = -1;
+		while (split[i][++j])
+			if (ft_isdigit(split[i][j]) == 0)
+				ft_exit(data, WRONG_MAP);
+	}
+}
+
 int	convert_grb(char *str, t_data *data)
 {
 	char	**split;
@@ -54,6 +69,7 @@ int	convert_grb(char *str, t_data *data)
 		ft_exit(data, MALLOC_ERR);
 	if (len_arr(split) != 3)
 		ft_exit(data, WRONG_MAP);
+	check_is_digit(data, split);
 	res = check_rgb_range(data, ft_atoi(split[0])) << 16 | \
 		check_rgb_range(data, ft_atoi(split[1])) << 8 | \
 		check_rgb_range(data, ft_atoi(split[2]));
