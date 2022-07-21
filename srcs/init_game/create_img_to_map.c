@@ -17,6 +17,8 @@ void	draw_2dmap(t_data data)
 			data.map[y][x] == 'S' || data.map[y][x] == 'E' \
 			|| data.map[y][x] == 'W' || data.map[y][x] == 'e')
 				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0xFFFFFF);
+			if (data.map[y][x] == 'd')
+				draw_block(data.mlx, x * SCALE / 6, y * SCALE / 6, 0xff8c21);
 			x++;
 		}
 		y++;
@@ -24,18 +26,10 @@ void	draw_2dmap(t_data data)
 	draw_square(&data, (int)data.pl->x / 6, (int)data.pl->y / 6);
 }
 
-void	draw_map(t_data *data)
+void	sprite_data(t_data *data)
 {
-	int			pix;
 	t_sprite	*sprite;
-	float		len_wall[WIN_X];
 
-	pix = 0;
-	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
-	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
-	&data->mlx->bpp, &data->mlx->line_l, &data->mlx->endian);
-	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
-	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
 	sprite = data->sprite;
 	while (sprite)
 	{
@@ -49,10 +43,18 @@ void	draw_map(t_data *data)
 		/ 2), 2) + pow(data->pl->y - (sprite->y * SCALE + SCALE / 2), 2));
 		sprite = sprite->next;
 	}
+}
+
+void	write_rays(t_data *data)
+{
+	int			pix;
+	t_sprite	*sprite;
+
+	pix = 0;
 	while (data->pl->start >= data->pl->end)
 	{
 		rays(data, data->pl->start);
-		len_wall[pix] = data->ray->len_ray;
+		data->n_ray[pix] = data->ray->len_ray;
 		data->ray->len_ray *= cos(data->pl->start - data->pl->dir);
 		map3d_draw(*data, pix);
 		sprite = data->sprite;
@@ -66,12 +68,27 @@ void	draw_map(t_data *data)
 		data->pl->start -= ((FOV * M_PI / 180) / WIN_X);
 		pix++;
 	}
+}
+
+void	draw_map(t_data *data)
+{
+	int			pix;
+	t_sprite	*sprite;
+
+	pix = 0;
+	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
+	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
+	&data->mlx->bpp, &data->mlx->line_l, &data->mlx->endian);
+	data->pl->start = data->pl->dir + ((FOV / 2) * M_PI / 180);
+	data->pl->end = data->pl->dir - ((FOV / 2) * M_PI / 180);
+	sprite_data(data);
+	write_rays(data);
 	sprite = data->sprite;
 	sort_sprites(sprite);
 	while (sprite)
 	{
 		if (sprite->dx != 0)
-			draw_sprite(data, sprite, len_wall);
+			draw_sprite(data, sprite, data->n_ray);
 		sprite->dx = 0;
 		sprite = sprite->next;
 	}

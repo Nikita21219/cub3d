@@ -7,7 +7,30 @@ unsigned int	get_pixel(t_pict_dt *img, float x, float y, int psh)
 
 	ay = SCALE * (y - (WIN_Y / 2 - psh / 2)) / psh;
 	ax = SCALE * (x / SCALE - (float)(int)(x / SCALE));
-	return (*(unsigned *)(img->addr + (ay * img->line_l + ax * (img->bpp / 8))));
+	return (*(unsigned *)(img->addr + \
+	(ay * img->line_l + ax * (img->bpp / 8))));
+}
+
+void	draw_pict_wall(t_data data, int pix, int y, int psh)
+{
+	if (data.ray->s_x == 1)
+	{
+		if (data.ray->s == 'n')
+			my_mlx_pixel_put(data.mlx, pix, y, \
+			get_pixel(data.pict->no_wall, data.ray->x, y, psh));
+		else
+			my_mlx_pixel_put(data.mlx, pix, y, \
+			get_pixel(data.pict->so_wall, data.ray->x, y, psh));
+	}
+	else
+	{
+		if (data.ray->s == 'w')
+			my_mlx_pixel_put(data.mlx, pix, y, \
+			get_pixel(data.pict->we_wall, data.ray->y, y, psh));
+		else
+			my_mlx_pixel_put(data.mlx, pix, y, \
+			get_pixel(data.pict->ea_wall, data.ray->y, y, psh));
+	}
 }
 
 void	draw3d_wall(t_data data, int pix, int y, int psh)
@@ -25,26 +48,7 @@ void	draw3d_wall(t_data data, int pix, int y, int psh)
 			my_mlx_pixel_put(data.mlx, pix, y, \
 			get_pixel(data.pict->door, data.ray->x, y, psh));
 		else
-		{
-			if (data.ray->s_x == 1)
-			{
-				if (data.ray->s == 'n')
-					my_mlx_pixel_put(data.mlx, pix, y, \
-					get_pixel(data.pict->no_wall, data.ray->x, y, psh));
-				else
-					my_mlx_pixel_put(data.mlx, pix, y, \
-					get_pixel(data.pict->so_wall, data.ray->x, y, psh));
-			}
-			else
-			{
-				if (data.ray->s == 'w')
-					my_mlx_pixel_put(data.mlx, pix, y, \
-					get_pixel(data.pict->we_wall, data.ray->y, y, psh));
-				else
-					my_mlx_pixel_put(data.mlx, pix, y, \
-					get_pixel(data.pict->ea_wall, data.ray->y, y, psh));
-			}
-		}
+			draw_pict_wall(data, pix, y, psh);
 	}
 }
 
