@@ -139,6 +139,7 @@ void			right_bot_space_handle(t_data *dt, int i, int j);
 void			bottom_space_handle(t_data *dt, int i, int j);
 void			check_zero(t_data *dt, int i, int j);
 int				is_not_path(char *str);
+void			check_door(t_data *dt, int i, int j);
 
 /* Game and window */
 

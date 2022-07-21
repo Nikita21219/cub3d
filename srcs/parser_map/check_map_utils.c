@@ -96,6 +96,8 @@ void	check_map(t_data *data)
 				check_space(data, i, j);
 			if (data->map[i][j] == '0')
 				check_zero(data, i, j);
+			if (data->map[i][j] == 'd')
+				check_door(data, i, j);
 			hero += check_char(data->map[i][j], data, (float) j, (float) i);
 		}
 	}
