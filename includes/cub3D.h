@@ -53,6 +53,7 @@ typedef struct s_pict_dt {
 	char		*addr;
 	int			bpp;
 	int			line_l;
+	int			is_init;
 	int			endian;
 }	t_pict_dt;
 

@@ -28,6 +28,7 @@ void	trim_and_xpm_conv(char *str, t_pict_dt *pict, t_data *data)
 	free(tmp);
 	if (pict->img == NULL)
 		ft_exit(data, WRONG_MAP);
+	pict->is_init++;
 }
 
 void	init_pict(char *str, t_data *data)
@@ -57,15 +58,19 @@ void	init_pict_pointers(t_data *data)
 	data->pict->ea_wall = malloc(sizeof(t_pict_dt));
 	if (data->pict->ea_wall == NULL)
 		ft_exit(data, MALLOC_ERR);
+	data->pict->ea_wall->is_init = 0;
 	data->pict->no_wall = malloc(sizeof(t_pict_dt));
 	if (data->pict->no_wall == NULL)
 		ft_exit(data, MALLOC_ERR);
+	data->pict->no_wall->is_init = 0;
 	data->pict->so_wall = malloc(sizeof(t_pict_dt));
 	if (data->pict->so_wall == NULL)
 		ft_exit(data, MALLOC_ERR);
+	data->pict->so_wall->is_init = 0;
 	data->pict->we_wall = malloc(sizeof(t_pict_dt));
 	if (data->pict->we_wall == NULL)
 		ft_exit(data, MALLOC_ERR);
+	data->pict->we_wall->is_init = 0;
 	data->pict->sprite1 = malloc(sizeof(t_pict_dt));
 	if (data->pict->sprite1 == NULL)
 		ft_exit(data, MALLOC_ERR);

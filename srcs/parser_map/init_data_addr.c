@@ -21,12 +21,20 @@ void	xpm_convert(t_data *data)
 		ft_exit(data, MALLOC_ERR);
 }
 
+void	check_init_pictures(t_data *data, t_pict *pict)
+{
+	if (pict->ea_wall->is_init != 1 || pict->no_wall->is_init != 1 || \
+	pict->we_wall->is_init != 1 || pict->so_wall->is_init != 1)
+		ft_exit(data, WRONG_MAP);
+}
+
 void	init_data_addr(t_data *data)
 {
 	t_pict	*pict;
 
 	pict = data->pict;
 	xpm_convert(data);
+	check_init_pictures(data, pict);
 	pict->sprite2->addr = mlx_get_data_addr(pict->sprite2->img, \
 	&pict->sprite2->bpp, &pict->sprite2->line_l, &pict->sprite2->endian);
 	pict->sprite1->addr = mlx_get_data_addr(pict->sprite1->img, \
