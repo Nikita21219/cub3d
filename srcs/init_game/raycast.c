@@ -107,6 +107,8 @@ void	rays(t_data *data, float angle)
 	wall_v = 0;
 	ver = init_ver(*data->pl, angle);
 	hor = init_hor(*data->pl, angle);
+	ver.door = 0;
+	hor.door = 0;
 	while (!wall_h || !wall_v)
 	{
 		step_hor(data, &hor, &wall_h);

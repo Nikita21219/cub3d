@@ -73,7 +73,8 @@ void	check_is_digit(t_data *data, char **split)
 	{
 		j = -1;
 		while (split[i][++j])
-			if (ft_isdigit(split[i][j]) == 0)
+			if (ft_isdigit(split[i][j]) == 0 && \
+			ft_space(split[i][j]) == 0)
 				ft_exit(data, WRONG_MAP);
 	}
 }

@@ -33,6 +33,7 @@ void	draw_sprite(t_data *data, t_sprite *sprite, float *len_wall)
 	size_t			j;
 	float			prop;
 	unsigned int	pix_color;
+	void			*img;
 
 	i = pixel_sprite_start(sprite, &prop);
 	while (++i < sprite->sprite_screen_size)
@@ -41,10 +42,10 @@ void	draw_sprite(t_data *data, t_sprite *sprite, float *len_wall)
 		while (++j < sprite->sprite_screen_size)
 		{
 			if (data->sprite->pict_num == 1)
-				sprite->img = data->pict->sprite1;
+				img = data->pict->sprite1;
 			else
-				sprite->img = data->pict->sprite2;
-			pix_color = get_color(sprite->img, i * prop, j * prop);
+				img = data->pict->sprite2;
+			pix_color = get_color(img, i * prop, j * prop);
 			if (pix_color == 4278190080 || sprite->h_offset + i > WIN_X \
 			|| len_wall[sprite->h_offset + i] < sprite->len)
 				continue ;
