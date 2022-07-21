@@ -3,13 +3,19 @@
 void	check_identifiers(t_data *data)
 {
 	int	i;
+	int	roof;
+	int	floor;
 
+	roof = 0;
+	floor = 0;
 	init_pict_pointers(data);
 	i = -1;
 	if (data->map[0] == NULL)
 		ft_exit(data, WRONG_MAP);
 	while (data->map[++i] && i < 6)
-		init_pict(data->map[i], data);
+		init_pict(data->map[i], data, &roof, &floor);
+	if (roof != 1 || floor != 1)
+		ft_exit(data, WRONG_MAP);
 	if (data->pict->ea_wall == NULL || \
 	data->pict->no_wall == NULL || \
 	data->pict->so_wall == NULL || \

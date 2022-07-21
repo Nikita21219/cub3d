@@ -31,7 +31,7 @@ void	trim_and_xpm_conv(char *str, t_pict_dt *pict, t_data *data)
 	pict->is_init++;
 }
 
-void	init_pict(char *str, t_data *data)
+void	init_pict(char *str, t_data *data, int *roof, int *floor)
 {
 	while (ft_space(*str))
 		str++;
@@ -44,9 +44,15 @@ void	init_pict(char *str, t_data *data)
 	else if (startswith(str, "EA"))
 		trim_and_xpm_conv(str, data->pict->ea_wall, data);
 	else if (startswith(str, "C"))
+	{
 		data->pict->ceiling = convert_grb(ft_strtrim(str + 1, " \t"), data);
+		*roof += 1;
+	}
 	else if (startswith(str, "F"))
+	{
 		data->pict->floor = convert_grb(ft_strtrim(str + 1, " \t"), data);
+		*floor += 1;
+	}
 	else
 		ft_exit(data, WRONG_MAP);
 }

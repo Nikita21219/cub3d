@@ -144,7 +144,7 @@ void			check_door(t_data *dt, int i, int j);
 void			init_data_addr(t_data *data);
 int				is_identifier(char *str);
 void			check_null_img(t_data *data, void *ptr);
-void			init_pict(char *str, t_data *data);
+void			init_pict(char *str, t_data *data, int *roof, int *floor);
 void			init_pict_pointers(t_data *data);
 void			check_null_img2(t_data *data);
 
