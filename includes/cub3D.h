@@ -35,7 +35,7 @@
 typedef struct s_mouse
 {
 	int			x;
-	int			y;
+	int			visible;
 }	t_mouse;
 
 typedef struct s_mlx {

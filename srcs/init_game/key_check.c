@@ -13,25 +13,19 @@ int	mouse(t_data *data)
 	int	y;
 
 	mlx_mouse_get_pos(data->mlx->win, &x, &y);
-	if (data->mouse->x - 50 > x)
+	if (data->mouse->x > x)
 	{
-		data->moves->turn_left = 1;
-		data->mouse->x = x;
-		data->moves->turn_left = 0;
-		// if (data->mouse->x < 51)
-		// 	data->mouse->x = 51;
-		// if (x < 0)
-		// 	mlx_mouse_move(data->mlx->win, 0, y);
+		data->pl->dir += 0.004 * SPEED;
+		if (data->pl->dir >= 2 * (float)M_PI)
+			data->pl->dir -= (float)M_PI * 2;
+		mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
 	}
-	else if (data->mouse->x + 50 < x)
+	else if (data->mouse->x < x)
 	{
-		data->moves->turn_right = 1;
-		data->mouse->x = x;
-		data->moves->turn_right = 0;
-		// if (data->mouse->x >= WIN_X)
-		// 	data->mouse->x = WIN_X - 51;
-		// if (x > WIN_X)
-		// 	mlx_mouse_move(data->mlx->win, WIN_X, y);
+		data->pl->dir -= 0.004 * SPEED;
+		if (data->pl->dir < 0)
+			data->pl->dir += (float)M_PI * 2;
+		mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
 	}
 	return (0);
 }
@@ -79,10 +73,17 @@ int	mouse_visible(int button, int x, int y, t_data *data)
 {
 	(void)x;
 	(void)y;
-	(void)data;
 	if (button == 1)
+	{
 		mlx_mouse_hide();
+		data->mouse->visible = 0;
+		mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
+	}
 	if (button == 2)
+	{
+		mlx_mouse_move(data->mlx->win, WIN_X / 2, WIN_Y / 2);
 		mlx_mouse_show();
+		data->mouse->visible = 1;
+	}
 	return (0);
 }
