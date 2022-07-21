@@ -6,7 +6,7 @@
 /*   By: bclarind <bclarind@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:50:07 by bclarind          #+#    #+#             */
-/*   Updated: 2022/07/21 15:50:08 by bclarind         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:16:59 by bclarind         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ unsigned int	get_pixel(t_pict_dt *img, float x, float y, int psh)
 
 void	draw_pict_wall(t_data data, int pix, int y, int psh)
 {
-	// printf("pix = %d\n", pix);
 	if (data.ray->s_x == 1)
 	{
 		if (data.ray->s == 'n')
