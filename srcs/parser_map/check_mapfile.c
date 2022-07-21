@@ -76,4 +76,3 @@ void	init_pict_pointers(t_data *data)
 	if (data->pict->door == NULL)
 		ft_exit(data, MALLOC_ERR);
 }
-

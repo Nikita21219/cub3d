@@ -45,6 +45,14 @@ int	is_only_space(char *str)
 	return (1);
 }
 
+void	init_res_and_j(char ***res, int *j, int map_size, t_data *data)
+{
+	*res = malloc((map_size + 1) * sizeof(char *));
+	if (res == NULL)
+		ft_exit(data, 12);
+	*j = 0;
+}
+
 void	set_map(t_data *data)
 {
 	char	**res;
@@ -62,10 +70,7 @@ void	set_map(t_data *data)
 	map_size = get_map_size(data->map);
 	if (map_size <= 0)
 		ft_exit(data, WRONG_MAP);
-	res = malloc((map_size + 1) * sizeof(char *));
-	if (res == NULL)
-		ft_exit(data, 12);
-	j = 0;
+	init_res_and_j(&res, &j, map_size, data);
 	while (data->map[i])
 		res[j++] = data->map[i++];
 	res[j] = NULL;
