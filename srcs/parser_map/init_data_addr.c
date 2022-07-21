@@ -7,13 +7,16 @@ void	xpm_convert(t_data *data)
 	int		img_height;
 
 	pict = data->pict;
-	pict->sprite1->img = mlx_xpm_file_to_image(data->mlx, "./texture/sprite1.xpm", &img_width, &img_height);
+	pict->sprite1->img = mlx_xpm_file_to_image(data->mlx, \
+	"./texture/sprite1.xpm", &img_width, &img_height);
 	if (pict->sprite1->img == NULL)
 		ft_exit(data, MALLOC_ERR);
-	pict->sprite2->img = mlx_xpm_file_to_image(data->mlx, "./texture/sprite2.xpm", &img_width, &img_height);
+	pict->sprite2->img = mlx_xpm_file_to_image(data->mlx, \
+	"./texture/sprite2.xpm", &img_width, &img_height);
 	if (pict->sprite2->img == NULL)
 		ft_exit(data, MALLOC_ERR);
-	pict->door->img = mlx_xpm_file_to_image(data->mlx, "./texture/door.xpm", &img_width, &img_height);
+	pict->door->img = mlx_xpm_file_to_image(data->mlx, \
+	"./texture/door.xpm", &img_width, &img_height);
 	if (pict->door->img == NULL)
 		ft_exit(data, MALLOC_ERR);
 }
