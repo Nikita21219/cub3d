@@ -72,10 +72,8 @@ void	write_rays(t_data *data)
 
 void	draw_map(t_data *data)
 {
-	int			pix;
 	t_sprite	*sprite;
 
-	pix = 0;
 	data->mlx->img = mlx_new_image(data->mlx->mlx, WIN_X, WIN_Y);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, \
 	&data->mlx->bpp, &data->mlx->line_l, &data->mlx->endian);

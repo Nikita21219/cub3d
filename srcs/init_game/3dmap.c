@@ -13,7 +13,7 @@ unsigned int	get_pixel(t_pict_dt *img, float x, float y, int psh)
 
 void	draw_pict_wall(t_data data, int pix, int y, int psh)
 {
-	printf("pix = %d\n", pix);
+	// printf("pix = %d\n", pix);
 	if (data.ray->s_x == 1)
 	{
 		if (data.ray->s == 'n')
