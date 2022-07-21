@@ -99,6 +99,9 @@ typedef struct s_sprite
 	float			dir;
 	void			*img;
 	int				pict_num;
+	size_t			sprite_screen_size;
+	int 			h_offset;
+	int 			v_offset;
 	struct s_sprite	*next;
 }	t_sprite;
 
