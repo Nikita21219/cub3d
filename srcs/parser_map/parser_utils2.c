@@ -25,7 +25,6 @@ void	check_door(t_data *dt, int i, int j)
 
 int	is_not_path(char *str)
 {
-	(void) str;
 	int	i;
 
 	i = -1;

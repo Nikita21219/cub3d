@@ -1,20 +1,5 @@
 #include "../includes/cub3D.h"
 
-void	check_null_img2(t_data *data)
-{
-	if (data->pict->no_wall->addr == NULL \
-	|| data->pict->ea_wall->addr == NULL \
-	|| data->pict->so_wall->addr == NULL \
-	|| data->pict->we_wall->addr == NULL \
-	|| data->pict->sprite1->img == NULL \
-	|| data->pict->sprite1->addr == NULL \
-	|| data->pict->sprite2->img == NULL \
-	|| data->pict->sprite2->addr == NULL \
-	|| data->pict->door->img == NULL \
-	|| data->pict->door->addr == NULL)
-		ft_exit(data, WRONG_MAP);
-}
-
 void	check_identifiers(t_data *data)
 {
 	int	i;
@@ -48,7 +33,7 @@ int	is_only_space(char *str)
 void	init_res_and_j(char ***res, int *j, int map_size, t_data *data)
 {
 	*res = malloc((map_size + 1) * sizeof(char *));
-	if (res == NULL)
+	if (*res == NULL)
 		ft_exit(data, 12);
 	*j = 0;
 }

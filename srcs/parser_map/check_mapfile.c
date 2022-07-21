@@ -76,3 +76,18 @@ void	init_pict_pointers(t_data *data)
 	if (data->pict->door == NULL)
 		ft_exit(data, MALLOC_ERR);
 }
+
+void	check_null_img2(t_data *data)
+{
+	if (data->pict->no_wall->addr == NULL \
+	|| data->pict->ea_wall->addr == NULL \
+	|| data->pict->so_wall->addr == NULL \
+	|| data->pict->we_wall->addr == NULL \
+	|| data->pict->sprite1->img == NULL \
+	|| data->pict->sprite1->addr == NULL \
+	|| data->pict->sprite2->img == NULL \
+	|| data->pict->sprite2->addr == NULL \
+	|| data->pict->door->img == NULL \
+	|| data->pict->door->addr == NULL)
+		ft_exit(data, WRONG_MAP);
+}
