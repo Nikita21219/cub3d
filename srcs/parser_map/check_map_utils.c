@@ -1,32 +1,5 @@
 #include "../includes/cub3D.h"
 
-int	check_rgb_range(t_data *data, int number)
-{
-	if (number < 0 || number > 255)
-		ft_exit(data, WRONG_MAP);
-	return (number);
-}
-
-int	convert_grb(char *str, t_data *data)
-{
-	char	**split;
-	int		res;
-
-	if (str == NULL)
-		ft_exit(data, MALLOC_ERR);
-	split = ft_split(str, ',');
-	free(str);
-	if (split == NULL)
-		ft_exit(data, MALLOC_ERR);
-	if (len_arr(split) != 3)
-		ft_exit(data, WRONG_MAP);
-	res = check_rgb_range(data, ft_atoi(split[0])) << 16 | \
-		check_rgb_range(data, ft_atoi(split[1])) << 8 | \
-		check_rgb_range(data, ft_atoi(split[2]));
-	free_arr(split);
-	return (res);
-}
-
 int	check_char(char c, t_data *data, float x, float y)
 {
 	int	flag;

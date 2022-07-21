@@ -12,11 +12,16 @@ void	left_space_handle(t_data *dt, int i, int j)
 
 void	right_space_handle(t_data *dt, int i, int j)
 {
-	if ((j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j])) || \
-	(j - 1 <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j - 1])) || \
-	(j - 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j - 1])) || \
-	(j - 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j - 1])) || \
-	(j <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j])))
+	if ((j <= (int)ft_strlen(dt->map[i - 1]) \
+	&& !allow_ch(dt->map[i - 1][j])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i - 1]) \
+	&& !allow_ch(dt->map[i - 1][j - 1])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i]) && \
+	!allow_ch(dt->map[i][j - 1])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i + 1]) && \
+	!allow_ch(dt->map[i + 1][j - 1])) || \
+	(j <= (int)ft_strlen(dt->map[i + 1]) && \
+	!allow_ch(dt->map[i + 1][j])))
 		ft_exit(dt, WRONG_MAP);
 }
 
@@ -32,14 +37,22 @@ void	top_space_handle(t_data *dt, int i, int j)
 
 void	other_space_handle(t_data *dt, int i, int j)
 {
-	if ((j - 1 <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j - 1])) || \
-	(j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j])) || \
-	(j <= (int)ft_strlen(dt->map[i - 1]) && !allow_ch(dt->map[i - 1][j + 1])) || \
-	(j + 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j + 1])) || \
-	(j + 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j + 1])) || \
-	(j <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j])) || \
-	(j - 1 <= (int)ft_strlen(dt->map[i + 1]) && !allow_ch(dt->map[i + 1][j - 1])) || \
-	(j - 1 <= (int)ft_strlen(dt->map[i]) && !allow_ch(dt->map[i][j - 1])))
+	if ((j - 1 <= (int)ft_strlen(dt->map[i - 1]) && \
+	!allow_ch(dt->map[i - 1][j - 1])) || \
+	(j <= (int)ft_strlen(dt->map[i - 1]) && \
+	!allow_ch(dt->map[i - 1][j])) || \
+	(j <= (int)ft_strlen(dt->map[i - 1]) && \
+	!allow_ch(dt->map[i - 1][j + 1])) || \
+	(j + 1 <= (int)ft_strlen(dt->map[i]) && \
+	!allow_ch(dt->map[i][j + 1])) || \
+	(j + 1 <= (int)ft_strlen(dt->map[i + 1]) && \
+	!allow_ch(dt->map[i + 1][j + 1])) || \
+	(j <= (int)ft_strlen(dt->map[i + 1]) && \
+	!allow_ch(dt->map[i + 1][j])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i + 1]) && \
+	!allow_ch(dt->map[i + 1][j - 1])) || \
+	(j - 1 <= (int)ft_strlen(dt->map[i]) && \
+	!allow_ch(dt->map[i][j - 1])))
 		ft_exit(dt, WRONG_MAP);
 }
 
